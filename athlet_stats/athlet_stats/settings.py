@@ -18,6 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '-n7)uxbrcci3)=8dyo%(t&9zi3*0-3g!55fm8d8r7t9u!h2e!_'
+SITE_ID = 1
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # Note this one is not included by default
+    'django.contrib.comments', # Note this one is not included by default
     'tagging',
     'mptt',
     'zinnia',
