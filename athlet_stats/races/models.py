@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 class Race(models.Model):
 	name = models.CharField(max_length=100)
+	month = models.PositiveIntegerField() #mes en el que se disputa tipicamente la carrera
 
 	def __unicode__(self):
 		return self.name
