@@ -13,6 +13,7 @@ class Type(models.Model):
 	type = models.CharField(max_length=100) # indoor,outdoor,road,mointain,other
 	name = models.CharField(max_length=100)
 	distance = models.PositiveIntegerField(blank=True,null=True)
+	result_format = models.CharField(max_length=100) # resultado en metros, minutos, centesimas...
 
 	def __unicode__(self):
 		return self.type + " - " + self.name 
