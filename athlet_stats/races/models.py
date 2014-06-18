@@ -45,10 +45,10 @@ class Edition(models.Model):
 class Objective(models.Model):
 	user = models.ForeignKey(User)
 	edition = models.ForeignKey(Edition)
-	timemark = models.TimeField()
-	distancemark = models.PositiveIntegerField()
-	position = models.PositiveIntegerField()
-	comment = models.TextField()
+	timemark = models.TimeField(blank=True,null=True)
+	distancemark = models.PositiveIntegerField(blank=True,null=True)
+	position = models.PositiveIntegerField(blank=True,null=True)
+	comment = models.TextField(blank=True,null=True)
 
 	def __unicode__(self):
 		return self.edition.name + " - " + self.user.username
@@ -57,9 +57,9 @@ class Objective(models.Model):
 class Result(models.Model):
 	user = models.ForeignKey(User)
 	edition = models.ForeignKey(Edition)
-	timemark = models.TimeField()
-	distancemark = models.PositiveIntegerField()
-	position = models.PositiveIntegerField()
+	timemark = models.TimeField(blank=True,null=True)
+	distancemark = models.PositiveIntegerField(blank=True,null=True)
+	position = models.PositiveIntegerField(blank=True,null=True)
 	comment = models.TextField()
 
 	def __unicode__(self):
