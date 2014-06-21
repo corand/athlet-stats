@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.sites', # Note this one is not included by default
     'django.contrib.comments', # Note this one is not included by default
     'tagging',
+    'durationfield',
     'mptt',
     'zinnia',
     'races',

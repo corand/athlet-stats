@@ -18,6 +18,7 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{STATIC_URL}}css/sb-admin.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/main.css" rel="stylesheet">
 
 </head>
 
@@ -270,11 +271,100 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <ul>
-                        {% for race in races %}
+                    <h3>Septiembre</h3>
+                    <ul class="race_list">
+                        {% for race in septiembre %}
                             <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
                             {% empty %}
-                                No hay ninguna carrera todavía
+                                Todavía no hay ninguna carrera creada en Septiembre
+                        {% endfor %}
+                    </ul>
+                    <h3>Octubre</h3>
+                    <ul class="race_list">
+                        {% for race in octubre %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Octubre
+                        {% endfor %}
+                    </ul>
+                    <h3>Noviembre</h3>
+                    <ul class="race_list">
+                        {% for race in noviembre %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Noviembre
+                        {% endfor %}
+                    </ul>
+                    <h3>Diciembre</h3>
+                    <ul class="race_list">
+                        {% for race in diciembre %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Diciembre
+                        {% endfor %}
+                    </ul>
+                    <h3>Enero</h3>
+                    <ul class="race_list">
+                        {% for race in enero %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Enero
+                        {% endfor %}
+                    </ul>
+                    <h3>Febrero</h3>
+                    <ul class="race_list">
+                        {% for race in febrero %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Febrero
+                        {% endfor %}
+                    </ul>
+                    <h3>Marzo</h3>
+                    <ul class="race_list">
+                        {% for race in marzo %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Marzo
+                        {% endfor %}
+                    </ul>
+                    <h3>Abril</h3>
+                    <ul class="race_list">
+                        {% for race in abril %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Abril
+                        {% endfor %}
+                    </ul>
+                    <h3>Mayo</h3>
+                    <ul class="race_list">
+                        {% for race in mayo %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Mayo
+                        {% endfor %}
+                    </ul>
+                    <h3>Junio</h3>
+                    <ul class="race_list">
+                        {% for race in junio %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Junio
+                        {% endfor %}
+                    </ul>
+                    <h3>Julio</h3>
+                    <ul class="race_list">
+                        {% for race in julio %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Julio
+                        {% endfor %}
+                    </ul>
+                    <h3>Agosto</h3>
+                    <ul class="race_list">
+                        {% for race in agosto %}
+                            <li><a href="{% url 'editionlist' race.id %}">{{race}}</a></li>
+                            {% empty %}
+                                Todavía no hay ninguna carrera creada en Agosto
                         {% endfor %}
                     </ul>
                 </div>

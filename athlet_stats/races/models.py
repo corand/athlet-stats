@@ -1,4 +1,5 @@
 from django.db import models
+from durationfield.db.models.fields.duration import DurationField
 from django.contrib.auth.models import User
 
 class Race(models.Model):
@@ -45,7 +46,7 @@ class Edition(models.Model):
 class Objective(models.Model):
 	user = models.ForeignKey(User)
 	edition = models.ForeignKey(Edition)
-	timemark = models.TimeField(blank=True,null=True)
+	timemark = DurationField(blank=True,null=True)
 	distancemark = models.PositiveIntegerField(blank=True,null=True)
 	position = models.PositiveIntegerField(blank=True,null=True)
 	comment = models.TextField(blank=True,null=True)
@@ -57,7 +58,7 @@ class Objective(models.Model):
 class Result(models.Model):
 	user = models.ForeignKey(User)
 	edition = models.ForeignKey(Edition)
-	timemark = models.TimeField(blank=True,null=True)
+	timemark = DurationField(blank=True,null=True)
 	distancemark = models.PositiveIntegerField(blank=True,null=True)
 	position = models.PositiveIntegerField(blank=True,null=True)
 	comment = models.TextField()

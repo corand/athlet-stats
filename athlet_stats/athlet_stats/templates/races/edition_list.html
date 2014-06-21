@@ -18,6 +18,8 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{STATIC_URL}}css/sb-admin.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}css/main.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Cousine:400,700' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -256,14 +258,14 @@
                       <li><a href="{% url 'racelist' %}">Competiciones</a></li>
                       <li class="active">{{race}}</li>
                     </ol>
-                    <h1 class="page-header"></h1>
+                    <h1 class="page-header">Ediciones</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <ul>
+                    <ul class="edition_list">
                         {% for edition in editions %}
                             <li><a href="#">{{edition}}</a></li>
                             {% empty %}
@@ -272,9 +274,13 @@
                     </ul>
 
                     <hr />
-                    <ul>
+
+
+                    <h3>Los mejores resultados de ésta competición</h3>
+
+                    <ul class="edition_result_list">
 						{% for result in results %}
-							<li>{{result.position}} - {{result.timemark}} {{result.user}} ({{result.edition.date}})</li>
+							<li>{{result.position}}º - {{result.user.first_name}} {{result.user.last_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
 						{% endfor %}
                     </ul>
                 </div>
