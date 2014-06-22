@@ -36,5 +36,15 @@ class EditionList(LoginRequiredMixin,ListView):
 	def get_context_data(self, **kwargs):
 		context = super(EditionList, self).get_context_data(**kwargs)
 		context['race'] = get_object_or_404(Race,pk=self.kwargs['pk'])
-		context['results'] = Result.objects.filter(edition__race=self.kwargs['pk']).order_by('position','edition__date')
+		context['results'] = Result.objects.filter(edition__race=self.kwargs['pk']).order_by('position','-edition__date')
+		return context
+
+class EditionDetail(LoginRequiredMixin,ListView):
+	template_name = "races/edition_detail.html"
+	context_object_name = 'results'
+	def get_queryset(self):
+		return Result.objects.filter(edition=self.kwargs['pk']).order_by('position')
+	def get_context_data(self, **kwargs):
+		context = super(EditionDetail, self).get_context_data(**kwargs)
+		context['edition'] = get_object_or_404(Edition,pk=self.kwargs['pk'])
 		return context

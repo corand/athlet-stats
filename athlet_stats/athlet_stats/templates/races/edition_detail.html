@@ -1,0 +1,35 @@
+{% extends 'races/base.html' %}
+
+{% block content %}
+    <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                	<ol class="breadcrumb">
+                      <li><a href="{% url 'racelist' %}">Competiciones</a></li>
+                      <li><a href="{% url 'editionlist' edition.race.id %}">{{edition.race}}</a></li>
+                      <li class="active">{{edition}}</li>
+                    </ol>
+                    <h1 class="page-header">Edición</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <b>Nombre:</b> {{edition.name}} <br/>
+                    <b>Distancia:</b> {{edition.distance}} <br />
+                    <b>Fecha:</b> {{edition.date}}
+
+                    <h3>Resultados</h3>
+                    <ul>
+                        {% for result in results %}
+                            <li>{{result}}</li>
+                            {% empty %}
+                                Todavía no hay ningún resultado para ésta edición
+                        {% endfor %}
+                    </ul>
+                  
+                </div>
+            </div>
+    </div>
+{% endblock %}
