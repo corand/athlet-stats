@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Race,Edition,Result
+from .forms import RaceForm
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,ListView,DetailView
 from braces.views import LoginRequiredMixin
 from django.shortcuts import render_to_response,get_object_or_404
@@ -48,3 +49,14 @@ class EditionDetail(LoginRequiredMixin,ListView):
 		context = super(EditionDetail, self).get_context_data(**kwargs)
 		context['edition'] = get_object_or_404(Edition,pk=self.kwargs['pk'])
 		return context
+
+class NewRace(LoginRequiredMixin,CreateView):
+    form_class = RaceForm
+    template_name = "races/new_race.html"
+    def form_valid(self,form):
+        instance = form.save(commit=False)
+        instance.creator = self.request.user
+        return super(NewRace,self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse("racelistt")
