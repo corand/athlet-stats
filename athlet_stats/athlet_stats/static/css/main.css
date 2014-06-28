@@ -5,3 +5,7 @@
 .edition_result_list{ list-style: none; font-family:Cousine; }
 
 .race_list{ list-style: none; }
+
+.add_btn{ float:right; }
+
+.clear-both{ clear: both;}

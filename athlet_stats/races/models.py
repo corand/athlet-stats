@@ -64,6 +64,7 @@ class Edition(models.Model):
 	race = models.ForeignKey(Race)
 	name = models.CharField(max_length=100)
 	distance = models.PositiveIntegerField(blank=True,null=True)
+	creator = models.ForeignKey(User)
 
 	def __unicode__(self):
 		return self.name
