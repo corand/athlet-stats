@@ -20,6 +20,7 @@ class RaceTypeForm(forms.Form):
 
 class EditionForm(forms.Form):
 	modality = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=Modality.objects.filter(race_type=1).values_list('id','modality'), initial='2')
-	date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 	name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+	date = forms.DateField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+	time = forms.TimeField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 	distance = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control'}))

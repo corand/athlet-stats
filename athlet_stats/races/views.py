@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from .models import Race,Edition,Result
+from .models import Race,Edition,Result,Modality
 from .forms import RaceForm,EditionForm,RaceTypeForm
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,ListView,DetailView
 from braces.views import LoginRequiredMixin
+from django.core import serializers
 from django.shortcuts import render_to_response,get_object_or_404
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -84,3 +86,12 @@ class NewEdition(LoginRequiredMixin,TemplateView):
 		context['form'] = EditionForm()
 		context['race'] = get_object_or_404(Race, pk=kwargs['pk'])
 		return context
+
+
+def changeModality(request):
+    objectQuerySet = Modality.objects.filter(race_type=request.POST['race_type'])
+    data = serializers.serialize('json', objectQuerySet, fields=('id','modality'))
+
+    return HttpResponse(data,content_type='application/json')
+
+
