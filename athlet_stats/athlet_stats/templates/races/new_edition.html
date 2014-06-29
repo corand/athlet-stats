@@ -6,11 +6,16 @@
                 <div class="col-lg-12">
 					<h1 class="page-header">Nueva edición de: {{race}}</h1>
 					<div class="row">
-						<div class="col-lg-6">
+						<div class="col-lg-4">
 							<form id='formulario' method='post'>
 								{% csrf_token %}
-								{{racetypeform.as_p}}
-								{{form.as_p}}
+								<p>Nombre: {{form.name}}</p>
+								<p>Tipo: {{racetypeform.type}}</p>
+								<p>Modalidad: {{form.modality}}</p>
+								<p>Fecha: {{form.date}}</p>
+								<p>Hora: {{form.time}}</p>
+								<p>Distancia: {{form.distance}}</p>
+								
 								<p>
 									<a href="{% url 'editionlist' race.id %}"><span class="btn btn-danger">Cancelar</span></a>
 									<input type='submit' class="btn btn-success" value="Crear" />

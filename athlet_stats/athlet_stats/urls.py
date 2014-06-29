@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^weblog/', include('zinnia.urls')),
 	url(r'^comments/', include('django.contrib.comments.urls')),
+	url(r'^cerrar/$', races_views.cerrar),
+	url(r'^login/$', races_views.login),
 )

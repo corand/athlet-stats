@@ -1,13 +1,39 @@
 from django.shortcuts import render
 from .models import Race,Edition,Result,Modality
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.template import RequestContext
 from .forms import RaceForm,EditionForm,RaceTypeForm
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,ListView,DetailView
 from braces.views import LoginRequiredMixin
 from django.core import serializers
 from django.shortcuts import render_to_response,get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
+
+def login(request):
+    if not request.user.is_anonymous():
+        return HttpResponseRedirect('/sarrera')
+    if request.method == 'POST':
+        formulario = AuthenticationForm(request.POST)
+        if formulario.is_valid:
+            usuario = request.POST['username']
+            clave = request.POST['password']
+            acceso = authenticate(username=usuario,password=clave)
+            if acceso is not None:
+                login(request,acceso)
+                return HttpResponseRedirect('/competiciones/')
+            else:
+                return render_to_response('ezaktibo.html',context_instance=RequestContext(request))
+        else:
+            return render_to_response('ezaktibo.html',context_instance=RequestContext(request))
+    else:
+        formulario = AuthenticationForm()
+    return render_to_response('races/login.html',{'formulario':formulario},context_instance=RequestContext(request))
+
+
 
 
 class RaceList(LoginRequiredMixin,TemplateView):
@@ -88,10 +114,15 @@ class NewEdition(LoginRequiredMixin,TemplateView):
 		return context
 
 
+@login_required(login_url='races/login')
 def changeModality(request):
-    objectQuerySet = Modality.objects.filter(race_type=request.POST['race_type'])
+    objectQuerySet = Modality.objects.filter(race_type=request.POST['race_type']).order_by('modality')
     data = serializers.serialize('json', objectQuerySet, fields=('id','modality'))
 
     return HttpResponse(data,content_type='application/json')
 
 
+@login_required(login_url='races/login')
+def cerrar(request):
+    logout(request)
+    return HttpResponseRedirect('races/login')
