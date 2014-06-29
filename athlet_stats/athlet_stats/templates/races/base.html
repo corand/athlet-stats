@@ -213,7 +213,7 @@
                         </li>
 
                         <li>
-                            <a href="/races/"><i class="fa fa-trophy fa-fw"></i> Competiciones</a>
+                            <a href="{% url 'racelist' %}"><i class="fa fa-trophy fa-fw"></i> Competiciones</a>
                         </li>
 
                         <li>
@@ -266,6 +266,7 @@
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="{{STATIC_URL}}js/demo/dashboard-demo.js"></script>
+    {% block javascript %}{% endblock %}
 
 </body>
 

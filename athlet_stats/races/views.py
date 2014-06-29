@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Race,Edition,Result
-from .forms import RaceForm,EditionForm
+from .forms import RaceForm,EditionForm,RaceTypeForm
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,ListView,DetailView
 from braces.views import LoginRequiredMixin
@@ -62,8 +62,7 @@ class NewRace(LoginRequiredMixin,CreateView):
     def get_success_url(self):
         return reverse("racelist")
 
-class NewEdition(LoginRequiredMixin,CreateView):
-    form_class = EditionForm
+class NewEdition(LoginRequiredMixin,TemplateView):
     template_name = "races/new_edition.html"
 
     def dispatch(self, *args, **kwargs):
@@ -78,3 +77,10 @@ class NewEdition(LoginRequiredMixin,CreateView):
 
     def get_success_url(self):
         return reverse("racelist")
+
+    def get_context_data(self, **kwargs):
+		context = super(NewEdition, self).get_context_data(**kwargs)
+		context['racetypeform'] = RaceTypeForm()
+		context['form'] = EditionForm()
+		context['race'] = get_object_or_404(Race, pk=kwargs['pk'])
+		return context

@@ -36,7 +36,7 @@ class Race(models.Model):
 		return self.name
 
 class RaceType(models.Model):
-	name = models.CharField(max_length=100) # indoor,outdoor,road,mointain,other
+	name = models.CharField(max_length=100) # pista indoor, pista outdoor,road,mointain,other
 
 	def __unicode__(self):
 		return self.name
@@ -56,7 +56,7 @@ class Modality(models.Model):
 	distance = models.PositiveIntegerField(blank=True,null=True)
 
 	def __unicode__(self):
-		return str(self.race_type) + " - " + self.modality 
+		return self.modality 
 
 class Edition(models.Model):
 	type = models.ForeignKey(Modality)

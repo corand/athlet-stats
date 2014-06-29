@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Race,Edition
+from .models import Race,Edition,RaceType,Modality
 
 class RaceForm(ModelForm):
     class Meta:
@@ -12,13 +12,14 @@ class RaceForm(ModelForm):
             'week': forms.Select(attrs={'class': 'form-control'}),
         }
 
-class EditionForm(ModelForm):
-	class Meta:
-		model = Edition
-		fields = ['type','date','name','distance']
-		widgets = { 
-            'type': forms.Select(attrs={'class': 'form-control'}),
-            'date': forms.TextInput(attrs={'class': 'form-control'}),
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'distance': forms.TextInput(attrs={'class': 'form-control'}),
-        }
+
+
+class RaceTypeForm(forms.Form):
+	type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=RaceType.objects.all().values_list('id', 'name'), initial='1')
+
+
+class EditionForm(forms.Form):
+	modality = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=Modality.objects.filter(race_type=1).values_list('id','modality'), initial='2')
+	date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+	name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+	distance = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control'}))
