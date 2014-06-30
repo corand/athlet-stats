@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import Race,Edition,Result,Modality
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import authenticate, logout
+from django.contrib.auth import login as authForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.template import RequestContext
 from .forms import RaceForm,EditionForm,RaceTypeForm
@@ -23,7 +24,7 @@ def login(request):
             clave = request.POST['password']
             acceso = authenticate(username=usuario,password=clave)
             if acceso is not None:
-                login(request,acceso)
+                authForm(request,acceso)
                 return HttpResponseRedirect('/competiciones/')
             else:
                 return render_to_response('ezaktibo.html',context_instance=RequestContext(request))
@@ -31,6 +32,10 @@ def login(request):
             return render_to_response('ezaktibo.html',context_instance=RequestContext(request))
     else:
         formulario = AuthenticationForm()
+        formulario.fields['username'].widget.attrs['class'] = "form-control"
+    	formulario.fields['password'].widget.attrs['class'] = "form-control"
+    	formulario.fields['username'].widget.attrs['placeholder'] = "Nombre de Usuario"
+    	formulario.fields['password'].widget.attrs['placeholder'] = "Password"
     return render_to_response('races/login.html',{'formulario':formulario},context_instance=RequestContext(request))
 
 
@@ -125,4 +130,4 @@ def changeModality(request):
 @login_required(login_url='races/login')
 def cerrar(request):
     logout(request)
-    return HttpResponseRedirect('races/login')
+    return HttpResponseRedirect('/login')
