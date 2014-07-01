@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from django.db import models
 from durationfield.db.models.fields.duration import DurationField
 from django.contrib.auth.models import User
@@ -27,9 +28,9 @@ WEEK_CHOICES = (
 
 
 class Race(models.Model):
-	name = models.CharField(max_length=100)
-	month = models.PositiveIntegerField(choices=MONTH_CHOICES) # mes en el que se disputa tipicamente la carrera
-	week = models.PositiveIntegerField(choices=WEEK_CHOICES) # semana en la que se disputa tipicamente la carrera
+	name = models.CharField(max_length=100,verbose_name="Nombre",help_text="Nombre genérico de la competición")
+	month = models.PositiveIntegerField(choices=MONTH_CHOICES,verbose_name="Mes",help_text="Mes en el que se disputa típicamente") # mes en el que se disputa tipicamente la carrera
+	week = models.PositiveIntegerField(choices=WEEK_CHOICES,verbose_name="Semana",help_text="Orden aproximado de la semana en la que se disputa la competición") # semana en la que se disputa tipicamente la carrera
 	creator = models.ForeignKey(User)
 
 	def __unicode__(self):
