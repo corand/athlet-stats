@@ -1,4 +1,6 @@
 window.onload = function (){
+
+	$('#datetimepicker1').datetimepicker();
   	
 	function getCookie(name) {
 	    var cookieValue = null;
@@ -29,9 +31,16 @@ window.onload = function (){
 	    }
 	});
 
+	$("#id_modality").change(function(){
+		if ( $("#id_modality option:selected").text() != "Otro"){
+			$("#distance_container").fadeOut();
+		}else{
+			$("#distance_container").fadeIn();
+		}
+	})
+
 
 	$("#id_type").change(function(){
-		console.log("kaido");
 		$.ajax({
 		    url: '/changemodality/',
 		    type: 'post',

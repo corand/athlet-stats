@@ -1,5 +1,10 @@
 {% extends 'races/base.html' %}
 
+{% block head %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-datetimepicker.min.css" />
+
+{% endblock %}
+
 {% block content %}
 		<div id="page-wrapper">
             <div class="row">
@@ -17,14 +22,22 @@
 								<p>Nombre: {{form.name}}</p>
 								<p>Tipo: {{racetypeform.type}}</p>
 								<p>Modalidad: {{form.modality}}</p>
-								<p>Fecha y Hora: {{form.date}}</p>
-								<p>Distancia: {{form.distance}}</p>
+
+
+								<div class="form-group">
+									<label>Fecha y Hora: </label>
+                					<div class='input-group date' id='datetimepicker1'>
+                    					{{form.date}}
+                    					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                					</div>
+								<p id="distance_container">Distancia: {{form.distance}}</p>
 								
 								<p>
 									<a href="{% url 'editionlist' race.id %}"><span class="btn btn-danger">Cancelar</span></a>
 									<input type='submit' class="btn btn-success" value="Crear" />
 								</p>
 							</form>
+							<br />
 						</div>
 					</div>
 				</div>
@@ -33,5 +46,8 @@
 {% endblock %}
 
 {% block javascript %}
+<script type="text/javascript" src="{{STATIC_URL}}js/moment.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{STATIC_URL}}js/new_edition.js"></script>
+
 {% endblock %}
