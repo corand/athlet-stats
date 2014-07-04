@@ -33,11 +33,11 @@
 								<p id="distance_container">Distancia: {{form.distance}}</p>
 								
 								<p>
+									<br />
 									<a href="{% url 'editionlist' race.id %}"><span class="btn btn-danger">Cancelar</span></a>
 									<input type='submit' class="btn btn-success" value="Crear" />
 								</p>
 							</form>
-							<br />
 						</div>
 					</div>
 				</div>
@@ -47,6 +47,7 @@
 
 {% block javascript %}
 <script type="text/javascript" src="{{STATIC_URL}}js/moment.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-datetimepicker.es.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{STATIC_URL}}js/new_edition.js"></script>
 

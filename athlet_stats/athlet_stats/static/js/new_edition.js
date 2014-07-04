@@ -1,6 +1,6 @@
 window.onload = function (){
 
-	$('#datetimepicker1').datetimepicker();
+	$('#datetimepicker1').datetimepicker({ language: 'es'});
   	
 	function getCookie(name) {
 	    var cookieValue = null;
@@ -49,10 +49,12 @@ window.onload = function (){
 		    	$("#id_modality").html("");
 		        for(var i=0; i<data.length; i++){
 		        	$("#id_modality").append("<option id='"+data[i].pk+"'>"+data[i].fields.modality+"</option>");
-		        	console.log(data[i]);
-		        	console.log(data[i].pk);
-		        	console.log(data[i].fields.modality);
 		        }
+		        if ( $("#id_modality option:selected").text() != "Otro"){
+					$("#distance_container").fadeOut();
+				}else{
+					$("#distance_container").fadeIn();
+				}
 		    },
 		    failure: function(data) { 
 		        console.log(data);
