@@ -1,3 +1,7 @@
+.nav a{ color: black;}
+
+.nav a:hover{ color: grey; }
+
 .breadcrumb{ margin-top: 10px; }
 
 .edition_list{ list-style: none; }
