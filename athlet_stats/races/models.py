@@ -57,7 +57,14 @@ class Modality(models.Model):
 	distance = models.PositiveIntegerField(blank=True,null=True)
 
 	def __unicode__(self):
-		return self.modality 
+		return self.modality
+
+class SubRace(models.Model):
+	name = models.CharField(max_length=100)
+	race = models.ForeignKey(Race)
+
+	def __unicode__(self):
+		return self.race.name + ' - ' + self.name
 
 class Edition(models.Model):
 	type = models.ForeignKey(Modality)
@@ -65,6 +72,7 @@ class Edition(models.Model):
 	race = models.ForeignKey(Race)
 	name = models.CharField(max_length=100)
 	distance = models.PositiveIntegerField(blank=True,null=True)
+	subRace = models.ForeignKey(SubRace,blank=True,null=True)
 	creator = models.ForeignKey(User)
 
 	def __unicode__(self):

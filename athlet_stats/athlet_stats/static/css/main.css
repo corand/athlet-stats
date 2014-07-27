@@ -4,7 +4,7 @@
 
 .breadcrumb{ margin-top: 10px; }
 
-.edition_list{ list-style: none; }
+.edition_list,.subrace_list{ list-style: none; }
 
 .edition_result_list{ list-style: none; font-family:Cousine; }
 

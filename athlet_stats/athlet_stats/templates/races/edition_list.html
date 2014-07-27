@@ -8,23 +8,39 @@
                       <li><a href="{% url 'racelist' %}">Competiciones</a></li>
                       <li class="active">{{race}}</li>
                     </ol>
-                    <h1 class="page-header">Ediciones</h1>
+                    {% if subraces %}
+                        <h1 class="page-header">Pruebas</h1>
+                    {% else %}
+                        <h1 class="page-header">Ediciones</h1>
+                    {% endif %}
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <span class="add_btn"><a href="{% url 'newedition' race.id %}"><button class="btn btn-default"><i class="fa fa-plus-circle"></i> Edición</button></a></span>
+                    <span class="add_btn"><a class="btn btn-default" href="{% url 'newsubrace' race.id %}"><i class="fa fa-plus-circle"></i> Prueba</a></span> 
+
+                    {% if not subraces %}
+                    <span class="add_btn"><a class="btn btn-default" href="{% url 'newedition' race.id %}"><i class="fa fa-plus-circle"></i> Edición</a></span>
                     <div class="clear-both"></div>
-                    <ul class="edition_list">
+                    {% endif %}
+
+                    {% if subraces %}
+                        <ul class="subrace_list">
+                        {% for subr in subraces %}
+                            <li><a href="#">{{subr}}</a></li>
+                        {% endfor %}
+                        </ul>
+                    {% else %}
+                        <ul class="edition_list">
                         {% for edition in editions %}
                             <li><a href="{%url 'editiondetail' edition.id %}">{{edition}}</a></li>
-                            {% empty %}
-                                No hay ninguna edición registrada para ésta competición  todavía
+                        {% empty %}
+                                No hay ninguna edición ni prueba registrada para ésta competición  todavía
                         {% endfor %}
-                    </ul>
-
+                        </ul>
+                    {% endif %}
                     <hr />
 
 

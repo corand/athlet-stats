@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .models import Race,Edition,Result,Modality
+from .models import Race,Edition,Result,Modality,SubRace
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as authForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.template import RequestContext
-from .forms import RaceForm,EditionForm,RaceTypeForm
+from .forms import RaceForm,EditionForm,SubRaceForm
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,ListView,DetailView
 from braces.views import LoginRequiredMixin
@@ -62,17 +62,18 @@ class RaceList(LoginRequiredMixin,TemplateView):
 		return context
 
 class EditionList(LoginRequiredMixin,ListView):
-	template_name = "races/edition_list.html"
-	paginate_by = 150
-	context_object_name = 'editions'
-	def get_queryset(self):
-		return Edition.objects.filter(race=self.kwargs['pk']).order_by('-date')
+    template_name = "races/edition_list.html"
+    paginate_by = 150
+    context_object_name = 'editions'
+    def get_queryset(self):
+        return Edition.objects.filter(race=self.kwargs['pk']).order_by('-date')
 
-	def get_context_data(self, **kwargs):
-		context = super(EditionList, self).get_context_data(**kwargs)
-		context['race'] = get_object_or_404(Race,pk=self.kwargs['pk'])
-		context['results'] = Result.objects.filter(edition__race=self.kwargs['pk']).order_by('position','-edition__date')
-		return context
+    def get_context_data(self, **kwargs):
+        context = super(EditionList, self).get_context_data(**kwargs)
+        context['race'] = get_object_or_404(Race,pk=self.kwargs['pk'])
+        context['subraces'] = SubRace.objects.filter(race=self.kwargs['pk']).order_by('name')
+        context['results'] = Result.objects.filter(edition__race=self.kwargs['pk']).order_by('position','-edition__date')
+        return context
 
 class EditionDetail(LoginRequiredMixin,ListView):
 	template_name = "races/edition_detail.html"
@@ -95,28 +96,43 @@ class NewRace(LoginRequiredMixin,CreateView):
     def get_success_url(self):
         return reverse("racelist")
 
-class NewEdition(LoginRequiredMixin,TemplateView):
-    template_name = "races/new_edition.html"
+class NewSubRace(LoginRequiredMixin,CreateView):
+    form_class = SubRaceForm
+    model = SubRace
+    template_name = "races/subrace_form.html"
 
     def dispatch(self, *args, **kwargs):
-        self.race = get_object_or_404(Race, pk=kwargs['pk'])
-        return super(NewEdition, self).dispatch(*args, **kwargs)
+        self.race = get_object_or_404(Race, pk=self.kwargs['id_race'])
+        return super(NewSubRace, self).dispatch(*args, **kwargs)
 
-    def form_valid(self,form):
-        instance = form.save(commit=False)
-        instance.creator = self.request.user
-        instance.race = self.race
-        return super(NewEdition,self).form_valid(form)
+    def get_form(self, form_class):
+        form = super(NewSubRace, self).get_form(form_class)
+        form.instance.race = self.race
+        return form
+    def get_context_data(self, **kwargs):
+        context = super(NewSubRace, self).get_context_data(**kwargs)
+        context['race'] = self.race
+        return context
 
     def get_success_url(self):
         return reverse("racelist")
 
-    def get_context_data(self, **kwargs):
-		context = super(NewEdition, self).get_context_data(**kwargs)
-		context['racetypeform'] = RaceTypeForm()
-		context['form'] = EditionForm()
-		context['race'] = get_object_or_404(Race, pk=kwargs['pk'])
-		return context
+@login_required(login_url='races/login')
+def NewEdition(request,id_race):
+    race = get_object_or_404(Race, pk=id_race)
+    if request.method=='POST':
+        form = EditionForm(request.POST)
+        if form.is_valid():
+            edition_type = get_object_or_404(Modality,id=form.cleaned_data['modality'])
+            date = form.cleaned_data['date']
+            name = form.cleaned_data['name']
+            new_edition = Edition(type=edition_type,date=date,race=race,name=name,creator=request.user)
+            new_edition.save()
+            return HttpResponseRedirect(reverse("racelist"))
+    else:
+        form = EditionForm()
+
+    return render_to_response('races/new_edition.html',{'form':form,'race':race},context_instance=RequestContext(request))
 
 
 @login_required(login_url='races/login')

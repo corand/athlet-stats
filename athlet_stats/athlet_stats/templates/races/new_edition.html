@@ -19,9 +19,9 @@
 						<div class="col-lg-4">
 							<form id='formulario' method='post'>
 								{% csrf_token %}
-								<p>Nombre: {{form.name}}</p>
-								<p>Tipo: {{racetypeform.type}}</p>
-								<p>Modalidad: {{form.modality}}</p>
+								<p>Nombre: {{form.name}}</p><p>{{ form.name.errors.as_text }}</p>
+								<p>Tipo: {{form.type}}</p><p>{{ form.type.errors.as_text }}</p>
+								<p>Modalidad: {{form.modality}}</p><p>{{ form.modality.errors.as_text }}</p>
 
 
 								<div class="form-group">
@@ -30,7 +30,9 @@
                     					{{form.date}}
                     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 					</div>
+                					<p>{{ form.date.errors.as_text }}</p>
 								<p id="distance_container">Distancia: {{form.distance}}</p>
+								<p>{{ form.distance.errors.as_text }}</p>
 								
 								<p>
 									<br />
