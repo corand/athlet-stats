@@ -85,6 +85,22 @@ class EditionDetail(LoginRequiredMixin,ListView):
 		context['edition'] = get_object_or_404(Edition,pk=self.kwargs['pk'])
 		return context
 
+class SubRaceDetail(LoginRequiredMixin,ListView):
+    template_name = "races/subrace_detail.html"
+    paginate_by = 150
+    context_object_name = "editions"
+    def get_queryset(self):
+        return Edition.objects.filter(subRace=self.kwargs['pk']).order_by('-date')
+
+    def get_context_data(self, **kwargs):
+        context = super(SubRaceDetail, self).get_context_data(**kwargs)
+        context['subRace'] = get_object_or_404(SubRace,pk=self.kwargs['pk'])
+#        context['results'] = Result.objects.filter(edition__race=self.kwargs['pk']).order_by('position','-edition__date')
+        return context
+
+
+
+
 class NewRace(LoginRequiredMixin,CreateView):
     form_class = RaceForm
     template_name = "races/new_race.html"

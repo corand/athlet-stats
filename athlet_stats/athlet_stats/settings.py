@@ -94,6 +94,7 @@ INSTALLED_APPS = (
     'mptt',
     'zinnia',
     'races',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (

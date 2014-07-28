@@ -29,7 +29,7 @@
                     {% if subraces %}
                         <ul class="subrace_list">
                         {% for subr in subraces %}
-                            <li><a href="#">{{subr.name}}</a></li>
+                            <li><a href="{% url 'subracedetail' subr.id %}">{{subr.name}}</a></li>
                         {% endfor %}
                         </ul>
                     {% else %}
