@@ -48,7 +48,9 @@
 
                     <ul class="edition_result_list">
 						{% for result in results %}
-							<li>{{result.position}}º - {{result.user.first_name}} {{result.user.last_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
+							<li>
+
+                            {% if result.position %}{{result.position}}º - {% endif %}{{result.user.first_name}} {{result.user.last_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
 						{% endfor %}
                     </ul>
                 </div>

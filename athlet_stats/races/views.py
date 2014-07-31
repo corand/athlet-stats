@@ -95,6 +95,7 @@ class SubRaceDetail(LoginRequiredMixin,ListView):
     def get_context_data(self, **kwargs):
         context = super(SubRaceDetail, self).get_context_data(**kwargs)
         context['subRace'] = get_object_or_404(SubRace,pk=self.kwargs['pk'])
+        context['results'] = Result.objects.filter(edition__subRace=self.kwargs['pk']).order_by('position','-edition__date')
 #        context['results'] = Result.objects.filter(edition__race=self.kwargs['pk']).order_by('position','-edition__date')
         return context
 
@@ -149,6 +150,29 @@ def NewEdition(request,id_race):
         form = EditionForm()
 
     return render_to_response('races/new_edition.html',{'form':form,'race':race},context_instance=RequestContext(request))
+
+
+@login_required(login_url='races/login')
+def NewEditionSubRace(request,id_subrace):
+    subrace = get_object_or_404(SubRace, pk=id_subrace)
+    race = get_object_or_404(Race,pk=subrace.race.id)
+    if request.method=='POST':
+        form = EditionForm(request.POST)
+        if form.is_valid():
+            edition_type = get_object_or_404(Modality,id=form.cleaned_data['modality'])
+            date = form.cleaned_data['date']
+            name = form.cleaned_data['name']
+            new_edition = Edition(type=edition_type,date=date,race=race,name=name,subRace=subrace,creator=request.user)
+            new_edition.save()
+            return HttpResponseRedirect(reverse("racelist"))
+    else:
+        form = EditionForm()
+
+    return render_to_response('races/new_subrace_edition.html',{'form':form,'subrace':subrace,'race':race},context_instance=RequestContext(request))
+
+
+
+
 
 
 @login_required(login_url='races/login')

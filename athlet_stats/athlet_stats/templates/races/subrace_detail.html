@@ -1,7 +1,44 @@
-{{subRace}}
+{% extends 'races/base.html' %}
 
-<ul>
-{% for edition in editions %}
-	<li>{{edition}}</li>
-{% endfor %}
-</ul>
+{% block content %}
+    <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                	<ol class="breadcrumb">
+                      <li><a href="{% url 'racelist' %}">Competiciones</a></li>
+                      <li><a href="{% url 'editionlist' subRace.race.id %}">{{subRace.race.name}}</a></li>
+                      <li class="active">{{subRace.name}}</li>
+                    </ol>
+                        <h1 class="page-header">Ediciones</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="add_btn"><a class="btn btn-default" href="{% url 'neweditionsubrace' subRace.id %}"><i class="fa fa-plus-circle"></i> Edición</a></span>
+                    <div class="clear-both"></div>
+         
+                        <ul class="edition_list">
+                        {% for edition in editions %}
+                            <li><a href="{%url 'editiondetail' edition.id %}">{{edition}}</a></li>
+                        {% empty %}
+                                No hay ninguna edición registrada para ésta prueba todavía
+                        {% endfor %}
+                        </ul>
+                    <hr />
+
+
+                    <h3>Los mejores resultados de ésta competición</h3>
+
+                    <ul class="edition_result_list">
+						{% for result in results %}
+							<li>{{result.position}}º - {{result.user.first_name}} {{result.user.last_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
+						{% empty %}
+							Todavía no hay ningún resultado para ésta prueba
+						{% endfor %}
+                    </ul>
+                </div>
+            </div>
+    </div>
+{% endblock %}

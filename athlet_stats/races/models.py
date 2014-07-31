@@ -57,7 +57,7 @@ class Modality(models.Model):
 	distance = models.PositiveIntegerField(blank=True,null=True)
 
 	def __unicode__(self):
-		return self.modality
+		return self.race_type.name + " - " + self.modality
 
 class SubRace(models.Model):
 	name = models.CharField(max_length=100)
