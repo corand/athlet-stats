@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Race,Edition,Result,Modality,SubRace
+from .models import Race,Edition,Result,Modality,SubRace,RaceType
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as authForm
@@ -159,6 +159,7 @@ def NewEditionSubRace(request,id_subrace):
     if request.method=='POST':
         form = EditionForm(request.POST)
         if form.is_valid():
+            print form.cleaned_data['modality']
             edition_type = get_object_or_404(Modality,id=form.cleaned_data['modality'])
             date = form.cleaned_data['date']
             name = form.cleaned_data['name']

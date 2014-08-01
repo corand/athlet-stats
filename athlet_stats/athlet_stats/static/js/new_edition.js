@@ -39,8 +39,17 @@ window.onload = function (){
 		}
 	})
 
+	updateModality();
+
 
 	$("#id_type").change(function(){
+		updateModality();
+	});
+
+
+
+	function updateModality(){
+
 		$.ajax({
 		    url: '/changemodality/',
 		    type: 'post',
@@ -60,5 +69,7 @@ window.onload = function (){
 		        console.log(data);
 		    }
 		});
-	});
+
+	}
+	
 }

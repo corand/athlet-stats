@@ -22,7 +22,7 @@ class SubRaceForm(ModelForm):
 
 class EditionForm(forms.Form):
     type = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=RaceType.objects.all().values_list('id', 'name'), initial='1')
-    modality = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=Modality.objects.values_list('id','modality').order_by('modality'), initial='2')
+    modality = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),choices=Modality.objects.all().values_list('id','modality'))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     date = forms.DateTimeField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     distance = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
