@@ -33,7 +33,7 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join('/home/andoni/django/athlet-stats/athlet_stats/athlet_stats/','carga')
+MEDIA_ROOT = os.path.join(BASE_DIR,'athlet_stats/carga')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -89,11 +89,10 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites', # Note this one is not included by default
     'django.contrib.comments', # Note this one is not included by default
-    'tagging',
     'durationfield',
-    'mptt',
-    'zinnia',
+    'blog',
     'races',
+    'ckeditor',
     'debug_toolbar',
 )
 
@@ -111,7 +110,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.request',
     'django.core.context_processors.static',
-    'zinnia.context_processors.version',  # Optional
 )
 
 ROOT_URLCONF = 'athlet_stats.urls'
@@ -152,3 +150,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CKEDITOR_UPLOAD_PATH = "media/"
+CKEDITOR_RESTRICT_BY_USER = True
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 800,
+    },
+}

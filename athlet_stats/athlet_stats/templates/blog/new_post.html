@@ -1,0 +1,32 @@
+{% extends 'races/base.html' %}
+
+{% block content %}
+<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+		<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                	<ol class="breadcrumb">
+                      <li><a href="#">Blog</a></li>
+                      <li class="active">Nuevo Post</li>
+                    </ol>
+					<h1 class="page-header">Nuevo Post</h1>
+					<div class="row">
+						<div class="col-lg-6">
+							<form id='formulario' method='post'>
+								{% csrf_token %}
+								{{form.as_p}}
+								<p>
+									<a href="{% url 'racelist' %}"><span class="btn btn-danger">Cancelar</span></a>
+									<input type='submit' class="btn btn-success" value="Crear" />
+								</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ form.media }}
+{% endblock %}

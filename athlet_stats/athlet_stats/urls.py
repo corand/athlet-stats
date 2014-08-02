@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from races import views as races_views
+from blog import views as blog_views
 
 from django.contrib import admin
 admin.autodiscover()
@@ -18,8 +19,9 @@ urlpatterns = patterns('',
     url(r'^prueba/(?P<pk>[0-9]+)/$', races_views.SubRaceDetail.as_view(), name="subracedetail"),
     url(r'^changemodality/', races_views.changeModality, name="changemodality"),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^weblog/', include('zinnia.urls')),
 	url(r'^comments/', include('django.contrib.comments.urls')),
 	url(r'^cerrar/$', races_views.cerrar),
 	url(r'^login/$', races_views.login),
+    url(r'^nuevo/post/$', blog_views.NewPost.as_view(),name="newblogpost"),
+    url(r'^ckeditor/', include('ckeditor.urls')),
 )
