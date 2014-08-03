@@ -161,3 +161,5 @@ CKEDITOR_CONFIGS = {
         'width': 800,
     },
 }
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False

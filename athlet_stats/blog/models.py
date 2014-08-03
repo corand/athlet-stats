@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	author = models.ForeignKey(User)
-#	status = models.CharField(max_length=100)
+	status = models.CharField(max_length=100)
 	
 	def __unicode__(self):
 		return str(self.id) + self.author + str(self.created)

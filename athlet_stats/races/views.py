@@ -16,7 +16,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 
 def login(request):
     if not request.user.is_anonymous():
-        return HttpResponseRedirect('/sarrera')
+        return HttpResponseRedirect('/login')
     if request.method == 'POST':
         formulario = AuthenticationForm(request.POST)
         if formulario.is_valid:
@@ -134,7 +134,7 @@ class NewSubRace(LoginRequiredMixin,CreateView):
     def get_success_url(self):
         return reverse("racelist")
 
-@login_required(login_url='races/login')
+@login_required(login_url="/login")
 def NewEdition(request,id_race):
     race = get_object_or_404(Race, pk=id_race)
     if request.method=='POST':
@@ -152,7 +152,7 @@ def NewEdition(request,id_race):
     return render_to_response('races/new_edition.html',{'form':form,'race':race},context_instance=RequestContext(request))
 
 
-@login_required(login_url='races/login')
+@login_required(login_url="/login")
 def NewEditionSubRace(request,id_subrace):
     subrace = get_object_or_404(SubRace, pk=id_subrace)
     race = get_object_or_404(Race,pk=subrace.race.id)
@@ -176,7 +176,7 @@ def NewEditionSubRace(request,id_subrace):
 
 
 
-@login_required(login_url='races/login')
+@login_required(login_url="/login")
 def changeModality(request):
     objectQuerySet = Modality.objects.filter(race_type=request.POST['race_type']).order_by('modality')
     data = serializers.serialize('json', objectQuerySet, fields=('id','modality'))
@@ -184,7 +184,7 @@ def changeModality(request):
     return HttpResponse(data,content_type='application/json')
 
 
-@login_required(login_url='races/login')
+@login_required(login_url="/login")
 def cerrar(request):
     logout(request)
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect(reverse("login"))
