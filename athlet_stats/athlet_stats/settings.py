@@ -157,7 +157,7 @@ CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Full',
-        'height': 300,
+        'height': 400,
         'width': 800,
     },
 }
