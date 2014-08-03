@@ -19,22 +19,43 @@
 							</ul>
 
 
+							 <form id='formulario' method='post'>
+							  {% csrf_token %}
 							<div class="tab-content">
 							  <div class="tab-pane active" id="castellano">
-							  	<form id='formulario' method='post'>
-									{% csrf_token %}
-									{{form.as_p}}
-									<p>
-										<a href="{% url 'racelist' %}"><span class="btn btn-danger">Cancelar</span></a>
-										<input type='submit' class="btn btn-success" value="Crear" />
-									</p>
-								</form>
+								  <div class="form-group">
+								    <label for="id_title_es">Título</label>
+								    {{form.title_es}}
+								  </div>
+								  <div class="form-group">
+								    <label for="id_body_es">Texto</label>
+								    {{form.body_es}}
+								  </div>
 							  </div>
-							  <div class="tab-pane" id="euskara">
-							  		<i>Formulario Euskara</i>
 
+							  <div class="tab-pane" id="euskara">
+							  	<div class="form-group">
+								    <label for="id_title_eu">Izenburua</label>
+								    {{form.title_eu}}
+								  </div>
+								  <div class="form-group">
+								    <label for="id_body_eu">Textua</label>
+								    {{form.body_eu}}
+								  </div>
 							  </div>
 							</div>
+
+
+								<div class="form-group" style="margin-left:20px">
+								    <label for="id_status">Guardar Como:</label>
+								    {{form.status}}
+								</div>
+
+								<div class="form-buttons" style="margin-left:20px">
+									<a href="{% url 'racelist' %}"><span class="btn btn-danger">Cancelar</span></a>
+								<input type='submit' class="btn btn-success" value="Guardar" />
+								</div>
+								</form>
 
 
 
