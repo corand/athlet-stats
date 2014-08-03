@@ -1,17 +1,44 @@
-<h2>Borradores:</h2>
-{% for borrador in borradores %}
-	<p>{{borrador}}</p>
-{% endfor %}
+{% extends 'races/base.html' %}
+
+{% block content %}
+<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+
+		<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                	<ol class="breadcrumb">
+                      <li class="active">Blog</li>
+                    </ol>
+					<h1 class="page-header">Blog</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-10">
+						<h2>Borradores:</h2>
+						{% for borrador in borradores %}
+							<p>{{borrador}}</p>
+						{% endfor %}
 
 
 
-<h2>Publicados públicamente</h2>
-{% for publicado in publicados %}
-	<p>{{publicado}}</p>
-{% endfor %}
+						<h2>Publicados públicamente</h2>
+						{% for publicado in publicados %}
+							<p>{{publicado}}</p>
+						{% endfor %}
 
 
-<h2>Publicados en privado</h2>
-{% for privado in privados %}
-	<p>{{privado}}</p>
-{% endfor %}
+						<h2>Publicados en privado</h2>
+						{% for privado in privados %}
+							<p>{{privado}}</p>
+						{% endfor %}
+				</div>
+				<div class="col-lg-2">
+					<a class="btn btn-primary" href="{% url 'newblogpost' %}">Nuevo Post</a>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ form.media }}
+{% endblock %}
