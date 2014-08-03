@@ -23,5 +23,6 @@ urlpatterns = patterns('',
 	url(r'^cerrar/$', races_views.cerrar),
 	url(r'^login/$', races_views.login, name="login"),
     url(r'^nuevo/post/$', blog_views.NewPost,name="newblogpost"),
+    url(r'^blog/$', blog_views.Blog.as_view(),name="blog"),
     url(r'^ckeditor/', include('ckeditor.urls')),
 )

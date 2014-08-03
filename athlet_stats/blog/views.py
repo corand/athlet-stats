@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from braces.views import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from .models import Post,PostEs,PostEus
 from django.template import RequestContext
@@ -9,6 +10,18 @@ from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,L
 from django.http import HttpResponse,HttpResponseRedirect
 
 
+class Blog(LoginRequiredMixin,TemplateView):
+	template_name = "blog/blog.html"
+	def get_context_data(self, **kwargs):
+		context = super(Blog, self).get_context_data(**kwargs)
+		context['borradores'] = Post.objects.filter(status=1,author=self.request.user)
+		context['publicos'] = Post.objects.filter(status=2,author=self.request.user)
+		context['privados'] = Post.objects.filter(status=3,author=self.request.user)
+		return context
+
+
+
+@login_required(login_url="/login")
 def NewPost(request):
 	if request.method=='POST':
 		form = PostForm(request.POST)

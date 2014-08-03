@@ -10,7 +10,7 @@ class Post(models.Model):
 	status = models.CharField(max_length=100)
 	
 	def __unicode__(self):
-		return str(self.id) + self.author + str(self.created)
+		return str(self.id)
 
 
 class PostEs(models.Model):
