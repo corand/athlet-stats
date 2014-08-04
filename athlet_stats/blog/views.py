@@ -2,7 +2,7 @@ from django.shortcuts import render
 from braces.views import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
-from .models import Post,PostEs,PostEus
+from .models import Post
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response,get_object_or_404
@@ -31,12 +31,8 @@ def NewPost(request):
 			body_es = form.cleaned_data['body_es']
 			body_eu = form.cleaned_data['body_eu']
 			status = form.cleaned_data['status']
-			new_post = Post(author=request.user,status=status)
+			new_post = Post(title_es=title_es,body_es=body_es,title_eu=title_eu,body_eu=body_eu,author=request.user,status=status)
 			new_post.save()
-			post_es = PostEs(title=title_es,body=body_es,post=new_post)
-			post_es.save()
-			post_eus = PostEus(title=title_eu,body=body_eu,post=new_post)
-			post_eus.save()
 			return HttpResponseRedirect(reverse("racelist"))
 	else:
 		form = PostForm()

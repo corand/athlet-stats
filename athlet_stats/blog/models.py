@@ -6,25 +6,12 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
+	title_es = models.CharField(max_length=100)
+	body_es = RichTextField()
+	title_eu = models.CharField(max_length=100)
+	body_eu = RichTextField()
 	author = models.ForeignKey(User)
 	status = models.CharField(max_length=100)
 	
 	def __unicode__(self):
-		return str(self.id)
-
-
-class PostEs(models.Model):
-	title = models.CharField(max_length=100)
-	body = RichTextField()
-	post = models.ForeignKey(Post)
-
-	def __unicode__(self):
-		return self.title
-
-class PostEus(models.Model):
-	title = models.CharField(max_length=100)
-	body = RichTextField()
-	post = models.ForeignKey(Post)
-
-	def __unicode__(self):
-		return self.title
+		return str(self.id) + self.title_es

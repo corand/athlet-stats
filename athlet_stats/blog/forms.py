@@ -1,6 +1,4 @@
 from django import forms
-from django.forms import ModelForm
-from .models import PostEs
 from ckeditor.widgets import CKEditorWidget
 
 
