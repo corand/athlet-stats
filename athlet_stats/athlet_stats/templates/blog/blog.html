@@ -16,20 +16,20 @@
 				<div class="col-lg-10">
 						<h2>Borradores:</h2>
 						{% for borrador in borradores %}
-							<p>{{borrador}}</p>
+							<p><a href="{% url 'updateblogpost' borrador.id %}">{{borrador.title_es}}</a> | {{borrador.created}}</p>
 						{% endfor %}
 
 
 
 						<h2>Publicados públicamente</h2>
-						{% for publicado in publicados %}
-							<p>{{publicado}}</p>
+						{% for publico in publicos %}
+							<p><a href="{% url 'updateblogpost' publico.id %}">{{publico.title_es}}</a> | {{publico.created}} <a href="{% url 'updateblogpost' publico.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a> <a href="{% url 'deleteblogpost' publico.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></p>
 						{% endfor %}
 
 
 						<h2>Publicados en privado</h2>
 						{% for privado in privados %}
-							<p>{{privado}}</p>
+							<p><a href="{% url 'updateblogpost' privado.id %}">{{privado.title_es}}</a> | {{privado.created}}</p>
 						{% endfor %}
 				</div>
 				<div class="col-lg-2">

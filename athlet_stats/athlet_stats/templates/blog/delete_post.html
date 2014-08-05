@@ -1,0 +1,41 @@
+{% extends 'races/base.html' %}
+
+{% block content %}
+<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+
+		<div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                	<ol class="breadcrumb">
+                      <li><a href="{% url 'blog' %}">Blog</a></li>
+                      <li class="active">Eliminar Post</li>
+                    </ol>
+					<h1 class="page-header">Eliminar Post</h1>
+					<div class="row">
+						<div class="col-lg-6">
+
+						<form action="" method="post" enctype='multipart/form-data'>
+						<p><i>Estás a punto de <b>ELIMINAR</b> el siguiente post. ¿Quieres continuar?</i>
+						</p>
+						<p>
+							{{post.title_es}}
+						</p>
+						{% csrf_token %}
+							{{form.as_p}}
+							<center>
+								<a href="{% url 'blog' %}"><span class="btn btn-default">Cancelar</span></a>
+								<input type="submit" class="btn btn-danger" value="Eliminar" />
+							</center>
+						</form>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ form.media }}
+{% endblock %}

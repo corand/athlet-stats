@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
+LOGIN_REDIRECT_URL = '/login'
+LOGIN_URL = '/login'
+
 
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.

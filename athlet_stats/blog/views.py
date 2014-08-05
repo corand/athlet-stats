@@ -3,6 +3,7 @@ from braces.views import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 from .models import Post
+from django.http import Http404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response,get_object_or_404
@@ -20,20 +21,40 @@ class Blog(LoginRequiredMixin,TemplateView):
 		return context
 
 
+class NewPost(LoginRequiredMixin,CreateView):
+	form_class = PostForm
+	template_name = "blog/new_post.html"
+	def form_valid(self, form):
+		instance = form.save(commit=False)
+		instance.author = self.request.user
+		return super(NewPost, self).form_valid(form)
+	def get_success_url(self):
+		return reverse("blog")
 
-@login_required(login_url="/login")
-def NewPost(request):
-	if request.method=='POST':
-		form = PostForm(request.POST)
-		if form.is_valid():
-			title_es = form.cleaned_data['title_es']
-			title_eu = form.cleaned_data['title_eu']
-			body_es = form.cleaned_data['body_es']
-			body_eu = form.cleaned_data['body_eu']
-			status = form.cleaned_data['status']
-			new_post = Post(title_es=title_es,body_es=body_es,title_eu=title_eu,body_eu=body_eu,author=request.user,status=status)
-			new_post.save()
-			return HttpResponseRedirect(reverse("racelist"))
-	else:
-		form = PostForm()
-	return render_to_response('blog/new_post.html',{'form':form},context_instance=RequestContext(request))
+
+class UpdatePost(LoginRequiredMixin,UpdateView):
+	form_class = PostForm
+	template_name = "blog/update_post.html"
+	def get_success_url(self):
+		return reverse("blog")
+    
+	def get_object(self, queryset=None):
+		obj = Post.objects.get(id=self.kwargs['pk'])
+		if not obj.author == self.request.user:
+			raise Http404
+		return obj
+
+class DeletePost(LoginRequiredMixin,DeleteView):
+	form_class = PostForm
+	template_name = "blog/delete_post.html"
+	def get_success_url(self):
+		return reverse("blog")
+	def get_object(self, queryset=None):
+		obj = Post.objects.get(id=self.kwargs['pk'])
+		if not obj.author == self.request.user:
+			raise Http404
+		return obj
+	def get_context_data(self, **kwargs):
+		context = super(DeletePost, self).get_context_data(**kwargs)
+		context['post'] = Post.objects.get(id=self.kwargs['pk'])
+		return context
