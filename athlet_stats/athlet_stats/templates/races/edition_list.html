@@ -51,6 +51,8 @@
 							<li>
 
                             {% if result.position %}{{result.position}}º - {% endif %}{{result.user.first_name}} {{result.user.last_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
+                        {% empty %}
+                            <i>Todavía no hay ningún resultado</i>
 						{% endfor %}
                     </ul>
                 </div>

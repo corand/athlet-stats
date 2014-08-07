@@ -5,13 +5,14 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as authForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.template import RequestContext
-from .forms import RaceForm,EditionForm,SubRaceForm
+from .forms import RaceForm,EditionForm,SubRaceForm,ResultForm
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,ListView,DetailView
 from braces.views import LoginRequiredMixin
 from django.core import serializers
 from django.shortcuts import render_to_response,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
+from datetime import datetime,timedelta
 # Create your views here.
 
 def login(request):
@@ -76,14 +77,23 @@ class EditionList(LoginRequiredMixin,ListView):
         return context
 
 class EditionDetail(LoginRequiredMixin,ListView):
-	template_name = "races/edition_detail.html"
-	context_object_name = 'results'
-	def get_queryset(self):
-		return Result.objects.filter(edition=self.kwargs['pk']).order_by('position')
-	def get_context_data(self, **kwargs):
-		context = super(EditionDetail, self).get_context_data(**kwargs)
-		context['edition'] = get_object_or_404(Edition,pk=self.kwargs['pk'])
-		return context
+    template_name = "races/edition_detail.html"
+    context_object_name = 'results'
+    def get_queryset(self):
+        return Result.objects.filter(edition=self.kwargs['pk']).order_by('position')
+
+    def get_context_data(self, **kwargs):
+        context = super(EditionDetail, self).get_context_data(**kwargs)
+        edition = get_object_or_404(Edition,pk=self.kwargs['pk'])
+        if edition.distance:
+            distance = edition.distance
+        else:
+            distance = edition.type.distance
+
+        context['edition'] = edition
+        context['distance'] = distance
+
+        return context
 
 class SubRaceDetail(LoginRequiredMixin,ListView):
     template_name = "races/subrace_detail.html"
@@ -99,9 +109,6 @@ class SubRaceDetail(LoginRequiredMixin,ListView):
 #        context['results'] = Result.objects.filter(edition__race=self.kwargs['pk']).order_by('position','-edition__date')
         return context
 
-
-
-
 class NewRace(LoginRequiredMixin,CreateView):
     form_class = RaceForm
     template_name = "races/new_race.html"
@@ -112,6 +119,7 @@ class NewRace(LoginRequiredMixin,CreateView):
 
     def get_success_url(self):
         return reverse("racelist")
+
 
 class NewSubRace(LoginRequiredMixin,CreateView):
     form_class = SubRaceForm
@@ -132,7 +140,7 @@ class NewSubRace(LoginRequiredMixin,CreateView):
         return context
 
     def get_success_url(self):
-        return reverse("racelist")
+        return reverse("editionlist",kwargs={'pk':self.kwargs['id_race']})
 
 @login_required(login_url="/login")
 def NewEdition(request,id_race):
@@ -143,13 +151,58 @@ def NewEdition(request,id_race):
             edition_type = get_object_or_404(Modality,id=form.cleaned_data['modality'])
             date = form.cleaned_data['date']
             name = form.cleaned_data['name']
-            new_edition = Edition(type=edition_type,date=date,race=race,name=name,creator=request.user)
+            distance = form.cleaned_data['distance']
+
+            new_edition = Edition(type=edition_type,date=date,race=race,name=name,creator=request.user,distance=distance)
             new_edition.save()
             return HttpResponseRedirect(reverse("racelist"))
     else:
         form = EditionForm()
 
     return render_to_response('races/new_edition.html',{'form':form,'race':race},context_instance=RequestContext(request))
+
+
+
+@login_required(login_url="/login")
+def NewResult(request,id_edition):
+    edition = get_object_or_404(Edition,pk=id_edition)
+    if request.method=='POST':
+        form = ResultForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['horas']:
+                horas = form.cleaned_data['horas']
+            else:
+                horas = 0
+
+            if form.cleaned_data['minutos']:
+                minutos = form.cleaned_data['minutos']
+            else:
+                minutos = 0
+
+            if form.cleaned_data['segundos']:
+                segundos = form.cleaned_data['segundos']
+            else:
+                segundos = 0
+
+            if form.cleaned_data['centesimas']:
+                centesimas = form.cleaned_data['centesimas']
+            else:
+                centesimas = 0
+
+            milisegundos = centesimas * 10
+            timemark = timedelta(hours=horas,minutes=minutos,seconds=segundos,milliseconds=milisegundos)
+            distancemark = form.cleaned_data['distancia']
+            position = form.cleaned_data['puesto']
+            comment = form.cleaned_data['comentarios']
+            pos_cat = form.cleaned_data['puesto_cat']
+            new_resultado = Result(user=request.user,edition=edition,timemark=timemark,distancemark=distancemark,position=position,position_cat=pos_cat,comment=comment)
+            new_resultado.save()
+            return HttpResponseRedirect(reverse("racelist"))
+    else:
+        form = ResultForm()
+
+    return render_to_response("races/new_result.html",{'form':form,'edition':edition},context_instance=RequestContext(request))
+
 
 
 @login_required(login_url="/login")
@@ -159,7 +212,6 @@ def NewEditionSubRace(request,id_subrace):
     if request.method=='POST':
         form = EditionForm(request.POST)
         if form.is_valid():
-            print form.cleaned_data['modality']
             edition_type = get_object_or_404(Modality,id=form.cleaned_data['modality'])
             date = form.cleaned_data['date']
             name = form.cleaned_data['name']

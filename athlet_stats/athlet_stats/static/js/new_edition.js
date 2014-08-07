@@ -39,7 +39,9 @@ window.onload = function (){
 		}
 	})
 
-	updateModality();
+	//updateModality();
+
+	$("#id_modality").attr("disabled","disabled");
 
 
 	$("#id_type").change(function(){
@@ -49,7 +51,6 @@ window.onload = function (){
 
 
 	function updateModality(){
-
 		$.ajax({
 		    url: '/changemodality/',
 		    type: 'post',
@@ -57,8 +58,9 @@ window.onload = function (){
 		    success: function(data) {
 		    	$("#id_modality").html("");
 		        for(var i=0; i<data.length; i++){
-		        	$("#id_modality").append("<option id='"+data[i].pk+"'>"+data[i].fields.modality+"</option>");
+		        	$("#id_modality").append("<option value='"+data[i].pk+"'>"+data[i].fields.modality+"</option>");
 		        }
+		        $("#id_modality").removeAttr("disabled");
 		        if ( $("#id_modality option:selected").text() != "Otro"){
 					$("#distance_container").fadeOut();
 				}else{
@@ -69,7 +71,6 @@ window.onload = function (){
 		        console.log(data);
 		    }
 		});
-
 	}
 	
 }

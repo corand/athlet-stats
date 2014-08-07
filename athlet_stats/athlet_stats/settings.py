@@ -159,7 +159,8 @@ CKEDITOR_RESTRICT_BY_USER = True
 
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Full',
+        'toolbar': 'full',
+        'extraPlugins': 'oembed',
         'height': 400,
         'width': 800,
     },

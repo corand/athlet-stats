@@ -17,9 +17,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <b>Nombre:</b> {{edition.name}} <br/>
-                    <b>Distancia:</b> {{edition.distance}} <br />
+                    <b>Distancia:</b> 
+                        {{distance}}m
+                         <br />
                     <b>Fecha:</b> {{edition.date}}
-
+<br />
+                    {% if edition.is_past %}
+                        <a href="{% url 'newresult' edition.id %}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Resultado</a>
+                    {% else %}
+                        <a class="btn btn-default"><i class="fa fa-plus-circle"></i> Objetivo</a>
+                    {% endif %}
                     <h3>Resultados</h3>
                     <ul>
                         {% for result in results %}

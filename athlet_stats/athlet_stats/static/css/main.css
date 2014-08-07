@@ -15,3 +15,7 @@
 .tab-pane{ padding:20px; }
 
 .clear-both{ clear: both;}
+
+.form-control.duration{ max-width: 50px; display:inline; }
+
+.ayuda{ font-size:0.8em; }
