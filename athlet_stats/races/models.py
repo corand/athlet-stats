@@ -1,8 +1,11 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 from django.utils import timezone
-from durationfield.db.models.fields.duration import DurationField
 from django.contrib.auth.models import User
+from durationfield.db.models.fields.duration import DurationField
+from django.contrib.auth import get_user_model as user_model
+User = user_model()
+
 
 
 MONTH_CHOICES = (
@@ -107,7 +110,7 @@ class Result(models.Model):
     distancemark = models.PositiveIntegerField(blank=True,null=True)
     position = models.PositiveIntegerField(blank=True,null=True)
     position_cat = models.PositiveIntegerField(blank=True,null=True)
-    comment = models.TextField()
+    comment = models.TextField(blank=True,null=True)
 
     def __unicode__(self):
         return self.edition.name + " - " + self.user.username

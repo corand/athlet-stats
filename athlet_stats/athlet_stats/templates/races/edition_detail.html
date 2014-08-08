@@ -25,7 +25,7 @@
                     {% if edition.is_past %}
                         <a href="{% url 'newresult' edition.id %}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Resultado</a>
                     {% else %}
-                        <a class="btn btn-default"><i class="fa fa-plus-circle"></i> Objetivo</a>
+                        <a href="{% url 'newobjective' edition.id %}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Objetivo</a>
                     {% endif %}
                     <h3>Resultados</h3>
                     <ul>

@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -59,14 +60,14 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join('/home/andoni/django/athlet-stats/athlet_stats/athlet_stats/','templates'),
+    os.path.join(BASE_DIR,'athlet_stats/templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join('/home/andoni/django/athlet-stats/athlet_stats/athlet_stats/','static'),
+    os.path.join(BASE_DIR,'athlet_stats/static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -93,9 +94,11 @@ INSTALLED_APPS = (
     'django.contrib.sites', # Note this one is not included by default
     'django.contrib.comments', # Note this one is not included by default
     'durationfield',
+    'rosetta',
     'blog',
     'races',
     'ckeditor',
+    'profiles',
     'debug_toolbar',
 )
 
@@ -134,9 +137,26 @@ DATABASES = {
         'PORT': '', # Set to empty string for default.
     }
 }
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# In a Windows environment this must be set to your system time zone.
+TIME_ZONE = 'Europe/Madrid'
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
+LANGUAGES = (
+    ('es', _('Spanish')),
+    ('eu', _('Basque')),
+)
+
+# TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+
 
 LANGUAGE_CODE = 'es-es'
 
@@ -147,6 +167,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR,'locale'),
+)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -167,3 +191,5 @@ CKEDITOR_CONFIGS = {
 }
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+AUTH_USER_MODEL = "profiles.UserProfile"

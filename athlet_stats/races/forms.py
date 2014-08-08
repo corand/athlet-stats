@@ -21,10 +21,18 @@ class SubRaceForm(ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'})
         }
 
-class ResultForm(ModelForm):
-    class Meta:
-        model = Result
-        fields = ['timemark','position','comment']
+
+
+class ObjectiveForm(forms.Form):
+    horas = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'HH'}),required=False)
+    minutos = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'MM'}),required=False)
+    segundos = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'SS'}),required=False)
+    centesimas = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'CC'}),required=False)
+    distancia = forms.FloatField(widget=forms.TextInput(attrs={'class':'form-control duration'}),required=False)
+    puesto = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration'}),required=False)
+    puesto_cat = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration'}),required=False)
+    comentarios = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','placeholder': 'Cuentanos un poco la idea con la que vas a acudir'}),required=False)
+
 
 class ResultForm(forms.Form):
     horas = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'HH'}),required=False)

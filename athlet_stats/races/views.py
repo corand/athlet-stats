@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from .models import Race,Edition,Result,Modality,SubRace,RaceType
+from .models import Race,Edition,Result,Modality,SubRace,RaceType,Objective
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as authForm
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.template import RequestContext
-from .forms import RaceForm,EditionForm,SubRaceForm,ResultForm
+from .forms import RaceForm,EditionForm,SubRaceForm,ResultForm,ObjectiveForm
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView,ListView,DetailView
 from braces.views import LoginRequiredMixin
@@ -155,7 +155,7 @@ def NewEdition(request,id_race):
 
             new_edition = Edition(type=edition_type,date=date,race=race,name=name,creator=request.user,distance=distance)
             new_edition.save()
-            return HttpResponseRedirect(reverse("racelist"))
+            return HttpResponseRedirect(reverse("editionlist",kwargs={'pk':id_race}))
     else:
         form = EditionForm()
 
@@ -202,6 +202,47 @@ def NewResult(request,id_edition):
         form = ResultForm()
 
     return render_to_response("races/new_result.html",{'form':form,'edition':edition},context_instance=RequestContext(request))
+
+@login_required(login_url="/login")
+def NewObjective(request,id_edition):
+    edition = get_object_or_404(Edition,pk=id_edition)
+    if request.method=='POST':
+        form = ObjectiveForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['horas']:
+                horas = form.cleaned_data['horas']
+            else:
+                horas = 0
+
+            if form.cleaned_data['minutos']:
+                minutos = form.cleaned_data['minutos']
+            else:
+                minutos = 0
+
+            if form.cleaned_data['segundos']:
+                segundos = form.cleaned_data['segundos']
+            else:
+                segundos = 0
+
+            if form.cleaned_data['centesimas']:
+                centesimas = form.cleaned_data['centesimas']
+            else:
+                centesimas = 0
+
+            milisegundos = centesimas * 10
+            timemark = timedelta(hours=horas,minutes=minutos,seconds=segundos,milliseconds=milisegundos)
+            distancemark = form.cleaned_data['distancia']
+            position = form.cleaned_data['puesto']
+            comment = form.cleaned_data['comentarios']
+            pos_cat = form.cleaned_data['puesto_cat']
+            new_objetivo = Objective(user=request.user,edition=edition,timemark=timemark,distancemark=distancemark,position=position,position_cat=pos_cat,comment=comment)
+            new_objetivo.save()
+            return HttpResponseRedirect(reverse("racelist"))
+    else:
+        form = ObjectiveForm()
+
+    return render_to_response("races/new_objective.html",{'form':form,'edition':edition},context_instance=RequestContext(request))
+
 
 
 

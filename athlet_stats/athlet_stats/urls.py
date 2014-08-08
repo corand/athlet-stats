@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from races import views as races_views
 from blog import views as blog_views
+from django.conf import settings
 
 from django.contrib import admin
 admin.autodiscover()
@@ -14,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^nueva/edicion/(?P<id_race>[0-9]+)/$', races_views.NewEdition, name="newedition"),
     url(r'^nueva/edicion/prueba/(?P<id_subrace>[0-9]+)/$', races_views.NewEditionSubRace, name="neweditionsubrace"),
     url(r'^nueva/prueba/(?P<id_race>[0-9]+)/$', races_views.NewSubRace.as_view(), name="newsubrace"),
+    url(r'^nuevo/objetivo/(?P<id_edition>[0-9]+)/$', races_views.NewObjective, name="newobjective"),
     url(r'^nuevo/resultado/(?P<id_edition>[0-9]+)/$', races_views.NewResult, name="newresult"),
     url(r'^competicion/(?P<pk>[0-9]+)/$', races_views.EditionList.as_view(), name="editionlist"),
     url(r'^edicion/(?P<pk>[0-9]+)/$', races_views.EditionDetail.as_view(), name="editiondetail"),
@@ -28,4 +30,5 @@ urlpatterns = patterns('',
     url(r'^eliminar/post/(?P<pk>[0-9]+)/$', blog_views.DeletePost.as_view(),name="deleteblogpost"),
     url(r'^blog/$', blog_views.Blog.as_view(),name="blog"),
     url(r'^ckeditor/', include('ckeditor.urls')),
+    url(r'^rosetta/', include('rosetta.urls')),
 )
