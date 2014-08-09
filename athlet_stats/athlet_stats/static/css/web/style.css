@@ -1,0 +1,29 @@
+.header{ text-align:center; background-color:lightblue;
+
+				background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
+				background-repeat: repeat-x;}
+h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
+h1 img{ width:60px; }
+h2{ margin:0; font-size:35px;}
+h2 a{ color:black; }
+.author{ color:grey; }
+.date{ color:grey; }
+.comments{ float:right;}
+
+
+
+img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
+
+.contenido{ text-align: justify; font-size: 1.4em; margin-top: 5px; }
+.post{margin-top:10px; margin-bottom:100px;}
+
+
+
+.navbar{ border-radius:0;}
+.navbar-default{ background-color:#79BAEC; border:0; }
+
+.navbar-default .navbar-nav>.active>a{ background-color: lightblue; }
+.navbar-default .navbar-nav>li>a { color:#505050; font-family: 'Hammersmith One', sans-serif; }
+
+.btn-pag li>a{ padding:25px 90px; }
+.btn-pag li a:focus,.btn-pag li a:hover{ background-color: #C34A2C; color:white; }

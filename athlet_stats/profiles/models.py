@@ -36,7 +36,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(_("name"),max_length=30,blank=True,null=True)
     first_surname = models.CharField(_("first_surname"),max_length=30,blank=True,null=True)
     second_surname = models.CharField(_("second_surname"),max_length=30,blank=True,null=True)
-    gender = models.CharField(max_length=30,choices=GENDER_CHOICES)  
+    gender = models.IntegerField(max_length=30,choices=GENDER_CHOICES)  
     self_description_es = models.TextField(_("self_description_es"),blank=True,null=True)
     self_description_eu = models.TextField(_("self_description_eu"),blank=True,null=True)
     coach_description = models.TextField(_("coach_description"),blank=True,null=True)

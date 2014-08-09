@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from races import views as races_views
 from blog import views as blog_views
+from web import views as web_views
 from django.conf import settings
 
 from django.contrib import admin
@@ -28,7 +29,8 @@ urlpatterns = patterns('',
     url(r'^nuevo/post/$', blog_views.NewPost.as_view(),name="newblogpost"),
     url(r'^editar/post/(?P<pk>[0-9]+)/$', blog_views.UpdatePost.as_view(),name="updateblogpost"),
     url(r'^eliminar/post/(?P<pk>[0-9]+)/$', blog_views.DeletePost.as_view(),name="deleteblogpost"),
-    url(r'^blog/$', blog_views.Blog.as_view(),name="blog"),
+    url(r'^private/blog/$', blog_views.Blog.as_view(),name="adminblog"),
+    url(r'^blog/$', web_views.PostList.as_view(),name="blog"),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^rosetta/', include('rosetta.urls')),
 )
