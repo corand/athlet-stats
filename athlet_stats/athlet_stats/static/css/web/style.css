@@ -1,7 +1,20 @@
 .header{ text-align:center; background-color:lightblue;
+		 padding-top: 30px;
+		 background-color:red ;
+		 background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
+		 background-repeat: repeat-x;
+		position: relative;}
 
-				background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
-				background-repeat: repeat-x;}
+.aloina_eskudua{ position: absolute;
+				top:0;
+				background-position:right;
+				width:90%; height:100%; 
+				background-image: url('/static/img/eskudo_aloina.png');
+				background-repeat:no-repeat;
+				opacity:0.5;}
+
+
+
 h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
 h1 img{ width:60px; }
 h2{ margin:0; font-size:35px;}
@@ -10,6 +23,8 @@ h2 a{ color:black; }
 .date{ color:grey; }
 .comments{ float:right;}
 
+.container{ margin-top:40px; }
+
 
 
 img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
@@ -17,13 +32,20 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .contenido{ text-align: justify; font-size: 1.4em; margin-top: 5px; }
 .post{margin-top:10px; margin-bottom:100px;}
 
+.hizkuntzak{ margin-top:5px; background-color:#505050; color: #79BAEC;}
 
+.navbar{ border-radius:0; box-shadow: 0 5px 10px 0;}
+.navbar .container-fluid{ padding:0; }
 
-.navbar{ border-radius:0;}
 .navbar-default{ background-color:#79BAEC; border:0; }
 
-.navbar-default .navbar-nav>.active>a{ background-color: lightblue; }
+.navbar-right{ padding-right: 20px;}
+
+.navbar-default .navbar-nav>.active>a{ background-color: lightblue; color:black; }
 .navbar-default .navbar-nav>li>a { color:#505050; font-family: 'Hammersmith One', sans-serif; }
+
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:20px !important}
 
 .btn-pag li>a{ padding:25px 90px; }
 .btn-pag li a:focus,.btn-pag li a:hover{ background-color: #C34A2C; color:white; }

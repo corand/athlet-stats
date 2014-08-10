@@ -144,21 +144,12 @@ DATABASES = {
 TIME_ZONE = 'Europe/Madrid'
 
 LANGUAGES = (
-    ('es', _('Spanish')),
-    ('eu', _('Basque')),
+    ('es', _('Castellano')),
+    ('eu', _('Euskara')),
 )
 
 # TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-
-
-LANGUAGE_CODE = 'es-es'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
