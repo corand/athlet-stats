@@ -15,10 +15,10 @@
 				opacity:0.5;}
 
 
-
+a{ color:darkred;}
 h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
 h1 img{ width:60px; }
-h2{ margin:0; font-size:35px;}
+h2{ margin:0; font-size:45px;}
 h2 a{ color:black; }
 .author{ color:grey; }
 .date{ color:grey; }
@@ -43,7 +43,7 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .navbar-right{ padding-right: 20px;}
 
 .navbar-default .navbar-nav>.active>a{ background-color: lightblue; color:black; }
-.navbar-default .navbar-nav>li>a { color:#505050; font-family: 'Hammersmith One', sans-serif; }
+.navbar-default .navbar-nav>li>a { color:darkred; font-family: 'Hammersmith One', sans-serif; }
 
 .navbar-nav > li > a {padding-top:10px; padding-bottom:10px;
 					  transition: padding 0.5s ease;
