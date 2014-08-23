@@ -1,4 +1,5 @@
 .header{ text-align:center; background-color:lightblue;
+	margin-top:20px;
 		 padding-top: 30px;
 		 background-color:red ;
 		 background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
@@ -30,11 +31,11 @@ h2 a{ color:black; }
 img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 
 .contenido{ text-align: justify; font-size: 1.4em; margin-top: 5px; }
-.post{margin-top:10px; margin-bottom:100px;}
+.post{ margin-bottom:100px;}
 
 .hizkuntzak{ margin-top:5px; background-color:#505050; color: #79BAEC;}
 
-.navbar{ border-radius:0; box-shadow: 0 5px 10px 0;}
+.navbar{ border-radius:0; box-shadow: 0 1px 5px 0;}
 .navbar .container-fluid{ padding:0; }
 
 .navbar-default{ background-color:#79BAEC; border:0; }
@@ -44,8 +45,69 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .navbar-default .navbar-nav>.active>a{ background-color: lightblue; color:black; }
 .navbar-default .navbar-nav>li>a { color:#505050; font-family: 'Hammersmith One', sans-serif; }
 
-.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar-nav > li > a {padding-top:10px; padding-bottom:10px;
+					  transition: padding 0.5s ease;
+					  -moz-transition: padding 0.5s ease;
+					  -o-transition: padding 0.5s ease;
+					  -webkit-transition: padding 0.5s ease; }
 .navbar {min-height:20px !important}
 
 .btn-pag li>a{ padding:25px 90px; }
 .btn-pag li a:focus,.btn-pag li a:hover{ background-color: #C34A2C; color:white; }
+
+
+
+@-webkit-keyframes blink {
+    0% {
+        opacity:0.5;
+    }
+    25% {
+        opacity:0;
+    }
+    50%{
+    	opacity:0.5;
+    }
+    75%{
+    	opacity:1;
+    }
+    100% {
+        opacity:0.5;
+    }
+}
+@-moz-keyframes blink {
+    0% {
+        opacity:0.5;
+    }
+    25% {
+        opacity:0;
+    }
+    50%{
+    	opacity:0.5;
+    }
+    75%{
+    	opacity:1;
+    }
+    100% {
+        opacity:0.5;
+    }
+}
+
+.aloina_eskudua{
+	-webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease-in-out;
+    
+	-moz-animation-direction: normal;
+    -moz-animation-duration: 20s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-name: blink;
+    -moz-animation-timing-function: ease-in-out; 
+}

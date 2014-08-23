@@ -49,6 +49,22 @@
 		</div>
 	</div>
 </div>
-
+<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+<script>
+$(window).scroll(function(){ 
+    var $scrollTop = $(window).scrollTop();
+    if($scrollTop > 40){
+        $(".navbar-nav>li>a").css({"padding-top":"0px"});
+        $(".navbar-nav>li>a").css({"padding-bottom":"0px"});
+        $(".navbar").css({"box-shadow":"0 5px 10px 0"});
+    }else{
+    	$(".navbar-nav>li>a").css({"padding-top":"10px"});
+        $(".navbar-nav>li>a").css({"padding-bottom":"10px"});
+        $(".navbar").css({"box-shadow":"0 1px 5px 0"});
+    }
+});
+</script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53f85514374c7668"></script>
 
 {% endblock %}

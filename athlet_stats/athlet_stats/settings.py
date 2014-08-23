@@ -149,7 +149,7 @@ LANGUAGES = (
 )
 
 # TIME_ZONE = 'UTC'
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'eu'
 
 TIME_ZONE = 'UTC'
 
@@ -182,5 +182,4 @@ CKEDITOR_CONFIGS = {
 }
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
-
 AUTH_USER_MODEL = "profiles.UserProfile"

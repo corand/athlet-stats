@@ -22,9 +22,23 @@
 
 
 						<h2>Publicados públicamente</h2>
+						<Table class="table">
+							<Tr>
+								<Th>Título</Th>
+								<Th>Fecha</Th>
+								<Th></Th>
+								<Th></Th>
+							</Tr>
+							
 						{% for publico in publicos %}
-							<p><a href="{% url 'updateblogpost' publico.id %}">{{publico.title_es}}</a> | {{publico.created}} <a href="{% url 'updateblogpost' publico.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a> <a href="{% url 'deleteblogpost' publico.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></p>
+							<Tr>
+								<Td><a href="{% url 'updateblogpost' publico.id %}">{{publico.title_es}}</a></Td>
+								<Td>{{publico.created}}</Td>
+								<Td><a href="{% url 'updateblogpost' publico.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a></Td>
+								<Td><a href="{% url 'deleteblogpost' publico.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></Td>
+							</Tr>
 						{% endfor %}
+						</Table>
 
 
 						<h2>Publicados en privado</h2>
