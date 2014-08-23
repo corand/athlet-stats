@@ -23,9 +23,12 @@ h2 a{ color:black; }
 .author{ color:grey; }
 .date{ color:grey; }
 .comments{ float:right;}
-
+.pagination-lg>li:first-child>a{color:darkred;}
 .container{ margin-top:40px; }
 
+.proximas_competiciones{ margin-top:20px;}
+.proximas_competiciones strong{ background-color: #79BAEC; color:white; padding:10px;
+								display:block; text-align: center }
 
 
 img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
