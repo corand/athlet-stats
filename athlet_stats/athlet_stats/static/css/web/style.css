@@ -16,6 +16,7 @@
 
 
 a{ color:darkred;}
+li{list-style:none;}
 h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
 h1 img{ width:60px; }
 h2{ margin:0; font-size:45px;}
@@ -29,6 +30,8 @@ h2 a{ color:black; }
 .proximas_competiciones{ margin-top:20px;}
 .proximas_competiciones strong{ background-color: #79BAEC; color:white; padding:10px;
 								display:block; text-align: center }
+
+.resul li {font-family:Cousine; font-size:0.8em;}
 
 
 img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
