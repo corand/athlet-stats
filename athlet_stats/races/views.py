@@ -92,6 +92,7 @@ class EditionDetail(LoginRequiredMixin,ListView):
 
         context['edition'] = edition
         context['distance'] = distance
+        context['objectives'] = Objective.objects.filter(edition=self.kwargs['pk']).order_by('position')
 
         return context
 

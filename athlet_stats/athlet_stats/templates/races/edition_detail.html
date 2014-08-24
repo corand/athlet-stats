@@ -28,13 +28,24 @@
                         <a href="{% url 'newobjective' edition.id %}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Objetivo</a>
                     {% endif %}
                     <h3>Resultados</h3>
-                    <ul>
+                    <ul class="edition_result_list">
                         {% for result in results %}
                             <li>
 
                             {% if result.position %}{{result.position}}º - {% endif %}{{result.user.get_full_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
                         {% empty %}
                             <i>Todavía no hay ningún resultado</i>
+                        {% endfor %}
+                    </ul>
+
+                    <h3>Objetivos</h3>
+                    <ul class="edition_result_list">
+                        {% for objective in objectives %}
+                            <li>
+
+                            {% if objective.position %}{{objective.position}}º - {% endif %}{{objective.user.get_full_name}} {{objective.timemark}} ({{objective.edition.date | date:"o"}})</li>
+                        {% empty %}
+                            <i>Nadie ha marcado como objetivo ésta prueba</i>
                         {% endfor %}
                     </ul>
                   
