@@ -50,7 +50,7 @@
 						{% for result in results %}
 							<li>
 
-                            {% if result.position %}{{result.position}}º - {% endif %}{{result.user.first_name}} {{result.user.last_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
+                            {% if result.position %}{{result.position}}º - {% endif %}{{result.user.get_full_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
                         {% empty %}
                             <i>Todavía no hay ningún resultado</i>
 						{% endfor %}

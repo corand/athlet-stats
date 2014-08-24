@@ -81,8 +81,6 @@ class Edition(models.Model):
     creator = models.ForeignKey(User)
 
     def is_past(self):
-        print self.date
-        print timezone.now()
         if timezone.now() > self.date:
             return True
         return False

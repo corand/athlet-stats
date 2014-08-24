@@ -33,10 +33,15 @@ h2 a{ color:black; }
 
 .resul li {font-family:Cousine; font-size:0.8em;}
 
+ul.resul{ padding-left:5px; }
+
+ul.result_tit{ padding-left:20px; }
+.result_tit h4{ margin-bottom:0; }
+
 
 img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 
-.contenido{ text-align: justify; font-size: 1.4em; margin-top: 5px; }
+.contenido{ text-align: justify; font-size: 1.3em; margin-top: 10px; line-height: 32px; }
 .post{ margin-bottom:100px;}
 
 .hizkuntzak{ margin-top:5px; background-color:#505050; color: #79BAEC;}

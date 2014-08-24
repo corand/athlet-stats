@@ -30,9 +30,11 @@
                     <h3>Resultados</h3>
                     <ul>
                         {% for result in results %}
-                            <li>{{result}}</li>
-                            {% empty %}
-                                Todavía no hay ningún resultado para ésta edición
+                            <li>
+
+                            {% if result.position %}{{result.position}}º - {% endif %}{{result.user.get_full_name}} {{result.timemark}} ({{result.edition.date | date:"o"}})</li>
+                        {% empty %}
+                            <i>Todavía no hay ningún resultado</i>
                         {% endfor %}
                     </ul>
                   

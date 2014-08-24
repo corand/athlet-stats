@@ -149,7 +149,7 @@ LANGUAGES = (
 )
 
 # TIME_ZONE = 'UTC'
-LANGUAGE_CODE = 'eu'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
