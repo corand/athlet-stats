@@ -4,7 +4,8 @@
 		 background-color:red ;
 		 background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
 		 background-repeat: repeat-x;
-		position: relative;}
+		position: relative;
+        box-shadow: 0 0 2px 2px;}
 
 .aloina_eskudua{ position: absolute;
 				top:0;
@@ -21,10 +22,16 @@ h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
 h1 img{ width:60px; }
 h2{ margin:0; font-size:45px;}
 h2 a{ color:black; }
+a{
+    -webkit-transition: color 0.4s ease-in-out;
+    -moz-transition: color 0.4s ease-in-out;
+    -o-transition: color 0.4s ease-in-out;
+    -ms-transition: color 0.4s ease-in-out;
+    transition: color 0.4s ease-in-out;}
+}
 .author{ color:grey; }
 .date{ color:grey; }
 .comments{ float:right;}
-.pagination-lg>li:first-child>a{color:darkred;}
 .container{ margin-top:40px; }
 
 .proximas_competiciones{ margin-top:20px;}
@@ -66,6 +73,49 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .btn-pag li>a{ padding:25px 90px; }
 .btn-pag li a:focus,.btn-pag li a:hover{ background-color: #C34A2C; color:white; }
 
+.social{ position: fixed;
+        padding:5px 10px;
+        background-color: #79BAEC;
+        font-size:2em;
+        top: 250px;
+        color:darkred;
+        left: 0;
+        box-shadow: 0 0 3px 0.8px;
+        -webkit-transition: padding 0.2s ease-in-out;
+        -moz-transition: padding 0.2s ease-in-out;
+        -o-transition: padding 0.2s ease-in-out;
+        -ms-transition: padding 0.2s ease-in-out;
+        transition: padding 0.2s ease-in-out;
+        z-index:99;}
+
+.scroll_top{
+    display:none;
+    position:fixed;
+    padding:0 10px;
+    background-color:#C34A2C;
+    bottom:20px;
+    left:60px;
+    border-radius:100px;
+    color:white;
+    font-size:2em;
+    font-weight: bold;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    -moz-transition: background-color 0.2s ease-in-out;
+    -o-transition: background-color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+    z-index:999;
+}
+
+.scroll_top:hover{
+    color:white;
+    background-color:darkred;
+    text-decoration: none;
+}
+
+.social:hover{ cursor: pointer; text-decoration: none; padding:5px 15px; color:darkred;}
+
+.social a{ color: white;}
 
 
 @-webkit-keyframes blink {
