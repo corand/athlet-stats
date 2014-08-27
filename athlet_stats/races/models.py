@@ -98,7 +98,7 @@ class Objective(models.Model):
     comment = models.TextField(blank=True,null=True)
 
     def __unicode__(self):
-        return self.edition.name + " - " + self.user.username
+        return self.edition.name + " - " + self.user.name
 
 
 class Result(models.Model):
@@ -111,4 +111,4 @@ class Result(models.Model):
     comment = models.TextField(blank=True,null=True)
 
     def __unicode__(self):
-        return self.edition.name + " - " + self.user.username
+        return self.edition.name + " - " + self.user.name

@@ -3,6 +3,7 @@
 
 {% block content%}
 <div class="container">
+	<span class="share"><i class="fa fa-share-alt"></i></span>
 	<a class="social fb hidden-xs" href="#"><i class="fa fa-facebook"></i></a>
 	<a class="social twtt hidden-xs" href="#"><i class="fa fa-twitter"></i></a>
 	<a class="scroll_top visible-lg visible-md" href="#"><i class="fa fa-angle-up"></i></a>
@@ -149,6 +150,7 @@ $(window).scroll(function(){
 
 setTimeout(function(){
 	$(".social").css({"margin-left":"0"});
+	$(".share").css({"margin-left":"0"});
 },1000);
 
 </script>
