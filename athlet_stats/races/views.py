@@ -17,7 +17,10 @@ from datetime import datetime,timedelta
 
 def login(request):
     if not request.user.is_anonymous():
-        return HttpResponseRedirect('/login')
+        if request.user.is_authenticated():
+            return HttpResponseRedirect('/private/blog/')
+        else:
+            return HttpResponseRedirect('/login')
     if request.method == 'POST':
         formulario = AuthenticationForm(request.POST)
         if formulario.is_valid:

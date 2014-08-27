@@ -33,5 +33,6 @@ urlpatterns = patterns('',
     url(r'^$', web_views.PostList.as_view(),name="blog"),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^rosetta/', include('rosetta.urls')),
+#    (r'^localeurl/', include('localeurl.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 )

@@ -3,18 +3,50 @@
 
 {% block content%}
 <div class="container">
-	<a class="social hidden-xs" href="#"><i class="fa fa-rss"></i></a>
-	<a class="scroll_top" href="#"><i class="fa fa-angle-up"></i></a>
+	<a class="social fb hidden-xs" href="#"><i class="fa fa-facebook"></i></a>
+	<a class="social twtt hidden-xs" href="#"><i class="fa fa-twitter"></i></a>
+	<a class="scroll_top visible-lg visible-md" href="#"><i class="fa fa-angle-up"></i></a>
 	<div class="row">
 		<div class="col-md-9 col-md-offset-2">
 			{% for post in posts %}
 				<div class="post">
-					<h2><a href="#">{{post.title_es}}</a></h2>
+					<!-- POST  IZENBURUA -->
+					{% if LANGUAGE_CODE == 'es' %}
+						{% if post.title_es != '' %}
+							<h2><a href="#">{{post.title_es}}</a></h2>
+						{% else %}
+							<h2><a href="#">{{post.title_eu}}</a></h2>
+						{% endif %}
+					{% else %}
+						{% if post.title_eu != '' %}
+							<h2><a href="#">{{post.title_eu}}</a></h2>
+						{% else %}
+							<h2><a href="#">{{post.title_es}}</a></h2>
+						{% endif %}
+					{% endif %}
+					<!-- END   POST  IZENBURUA -->
+
 					<span class="author"><a href="#">{{post.author.get_short_name}}</a></span>
 					<span class="date">{{post.created}}</span>
-					<span class="comments"><a href="#">1 {% trans "comentario" %} <i class="fa fa-comments-o"></i></a></span>
+					<span class="comments"><a href="#"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></span>
+
+
 					<div class="contenido">
-							{{post.body_es|safe}}
+							<!-- POST  IZENBURUA -->
+							{% if LANGUAGE_CODE == 'es' %}
+								{% if post.body_es != '' %}
+									{{post.body_es|safe}}
+								{% else %}
+									{{post.body_eu|safe}}
+								{% endif %}
+							{% else %}
+								{% if post.body_eu != '' %}
+									{{post.body_eu|safe}}
+								{% else %}
+									{{post.body_es|safe}}
+								{% endif %}
+							{% endif %}
+							<!-- END   POST  IZENBURUA -->
 					</div>
 				</div>
 
@@ -24,7 +56,7 @@
 				<ul class="pagination pagination-lg btn-pag">
 					{% if page_obj.has_next %}
 						<li>
-							<a href="#">{% trans "anteriores" %}</a>
+							<a href="?page={{ page_obj.next_page_number }}">{% trans "anteriores" %}</a>
 						</li>
 					{% else %}
 						<li class="disabled">
@@ -33,7 +65,7 @@
 					{% endif %}
 					{% if page_obj.has_previous %}
 						<li>
-							<a href="#">{% trans "mas recientes" %}</a>
+							<a href="?page={{ page_obj.previous_page_number }}">{% trans "mas recientes" %}</a>
 						</li>
 					{% else %}
 						<li class="disabled">
@@ -51,15 +83,15 @@
 				<ul class="result_tit">
 					<li><h4><a href="#">Behobia Donostia 2014</a></h4></li>
 						<ul class="resul">
-							<li>523º<b>Txema</b> 1h 20min 30seg</li>
-							<li>523º<b>Xabier</b> 1h 20min 30seg</li>
-							<li>523º<b>Javi</b> 1h 20min 30seg</li>
-							<li>1523º<b>Vicente</b> 1h 20min 30seg</li>
-							<li>2523º<b>Txema</b> 1h 20min 30seg</li>
-							<li>4523º<b>Txema</b> 1h 20min 30seg</li>
-							<li>5523º<b>Vicente</b> 1h 20min 30seg</li>
-							<li>6523º<b>Txema</b> 1h 20min 30seg</li>
-							<li>7523º<b>Txema</b> 1h 20min 30seg</li>
+							<li>523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+							<li>523º<b><a href="#">Xabier</a></b> 1h 20min 30seg</li>
+							<li>523º<b><a href="#">Javi</a></b> 1h 20min 30seg</li>
+							<li>1523º<b><a href="#">Vicente</a></b> 1h 20min 30seg</li>
+							<li>2523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+							<li>4523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+							<li>5523º<b><a href="#">Vicente</a></b> 1h 20min 30seg</li>
+							<li>6523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+							<li>7523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
 						</ul>
 					<li><h4><a href="#">Lasarte Oria Bai 2014</a></h4></li>
 						<ul class="resul">
@@ -100,20 +132,25 @@ $(".scroll_top").on('click',function(){
 
 $(window).scroll(function(){
     var $scrollTop = $(window).scrollTop();
-    if($scrollTop > 40){
+    if($scrollTop > 135){
         $(".navbar-nav>li>a").css({"padding-top":"0px"});
         $(".navbar-nav>li>a").css({"padding-bottom":"0px"});
         $(".navbar").css({"box-shadow":"0 5px 10px 0"});
-        $(".scroll_top").addClass("visible-lg");
-        $(".scroll_top").addClass("visible-md");
+        $(".navbar").addClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"1"});
     }else{
     	$(".navbar-nav>li>a").css({"padding-top":"10px"});
         $(".navbar-nav>li>a").css({"padding-bottom":"10px"});
         $(".navbar").css({"box-shadow":"0 1px 5px 0"});
-        $(".scroll_top").removeClass("visible-lg");
-        $(".scroll_top").removeClass("visible-md");
+        $(".navbar").removeClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"0"});
     }
 });
+
+setTimeout(function(){
+	$(".social").css({"margin-left":"0"});
+},1000);
+
 </script>
 
 <script>(function(d, s, id) {

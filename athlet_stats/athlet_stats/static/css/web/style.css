@@ -1,6 +1,7 @@
-.header{ text-align:center; background-color:lightblue;
-	margin-top:20px;
-		 padding-top: 30px;
+.header{ 
+        min-height:135px;
+        padding-top:10px;
+        text-align:center; background-color:lightblue;
 		 background-color:red ;
 		 background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
 		 background-repeat: repeat-x;
@@ -15,6 +16,10 @@
 				background-repeat:no-repeat;
 				opacity:0.5;}
 
+.idiomas{ position: absolute; color:white; top:5px; right:5px; padding:2px; border:0; background-color:#79BAEC; z-index:99;}
+.idiomas li{ display:inline; list-style: none;  margin-left:10px; }
+.idiomas li a{color:white; cursor:pointer;}
+.idiomas li a:hover{color:black;}
 
 a{ color:darkred;}
 li{list-style:none;}
@@ -32,6 +37,7 @@ a{
 .author{ color:grey; }
 .date{ color:grey; }
 .comments{ float:right;}
+.comments>a>i{float:left; font-size:2em;}
 .container{ margin-top:40px; }
 
 .proximas_competiciones{ margin-top:20px;}
@@ -74,22 +80,35 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .btn-pag li a:focus,.btn-pag li a:hover{ background-color: #C34A2C; color:white; }
 
 .social{ position: fixed;
+        width:45px;
+        margin-left: -50px;
         padding:5px 10px;
-        background-color: #79BAEC;
         font-size:2em;
-        top: 250px;
-        color:darkred;
+        text-align: center;
+        top: 240px;
+        color:black;
         left: 0;
         box-shadow: 0 0 3px 0.8px;
-        -webkit-transition: padding 0.2s ease-in-out;
-        -moz-transition: padding 0.2s ease-in-out;
-        -o-transition: padding 0.2s ease-in-out;
-        -ms-transition: padding 0.2s ease-in-out;
-        transition: padding 0.2s ease-in-out;
+        -webkit-transition: width 0.2s ease-in-out,margin 0.6s ease-in-out;
+        -moz-transition: width 0.2s ease-in-out,margin 0.6s ease-in-out;
+        -o-transition: width 0.2s ease-in-out,margin 0.6s ease-in-out;
+        -ms-transition: width 0.2s ease-in-out,margin 0.6s ease-in-out;
+        transition: width 0.2s ease-in-out,margin 0.6s ease-in-out;
         z-index:99;}
+.social:hover{ cursor: pointer; text-decoration: none; width:60px; color:darkred;}
+
+.social i{color:white;}
+
+.social.fb{background-color: #3b5998;}
+.social.twtt{top:290px;background-color: #55ACEE;}
+
+.pagination>li>a{color: darkred; -moz-transition: none;
+    -webkit-transition: none;
+    -o-transition: color 0 ease-in;
+    transition: none;}
 
 .scroll_top{
-    display:none;
+    opacity:0;
     position:fixed;
     padding:0 10px;
     background-color:#C34A2C;
@@ -104,6 +123,11 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
     -o-transition: background-color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    -ms-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
     z-index:999;
 }
 
@@ -112,8 +136,6 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
     background-color:darkred;
     text-decoration: none;
 }
-
-.social:hover{ cursor: pointer; text-decoration: none; padding:5px 15px; color:darkred;}
 
 .social a{ color: white;}
 

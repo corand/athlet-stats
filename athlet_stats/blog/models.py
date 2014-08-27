@@ -9,9 +9,11 @@ User = user_model()
 class Post(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	title_es = models.CharField(max_length=100)
-	body_es = RichTextField()
+	body_es = RichTextField(blank=True,null=True)
 	title_eu = models.CharField(max_length=100)
-	body_eu = RichTextField()
+	body_eu = RichTextField(blank=True,null=True)
+#	slug_es
+#	slug_eu
 	author = models.ForeignKey(User)
 	status = models.CharField(max_length=100)
 	
