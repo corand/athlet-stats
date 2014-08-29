@@ -11,3 +11,9 @@ class PostList(ListView):
     context_object_name = 'posts'
     def get_queryset(self):
         return Post.objects.filter(status=2).order_by('-created')
+
+
+class PostView(DetailView):
+	model = Post
+	template_name = "web/post.html"
+	context_object_name = "post"

@@ -107,6 +107,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    #'solid_i18n.middleware.SolidLocaleMiddleware', 
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -150,7 +151,7 @@ LANGUAGES = (
 )
 
 # TIME_ZONE = 'UTC'
-# LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'es'
 
 USE_I18N = True
 

@@ -23,8 +23,8 @@
 
 a{ color:darkred;}
 li{list-style:none;}
-h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
-h1 img{ width:60px; }
+.header h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
+.header h1 img{ width:60px; }
 h2{ margin:0; font-size:45px;}
 h2 a{ color:black; }
 a{
@@ -62,18 +62,21 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .navbar{ border-radius:0; box-shadow: 0 1px 5px 0;}
 .navbar .container-fluid{ padding:0; }
 
-.navbar-default{ background-color:#79BAEC; border:0; }
+.navbar-default{ background-color:#C2DFFF; border:0; }
 
 .navbar-right{ padding-right: 20px;}
 
 .navbar-default .navbar-nav>.active>a{ background-color: lightblue; color:black; }
-.navbar-default .navbar-nav>li>a { color:darkred; font-family: 'Hammersmith One', sans-serif; }
+.navbar-default .navbar-nav>li>a { color:darkred; font-family: 'Hammersmith One', sans-serif;}
 
-.navbar-nav > li > a {padding-top:10px; padding-bottom:10px;
-					  transition: padding 0.5s ease;
-					  -moz-transition: padding 0.5s ease;
-					  -o-transition: padding 0.5s ease;
-					  -webkit-transition: padding 0.5s ease; }
+.navbar-default .navbar-nav>li:hover>a{ color: blue; }
+
+.navbar-nav > li > a {padding:10px 15px;
+
+					  transition: padding 1s ease,color 0.8s ease;
+					  -moz-transition: padding 1s ease,color 0.8s ease;
+					  -o-transition: padding 1s ease,color 0.8s ease;
+					  -webkit-transition: padding 1s ease,color 0.8s ease; }
 .navbar {min-height:20px !important}
 
 .btn-pag li>a{ padding:25px 90px; }
@@ -98,7 +101,7 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .social:hover{ cursor: pointer; text-decoration: none; width:60px; color:darkred;}
 
 .share{ position:fixed; top:340px; color:black; left:0px; margin-left:-50px;
-        width:45px;
+        width:20px;
         text-align:center;
         box-shadow: 0 0 3px 0.8px;
         -webkit-transition: margin 0.6s ease-in-out;

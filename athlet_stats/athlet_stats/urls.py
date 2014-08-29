@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from races import views as races_views
 from blog import views as blog_views
 from web import views as web_views
+from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 
 from django.contrib import admin
@@ -25,10 +26,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^comments/', include('django.contrib.comments.urls')),
 	url(r'^cerrar/$', races_views.cerrar),
-	url(r'^login/$', races_views.login, name="login"),
-    url(r'^nuevo/post/$', blog_views.NewPost.as_view(),name="newblogpost"),
-    url(r'^editar/post/(?P<pk>[0-9]+)/$', blog_views.UpdatePost.as_view(),name="updateblogpost"),
-    url(r'^eliminar/post/(?P<pk>[0-9]+)/$', blog_views.DeletePost.as_view(),name="deleteblogpost"),
+	url(r'^login$', races_views.login, name="login"),
+    url(r'^nuevo/post$', blog_views.NewPost.as_view(),name="newblogpost"),
+    url(r'^editar/post/(?P<pk>\w+)/$', blog_views.UpdatePost.as_view(),name="updateblogpost"),
+    url(r'^eliminar/post/(?P<pk>\w+)/$', blog_views.DeletePost.as_view(),name="deleteblogpost"),
     url(r'^private/blog/$', blog_views.Blog.as_view(),name="adminblog"),
     url(r'^$', web_views.PostList.as_view(),name="blog"),
     url(r'^ckeditor/', include('ckeditor.urls')),
@@ -36,3 +37,8 @@ urlpatterns = patterns('',
 #    (r'^localeurl/', include('localeurl.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 )
+
+urlpatterns += i18n_patterns('',
+        url(r'^post/(?P<pk>\w+)/(?P<slug>[-\w]+)$', web_views.PostView.as_view(),name="post"),
+    )
+
