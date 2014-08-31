@@ -23,6 +23,8 @@ class PostView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post,pk=self.kwargs['pk'])
-        soup = BeautifulSoup(post.body_eu)
-        print soup.find('img')['src']
+        soup_eu = BeautifulSoup(post.body_eu)
+        soup_es = BeautifulSoup(post.body_es)
+        context['imagen_eu'] = soup_eu.find('img')['src']
+        context['imagen_es'] = soup_es.find('img')['src']
         return context

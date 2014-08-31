@@ -1,6 +1,17 @@
 {% extends 'web/base.html' %}
 {% load i18n %}
-
+{% block opengraph %}
+	{% if LANGUAGE_CODE == 'eu' %}
+		<meta property="og:title" content="{{post.title_eu}}"/>
+		<meta property="og:url" content="http://www.mysite.com/article/"/>
+		<meta property="og:image" content="{{imagen_eu}}"/>
+	{% else %}
+		<meta property="og:title" content="{{post.title_es}}"/>
+		<meta property="og:url" content="aloinargixao.com{% url 'post' post.id post.slug_es %}"/>
+		<meta property="og:image" content="{{imagen_es}}"/>
+	{% endif %}
+		<meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
+{% endblock %}
 {% block content%}
 <div class="container">
 	<a class="scroll_top visible-lg visible-md" href="#"><i class="fa fa-angle-up"></i></a>

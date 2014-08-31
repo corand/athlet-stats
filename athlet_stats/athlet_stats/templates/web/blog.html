@@ -1,5 +1,15 @@
 {% extends 'web/base.html' %}
 {% load i18n %}
+{% block opengraph %}
+	{% if LANGUAGE_CODE == 'eu' %}
+		<meta property="og:title" content="Aloña Mendi Atletismo taldea eta Atletas de argixao"/>
+	{% else %}
+		<meta property="og:title" content="Aloña Mendi Atletismo y Atletas de argixao"/>
+	{% endif %}
+		<meta property="og:url" content="aloinargixao.com"/>
+		<meta property="og:image" content="{{STATIC_URL}}img/eskudo_aloina.png"/>
+		<meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
+{% endblock %}
 
 {% block content%}
 <div class="container">
@@ -49,6 +59,25 @@
 							{% endif %}
 							<!-- END   POST  IZENBURUA -->
 					</div>
+					<center>
+					{% if LANGUAGE_CODE == 'es' %}
+					<div class="fb-like" data-href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_es %}" data-layout="box_count" data-action="like" data-show-faces="false" data-share="true"></div>
+						&nbsp;&nbsp;
+						<a href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_es %}" class="twitter-share-button" data-via="aloinargixao">Tweet</a>
+
+<!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+<div class="g-plusone" data-href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_es %}"></div>
+
+					{% else %}
+<div class="fb-like" data-href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_eu %}" data-layout="box_count" data-action="like" data-show-faces="false" data-share="true"></div>
+						&nbsp;&nbsp;
+						<a href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_eu %}" class="twitter-share-button" data-via="aloinargixao">Tweet</a>
+<!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
+<div class="g-plusone" data-href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_eu %}"></div>
+
+					{% endif %}
+				
+				</center>
 				</div>
 
 			{% endfor %}
@@ -160,5 +189,12 @@ setTimeout(function(){
   js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&appId=250198748439697&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<!-- Inserta esta etiqueta en la sección "head" o justo antes de la etiqueta "body" de cierre. -->
+<script src="https://apis.google.com/js/platform.js" async defer>
+  {lang: 'es'}
+</script>
 
 {% endblock %}
