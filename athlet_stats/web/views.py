@@ -25,6 +25,10 @@ class PostView(DetailView):
         post = get_object_or_404(Post,pk=self.kwargs['pk'])
         soup_eu = BeautifulSoup(post.body_eu)
         soup_es = BeautifulSoup(post.body_es)
-        context['imagen_eu'] = soup_eu.find('img')['src']
-        context['imagen_es'] = soup_es.find('img')['src']
+        img_eu = soup_eu.find('img')
+        img_es = soup_es.find('img')
+        if img_eu:
+            context['imagen_eu'] = img_eu['src']
+        if img_es:
+            context['imagen_es'] = img_es['src']
         return context

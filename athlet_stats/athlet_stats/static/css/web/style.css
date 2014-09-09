@@ -1,6 +1,6 @@
+h1 p{ margin: 0;}
 .header{ 
         min-height:135px;
-        padding-top:10px;
         text-align:center; background-color:lightblue;
 		 background-color:red ;
 		 background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
@@ -15,6 +15,16 @@
 				background-image: url('/static/img/eskudo_aloina.png');
 				background-repeat:no-repeat;
 				opacity:0.5;}
+
+.argixao_eskudua{ position: absolute;
+                top:0;
+                background-position:left;
+                width:90%; height:100%; 
+                background-image: url('/static/img/logo_atletas.png');
+                background-repeat:no-repeat;
+                opacity:0.5;}
+
+.social-sh{ font-size:1.5em; margin-left:30px; margin-top:20px;}
 
 .idiomas{ position: absolute; color:white; top:5px; right:5px; padding:2px; border:0; background-color:#79BAEC; z-index:99;}
 .idiomas li{ display:inline; list-style: none;  margin-left:10px; }
@@ -188,6 +198,9 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
     }
 }
 
+
+
+
 .aloina_eskudua{
 	-webkit-transition: all 1s ease-in-out;
     -moz-transition: all 1s ease-in-out;
@@ -205,5 +218,65 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
     -moz-animation-duration: 20s;
     -moz-animation-iteration-count: infinite;
     -moz-animation-name: blink;
+    -moz-animation-timing-function: ease-in-out; 
+}
+
+
+
+@-webkit-keyframes argi_fade {
+    0% {
+        opacity:0.5;
+    }
+    25% {
+        opacity:1;
+    }
+    50%{
+        opacity:0.5;
+    }
+    75%{
+        opacity:0;
+    }
+    100% {
+        opacity:0.5;
+    }
+}
+@-moz-keyframes argi_fade {
+    0% {
+        opacity:0.5;
+    }
+    25% {
+        opacity:1;
+    }
+    50%{
+        opacity:0.5;
+    }
+    75%{
+        opacity:0;
+    }
+    100% {
+        opacity:0.5;
+    }
+}
+
+
+
+
+.argixao_eskudua{
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: argi_fade;
+    -webkit-animation-timing-function: ease-in-out;
+    
+    -moz-animation-direction: normal;
+    -moz-animation-duration: 20s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-name: argi_fade;
     -moz-animation-timing-function: ease-in-out; 
 }
