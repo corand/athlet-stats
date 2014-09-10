@@ -1,4 +1,4 @@
-{% extends 'web/base.html' %}
+	{% extends 'web/base.html' %}
 {% load i18n %}
 {% block opengraph %}
 	{% if LANGUAGE_CODE == 'eu' %}
@@ -62,20 +62,16 @@
 					<center>
 					{% if LANGUAGE_CODE == 'es' %}
 
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-facebook"></i></a>
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-google-plus"></i></a>
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-twitter"></i></a>
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-linkedin"></i></a>
-<!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
-<div class="g-plusone" data-href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_es %}"></div>
+					<a class="btn btn-default social-sh gp" href="https://plus.google.com/share?url=aloinargixao.com{% url 'post' post.id post.slug_es %}"><i class="fa fa-google-plus"></i></a>
+					<a class="btn btn-default social-sh fb" href="http://www.facebook.com/sharer/sharer.php?u=aloinargixao.com{% url 'post' post.id post.slug_es %}"><i class="fa fa-facebook"></i></a>
+					<a class="btn btn-default social-sh twt" href="https://twitter.com/home?status=aloinargixao.com{% url 'post' post.id post.slug_es %}"><i class="fa fa-twitter"></i></a>
+					<a class="btn btn-default social-sh ln" href="https://www.linkedin.com/shareArticle?mini=true&url=aloinargixao.com{% url 'post' post.id post.slug_es %}"><i class="fa fa-linkedin"></i></a>
 
 					{% else %}
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-facebook"></i></a>
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-google-plus"></i></a>
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-twitter"></i></a>
-					<a class="btn btn-default social-sh" href="#"><i class="fa fa-linkedin"></i></a>
-<!-- Inserta esta etiqueta donde quieras que aparezca Botón +1. -->
-<div class="g-plusone" data-href="aloinargixao.com/{{LANGUAGE_CODE}}{% url 'post' post.id post.slug_eu %}"></div>
+					<a class="btn btn-default social-sh gp" href="https://plus.google.com/share?url=aloinargixao.com{% url 'post' post.id post.slug_eu %}"><i class="fa fa-google-plus"></i></a>
+					<a class="btn btn-default social-sh fb" href="http://www.facebook.com/sharer/sharer.php?u=aloinargixao.com{% url 'post' post.id post.slug_eu %}"><i class="fa fa-facebook"></i></a>
+					<a class="btn btn-default social-sh twt" href="https://twitter.com/home?status=aloinargixao.com{% url 'post' post.id post.slug_eu %}"><i class="fa fa-twitter"></i></a>
+					<a class="btn btn-default social-sh ln" href="https://www.linkedin.com/shareArticle?mini=true&url=aloinargixao.com{% url 'post' post.id post.slug_eu %}"><i class="fa fa-linkedin"></i></a>
 
 					{% endif %}
 				
