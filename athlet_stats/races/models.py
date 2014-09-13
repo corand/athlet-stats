@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from durationfield.db.models.fields.duration import DurationField
 from django.contrib.auth import get_user_model as user_model
+from datetime import date
 User = user_model()
 
 
@@ -95,7 +96,14 @@ class Objective(models.Model):
     distancemark = models.PositiveIntegerField(blank=True,null=True)
     position = models.PositiveIntegerField(blank=True,null=True)
     position_cat = models.PositiveIntegerField(blank=True,null=True)
+    duda = models.BooleanField(default=False)
     comment = models.TextField(blank=True,null=True)
+
+    @property
+    def is_past_due(self):
+        if date.today() > self.edition.date:
+            return True
+        return False
 
     def __unicode__(self):
         return self.edition.name + " - " + self.user.name

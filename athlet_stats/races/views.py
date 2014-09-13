@@ -43,8 +43,6 @@ def login(request):
     return render_to_response('races/login.html',{'formulario':formulario},context_instance=RequestContext(request))
 
 
-
-
 class RaceList(LoginRequiredMixin,TemplateView):
 	template_name = "races/race_list.html"
 	paginate_by = 150
@@ -64,6 +62,15 @@ class RaceList(LoginRequiredMixin,TemplateView):
 		context['julio'] = Race.objects.filter(month=7).order_by('week','name')
 		context['agosto'] = Race.objects.filter(month=8).order_by('week','name')
 		return context
+
+class ObjectiveList(LoginRequiredMixin,ListView):
+    template_name="races/objective_list.html"
+    paginate_by = 150
+    context_object_name = "objectives"
+    def get_queryset(self):
+        return Objective.objects.filter(user=self.request.user).order_by('-edition__date')
+
+ 
 
 class EditionList(LoginRequiredMixin,ListView):
     template_name = "races/edition_list.html"
