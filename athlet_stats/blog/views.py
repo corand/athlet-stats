@@ -29,14 +29,14 @@ class NewPost(LoginRequiredMixin,CreateView):
 		instance.author = self.request.user
 		return super(NewPost, self).form_valid(form)
 	def get_success_url(self):
-		return reverse("blog")
+		return reverse("adminblog")
 
 
 class UpdatePost(LoginRequiredMixin,UpdateView):
 	form_class = PostForm
 	template_name = "blog/update_post.html"
 	def get_success_url(self):
-		return reverse("blog")
+		return reverse("adminblog")
     
 	def get_object(self, queryset=None):
 		obj = Post.objects.get(id=self.kwargs['pk'])
@@ -48,7 +48,7 @@ class DeletePost(LoginRequiredMixin,DeleteView):
 	form_class = PostForm
 	template_name = "blog/delete_post.html"
 	def get_success_url(self):
-		return reverse("blog")
+		return reverse("adminblog")
 	def get_object(self, queryset=None):
 		obj = Post.objects.get(id=self.kwargs['pk'])
 		if not obj.author == self.request.user:

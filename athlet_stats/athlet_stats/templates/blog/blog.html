@@ -16,34 +16,33 @@
 				<div class="col-lg-10">
 						<h2>Borradores:</h2>
 						{% for borrador in borradores %}
-							<p><a href="{% url 'updateblogpost' borrador.id %}">{{borrador.title_es}}</a> | {{borrador.created}}</p>
+							<a href="{% url 'updateblogpost' borrador.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+							<a href="{% url 'deleteblogpost' borrador.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+							<a href="{% url 'updateblogpost' borrador.id %}">{{borrador.title_es}}</a>
+							{{borrador.created}}
+							<br />
 						{% endfor %}
 
 
 
 						<h2>Publicados públicamente</h2>
-						<Table class="table">
-							<Tr>
-								<Th>Título</Th>
-								<Th>Fecha</Th>
-								<Th></Th>
-								<Th></Th>
-							</Tr>
 							
 						{% for publico in publicos %}
-							<Tr>
-								<Td><a href="{% url 'updateblogpost' publico.id %}">{{publico.title_es}}</a></Td>
-								<Td>{{publico.created}}</Td>
-								<Td><a href="{% url 'updateblogpost' publico.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a></Td>
-								<Td><a href="{% url 'deleteblogpost' publico.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></Td>
-							</Tr>
+							<a href="{% url 'updateblogpost' publico.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+							<a href="{% url 'deleteblogpost' publico.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+							<a href="{% url 'updateblogpost' publico.id %}">{{publico.title_es}}</a>
+							{{publico.created}}
+							<br />
 						{% endfor %}
-						</Table>
 
 
 						<h2>Publicados en privado</h2>
 						{% for privado in privados %}
-							<p><a href="{% url 'updateblogpost' privado.id %}">{{privado.title_es}}</a> | {{privado.created}}</p>
+							<a href="{% url 'updateblogpost' privado.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+							<a href="{% url 'deleteblogpost' privado.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+							<a href="{% url 'updateblogpost' privado.id %}">{{privado.title_es}}</a>
+							{{privado.created}}
+							<br />
 						{% endfor %}
 				</div>
 				<div class="col-lg-2">
