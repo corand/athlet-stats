@@ -14,36 +14,44 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-10">
-						<h2>Borradores:</h2>
-						{% for borrador in borradores %}
-							<a href="{% url 'updateblogpost' borrador.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-							<a href="{% url 'deleteblogpost' borrador.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-							<a href="{% url 'updateblogpost' borrador.id %}">{{borrador.title_es}}</a>
-							{{borrador.created}}
-							<br />
+
+					<Table class="table table-hover posts">
+						<Tr>
+							<Th></Th>
+							<Th></Th>
+							<Th>Titulo</Th>
+							<Th>Fecha</Th>
+							<Th>Estado</Th>
+						</Tr>
+
+						{% for post in posts %}
+							<Tr>
+								<Td>
+									<a href="{% url 'updateblogpost' post.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+								</Td>
+
+								<Td>
+									<a href="{% url 'deleteblogpost' post.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
+								</Td>
+								<Td>
+									<a href="{% url 'updateblogpost' post.id %}">{{post.title_es}}</a>
+								</Td>
+
+								<Td>{{post.created}}</Td>
+								<Td>
+									{% if post.status == '1' %}
+										(Borrador)
+									{% elif post.status == '2' %}
+										<i class="fa fa-globe"></i> Publicado
+									{% else %}
+										<i class="fa fa-lock"></i> Privado
+									{% endif %}
+								
+								</Td>
+							</Tr>
 						{% endfor %}
+						</Table>
 
-
-
-						<h2>Publicados públicamente</h2>
-							
-						{% for publico in publicos %}
-							<a href="{% url 'updateblogpost' publico.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-							<a href="{% url 'deleteblogpost' publico.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-							<a href="{% url 'updateblogpost' publico.id %}">{{publico.title_es}}</a>
-							{{publico.created}}
-							<br />
-						{% endfor %}
-
-
-						<h2>Publicados en privado</h2>
-						{% for privado in privados %}
-							<a href="{% url 'updateblogpost' privado.id %}" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
-							<a href="{% url 'deleteblogpost' privado.id %}" class="btn btn-danger"><i class="fa fa-trash-o"></i></a>
-							<a href="{% url 'updateblogpost' privado.id %}">{{privado.title_es}}</a>
-							{{privado.created}}
-							<br />
-						{% endfor %}
 				</div>
 				<div class="col-lg-2">
 					<a class="btn btn-primary" href="{% url 'newblogpost' %}">Nuevo Post</a>
