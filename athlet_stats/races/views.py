@@ -70,6 +70,15 @@ class ObjectiveList(LoginRequiredMixin,ListView):
     def get_queryset(self):
         return Objective.objects.filter(user=self.request.user).order_by('-edition__date')
 
+
+class ResultList(LoginRequiredMixin,ListView):
+    template_name="races/result_list.html"
+    paginate_by = 150
+    context_object_name = "results"
+    def get_queryset(self):
+        return Result.objects.filter(user=self.request.user).order_by('-edition__date')
+
+
  
 
 class EditionList(LoginRequiredMixin,ListView):
@@ -282,7 +291,7 @@ def NewEditionSubRace(request,id_subrace):
 
 @login_required(login_url="/login")
 def changeModality(request):
-    objectQuerySet = Modality.objects.filter(race_type=request.POST['race_type']).order_by('modality')
+    objectQuerySet = Modality.objects.filter(race_type=request.POST['race_type']).order_by('order')
     data = serializers.serialize('json', objectQuerySet, fields=('id','modality'))
 
     return HttpResponse(data,content_type='application/json')

@@ -60,7 +60,7 @@ class Modality(models.Model):
     result_type = models.ForeignKey(ResultType)
     modality = models.CharField(max_length=100)
     distance = models.PositiveIntegerField(blank=True,null=True)
-#   order = models.PositiveIntegerField()
+    order = models.PositiveIntegerField()
 
     def __unicode__(self):
         return self.race_type.name + " - " + self.modality
