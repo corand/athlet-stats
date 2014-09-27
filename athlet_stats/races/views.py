@@ -37,31 +37,31 @@ def login(request):
     else:
         formulario = AuthenticationForm()
         formulario.fields['username'].widget.attrs['class'] = "form-control"
-    	formulario.fields['password'].widget.attrs['class'] = "form-control"
-    	formulario.fields['username'].widget.attrs['placeholder'] = "Nombre de Usuario"
-    	formulario.fields['password'].widget.attrs['placeholder'] = "Password"
+        formulario.fields['password'].widget.attrs['class'] = "form-control"
+        formulario.fields['username'].widget.attrs['placeholder'] = "Nombre de Usuario"
+        formulario.fields['password'].widget.attrs['placeholder'] = "Password"
     return render_to_response('races/login.html',{'formulario':formulario},context_instance=RequestContext(request))
 
 
 class RaceList(LoginRequiredMixin,TemplateView):
-	template_name = "races/race_list.html"
-	paginate_by = 150
-	context_object_name = 'races'
-	def get_context_data(self, **kwargs):
-		context = super(RaceList, self).get_context_data(**kwargs)
-		context['septiembre'] = Race.objects.filter(month=9).order_by('week','name')
-		context['octubre'] = Race.objects.filter(month=10).order_by('week','name')
-		context['noviembre'] = Race.objects.filter(month=11).order_by('week','name')
-		context['diciembre'] = Race.objects.filter(month=12).order_by('week','name')
-		context['enero'] = Race.objects.filter(month=1).order_by('week','name')
-		context['febrero'] = Race.objects.filter(month=2).order_by('week','name')
-		context['marzo'] = Race.objects.filter(month=3).order_by('week','name')
-		context['abril'] = Race.objects.filter(month=4).order_by('week','name')
-		context['mayo'] = Race.objects.filter(month=5).order_by('week','name')
-		context['junio'] = Race.objects.filter(month=6).order_by('week','name')
-		context['julio'] = Race.objects.filter(month=7).order_by('week','name')
-		context['agosto'] = Race.objects.filter(month=8).order_by('week','name')
-		return context
+    template_name = "races/race_list.html"
+    paginate_by = 150
+    context_object_name = 'races'
+    def get_context_data(self, **kwargs):
+        context = super(RaceList, self).get_context_data(**kwargs)
+        context['septiembre'] = Race.objects.filter(month=9).order_by('week','name')
+        context['octubre'] = Race.objects.filter(month=10).order_by('week','name')
+        context['noviembre'] = Race.objects.filter(month=11).order_by('week','name')
+        context['diciembre'] = Race.objects.filter(month=12).order_by('week','name')
+        context['enero'] = Race.objects.filter(month=1).order_by('week','name')
+        context['febrero'] = Race.objects.filter(month=2).order_by('week','name')
+        context['marzo'] = Race.objects.filter(month=3).order_by('week','name')
+        context['abril'] = Race.objects.filter(month=4).order_by('week','name')
+        context['mayo'] = Race.objects.filter(month=5).order_by('week','name')
+        context['junio'] = Race.objects.filter(month=6).order_by('week','name')
+        context['julio'] = Race.objects.filter(month=7).order_by('week','name')
+        context['agosto'] = Race.objects.filter(month=8).order_by('week','name')
+        return context
 
 class ObjectiveList(LoginRequiredMixin,ListView):
     template_name="races/objective_list.html"
@@ -77,8 +77,6 @@ class ResultList(LoginRequiredMixin,ListView):
     context_object_name = "results"
     def get_queryset(self):
         return Result.objects.filter(user=self.request.user).order_by('-edition__date')
-
-
  
 
 class EditionList(LoginRequiredMixin,ListView):
@@ -264,6 +262,28 @@ def NewObjective(request,id_edition):
     return render_to_response("races/new_objective.html",{'form':form,'edition':edition},context_instance=RequestContext(request))
 
 
+class DeleteObjective(LoginRequiredMixin,DeleteView):
+    model = Objective
+    template_name = "races/delete_objective.html"
+    context_object_name = 'objective'
+    
+    def get_success_url(self):
+        return reverse("objectives")
+    
+    def get_object(self, queryset=None):
+        obj = Objective.objects.get(id=self.kwargs['pk'])
+        if not obj.user == self.request.user:
+            raise Http404
+        return obj
+
+class EditObjective(LoginRequiredMixin,UpdateView):
+    model = Objective
+    template_name = "races/edit_objective"
+    context_object_name = 'objective'
+
+    def get_success_url(self):
+        return reverse("objectives")
+
 
 
 @login_required(login_url="/login")
@@ -283,10 +303,6 @@ def NewEditionSubRace(request,id_subrace):
         form = EditionForm()
 
     return render_to_response('races/new_subrace_edition.html',{'form':form,'subrace':subrace,'race':race},context_instance=RequestContext(request))
-
-
-
-
 
 
 @login_required(login_url="/login")
