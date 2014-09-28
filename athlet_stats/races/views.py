@@ -276,13 +276,63 @@ class DeleteObjective(LoginRequiredMixin,DeleteView):
             raise Http404
         return obj
 
-class EditObjective(LoginRequiredMixin,UpdateView):
-    model = Objective
-    template_name = "races/edit_objective"
-    context_object_name = 'objective'
 
-    def get_success_url(self):
-        return reverse("objectives")
+@login_required(login_url="/login")
+def editObjective(request, id_objective):
+    objective = get_object_or_404(Objective, pk=id_objective)
+    if request.method=='POST':
+        form = ObjectiveForm(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['horas']:
+                horas = form.cleaned_data['horas']
+            else:
+                horas = 0
+
+            if form.cleaned_data['minutos']:
+                minutos = form.cleaned_data['minutos']
+            else:
+                minutos = 0
+
+            if form.cleaned_data['segundos']:
+                segundos = form.cleaned_data['segundos']
+            else:
+                segundos = 0
+
+            if form.cleaned_data['centesimas']:
+                centesimas = form.cleaned_data['centesimas']
+            else:
+                centesimas = 0
+
+            milisegundos = centesimas * 10
+            timemark = timedelta(hours=horas,minutes=minutos,seconds=segundos,milliseconds=milisegundos)
+            distancemark = form.cleaned_data['distancia']
+            position = form.cleaned_data['puesto']
+            comment = form.cleaned_data['comentarios']
+            pos_cat = form.cleaned_data['puesto_cat']
+            objective.timemark = timemark
+            objective.distancemark = distancemark
+            objective.position = position
+            objective.position_cat = pos_cat
+            objective.comment = comment
+            objective.save()
+            return HttpResponseRedirect(reverse("objectives"))
+    else:
+        cent = 0
+        hours = 0
+        minutes = 0
+        seconds = 0
+        if objective.timemark:
+            sec = str(objective.timemark.total_seconds()).split('.')[0]
+            cent = str(objective.timemark.total_seconds()).split('.')[1]
+            hours = int(sec) // 3600
+            minutes = (int(sec) % 3600) // 60
+            seconds = int(sec) % 60
+        
+        form = ObjectiveForm(initial={'horas': hours,'minutos':minutes,'segundos':seconds,'centesimas':cent,'distncia':objective.distancemark,'puesto':objective.position,'puesto_cat':objective.position_cat,'comentarios':objective.comment})
+        return render_to_response('races/edit_objective.html', {'objective':objective,'form': form},context_instance=RequestContext(request)) 
+
+
+
 
 
 

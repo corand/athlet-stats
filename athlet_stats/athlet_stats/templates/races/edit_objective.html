@@ -1,0 +1,35 @@
+{% extends 'races/base.html' %}
+
+{% block content %}
+    <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                	<ol class="breadcrumb">
+                      <li><a href="{% url 'objectives' %}">Objetivos</a></li>
+                      <li class="active">Editar Objetivo</li>
+                    </ol>
+                    <h1 class="page-header">Editar Objetivo</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                <form id='formulario' method='post'>
+				{% csrf_token %}
+                	<p>Estás a punto de señalar que vas a acudir a ésta prueba. Los siguientes campos, representan el objetivo que te marcas en ella. <b>No</b> es obligatorio rellenar todos los campos.</p>
+					{% if objective.edition.type.result_type.name == 'duration' %}
+                    	<p>Marca: {{form.horas}}:{{form.minutos}}:{{form.segundos}}:{{form.centesimas}} <span class="ayuda">Por ejemplo <i>00:04:10:25</i> representaría 4 minutos, 10 segundos, 25 centésimas</span></p>
+                    {% else %}
+						<p>Marca: {{form.distancia}}</p> <span class="ayuda">Por ejemplo: 11.67</span>
+                    {% endif %}
+                  	<p>Puesto: {{form.puesto}}<span class="ayuda"> Por ejemplo: <i>95</i></span> </p>
+                	<p>Puesto Categoría: {{form.puesto_cat}} <span class="ayuda">Cadetes,Veteranos... etc. (Sólo rellenar si las distintas categorías han corrido la misma carrera)</span>
+                	<p>Comentarios: </p> {{form.comentarios}}</p>
+                	<a href="{% url 'objectives' %}" class="btn btn-default">Cancelar</a>
+                	<button class="btn btn-success" type="submit">Guardar</button>
+                </form>
+                </div>
+            </div>
+    </div>
+{% endblock %}
