@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from durationfield.db.models.fields.duration import DurationField
 from django.contrib.auth import get_user_model as user_model
 from datetime import date
-User = user_model()
+from django.conf import settings
+#User = user_model()
 
 
 
@@ -36,7 +37,7 @@ class Race(models.Model):
     name = models.CharField(max_length=100,verbose_name="Nombre",help_text="Nombre genérico de la competición")
     month = models.PositiveIntegerField(choices=MONTH_CHOICES,verbose_name="Mes",help_text="Mes en el que se disputa típicamente") # mes en el que se disputa tipicamente la carrera
     week = models.PositiveIntegerField(choices=WEEK_CHOICES,verbose_name="Semana",help_text="Orden aproximado de la semana en la que se disputa la competición") # semana en la que se disputa tipicamente la carrera
-    creator = models.ForeignKey(User)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def __unicode__(self):
         return self.name
@@ -79,7 +80,7 @@ class Edition(models.Model):
     name = models.CharField(max_length=100)
     distance = models.PositiveIntegerField(blank=True,null=True)
     subRace = models.ForeignKey(SubRace,blank=True,null=True)
-    creator = models.ForeignKey(User)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def is_past(self):
         if timezone.now() > self.date:
@@ -90,7 +91,7 @@ class Edition(models.Model):
         return self.name
 
 class Objective(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     edition = models.ForeignKey(Edition)
     timemark = DurationField(blank=True,null=True)
     distancemark = models.PositiveIntegerField(blank=True,null=True)
@@ -110,7 +111,7 @@ class Objective(models.Model):
 
 
 class Result(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     edition = models.ForeignKey(Edition)
     timemark = DurationField(blank=True,null=True)
     distancemark = models.PositiveIntegerField(blank=True,null=True)

@@ -14,28 +14,41 @@
 {% endblock %}
 {% block content%}
 <div class="container">
+
+
 	<div class="jumbotron">
-	  <h1>
-	  	{% if LANGUAGE_CODE == 'es' %}
-			{% if post.title_es != '' %}
-				<h1>{{post.title_es}}</h1>
+	  {% if imagen_es %}
+	  	<div class="jum_back" style="background-image: url('{{imagen_es}}');"></div>
+	  {% elif imagen_eu %}
+	  	<div class="jum_back" style="background-image: url('{{imagen_eu}}');"></div>
+	  {% else %}
+	  	<div class="jum_back"></div>
+	  {% endif %}
+	  <div class="jum_content">
+		  <h1>
+		  	{% if LANGUAGE_CODE == 'es' %}
+				{% if post.title_es != '' %}
+					<h1>{{post.title_es}}</h1>
+				{% else %}
+					<h1>{{post.title_eu}}</h1>
+				{% endif %}
 			{% else %}
-				<h1>{{post.title_eu}}</h1>
-			{% endif %}
-		{% else %}
-			{% if post.title_eu != '' %}
-				<h1>{{post.title_eu}}</h1>
-			{% else %}
-				<h1>{{post.title_es}}</h1>
-			{% endif %}
-		{% endif %}	  	
-	  </h1>
-	  <p>{{post.author.get_short_name}} <span class="date">{{post.created}}</span></p>
-	  <p><a class="btn btn-danger btn-lg" role="button"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></p>
+				{% if post.title_eu != '' %}
+					<h1>{{post.title_eu}}</h1>
+				{% else %}
+					<h1>{{post.title_es}}</h1>
+				{% endif %}
+			{% endif %}	  	
+		  </h1>
+		  <p>{{post.author.get_short_name}} <span class="date">{{post.created|date:"D d M Y" }}</span></p>
+		  <p><a class="btn btn-danger btn-lg" role="button"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></p>
+	  </div>
 	</div>
+
+
 	<a class="scroll_top visible-lg visible-md" href="#"><i class="fa fa-angle-up"></i></a>
 	<div class="row">
-		<div class="col-md-9 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-1">
 				<div class="post">
 					<div class="contenido">
 							<!-- POST  IZENBURUA -->

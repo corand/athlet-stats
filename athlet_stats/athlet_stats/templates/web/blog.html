@@ -18,7 +18,7 @@
 	<a class="social twtt hidden-xs hidden-sm" href="#"><i class="fa fa-twitter"></i></a>
 	<a class="scroll_top visible-lg visible-md" href="#"><i class="fa fa-angle-up"></i></a>
 	<div class="row">
-		<div class="col-md-9 col-md-offset-2">
+		<div class="col-md-10 col-md-offset-1">
 			{% for post in posts %}
 				<div class="post">
 					<!-- POST  IZENBURUA -->
@@ -38,7 +38,7 @@
 					<!-- END   POST  IZENBURUA -->
 
 					<span class="author"><a href="#">{{post.author.get_short_name}}</a></span>
-					<span class="date">{{post.created}}</span>
+					<span class="date">{{post.created |date:"D d M Y" }}</span>
 					<span class="comments"><a href="#"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></span>
 
 

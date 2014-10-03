@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from snippets.random_primary import RandomPrimaryIdModel
 from django.contrib.auth import get_user_model as user_model
 from snippets.slughifi import slughifi
-User = user_model()
+from django.conf import settings
+#User = user_model()
 
 # Create your models here.
 
@@ -16,7 +17,7 @@ class Post(RandomPrimaryIdModel):
 	body_eu = RichTextField(blank=True,null=True)
 	slug_es = models.SlugField(max_length=100)
 	slug_eu = models.SlugField(max_length=100)
-	author = models.ForeignKey(User)
+	author = models.ForeignKey(settings.AUTH_USER_MODEL)
 	status = models.CharField(max_length=100)
 
 	def save(self,*args,**kwargs):

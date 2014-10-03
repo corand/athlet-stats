@@ -46,7 +46,7 @@ a{ color:darkred;}
 li{list-style:none;}
 .header h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
 .header h1 img{ width:60px; }
-h2{ margin:0; font-size:45px;}
+h2{ margin:0; font-size:55px;}
 h2 a{ color:black; }
 a{
     -webkit-transition: color 0.4s ease-in-out;
@@ -76,10 +76,27 @@ ul.resul{ padding-left:5px; }
 ul.result_tit{ padding-left:20px; }
 .result_tit h4{ margin-bottom:0; }
 
+.jumbotron{ position:relative; opacity:0.9; }
+
+.jum_back{
+    width: 100%;
+    height: 300px;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url('https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash3/t1/1926661_465553073570562_2062830585_n.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity:0.1;
+    z-index:-1;
+}
+
+.jum_content{  opacity: 1; }
 
 img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 
-.contenido{ text-align: justify; font-size: 1.3em; margin-top: 10px; line-height: 32px; }
+.contenido{ font-size: 1.3em; margin-top: 25px; line-height: 32px; }
 .post{ margin-bottom:100px;}
 
 .hizkuntzak{ margin-top:5px; background-color:#505050; color: #79BAEC;}
@@ -87,14 +104,17 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .navbar{ border-radius:0; box-shadow: 0 1px 5px 0;}
 .navbar .container-fluid{ padding:0; }
 
-.navbar-default{ background-color:orange; border:0; }
+.navbar-default .navbar-nav>.disabled>a,.navbar-default .navbar-nav>.disabled>a:hover{ color:grey; }
+
+
+.navbar-default{ background-color:lightblue; border:0; }
 
 .navbar-right{ padding-right: 20px;}
 
 .navbar-default .navbar-nav>.active>a{ background-color: lightblue; color:black; }
 .navbar-default .navbar-nav>li>a { color:darkred; font-family: 'Hammersmith One', sans-serif;}
 
-.navbar-default .navbar-nav>li:hover>a{ color: white; }
+.navbar-default .navbar-nav>li:hover>a{ color: black; }
 
 .navbar-nav > li > a {padding:10px 15px;
 
