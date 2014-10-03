@@ -14,31 +14,29 @@
 {% endblock %}
 {% block content%}
 <div class="container">
+	<div class="jumbotron">
+	  <h1>
+	  	{% if LANGUAGE_CODE == 'es' %}
+			{% if post.title_es != '' %}
+				<h1>{{post.title_es}}</h1>
+			{% else %}
+				<h1>{{post.title_eu}}</h1>
+			{% endif %}
+		{% else %}
+			{% if post.title_eu != '' %}
+				<h1>{{post.title_eu}}</h1>
+			{% else %}
+				<h1>{{post.title_es}}</h1>
+			{% endif %}
+		{% endif %}	  	
+	  </h1>
+	  <p>{{post.author.get_short_name}} <span class="date">{{post.created}}</span></p>
+	  <p><a class="btn btn-danger btn-lg" role="button"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></p>
+	</div>
 	<a class="scroll_top visible-lg visible-md" href="#"><i class="fa fa-angle-up"></i></a>
 	<div class="row">
 		<div class="col-md-9 col-md-offset-2">
 				<div class="post">
-					<!-- POST  IZENBURUA -->
-					{% if LANGUAGE_CODE == 'es' %}
-						{% if post.title_es != '' %}
-							<h1>{{post.title_es}}</h1>
-						{% else %}
-							<h1>{{post.title_eu}}</h1>
-						{% endif %}
-					{% else %}
-						{% if post.title_eu != '' %}
-							<h1>{{post.title_eu}}</h1>
-						{% else %}
-							<h1>{{post.title_es}}</h1>
-						{% endif %}
-					{% endif %}
-					<!-- END   POST  IZENBURUA -->
-
-					<span class="author"><a href="#">{{post.author.get_short_name}}</a></span>
-					<span class="date">{{post.created}}</span>
-					<span class="comments"><a href="#"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></span>
-
-
 					<div class="contenido">
 							<!-- POST  IZENBURUA -->
 							{% if LANGUAGE_CODE == 'es' %}
@@ -80,6 +78,10 @@
 
 			<div class="proximas_competiciones">
 				<strong>Azken Emaitzak</strong>
+				<br />
+				<i>Próximamente</i>
+				<br /><br /><br />
+				<!--
 				<ul class="result_tit">
 					<li><h4><a href="#">Behobia Donostia 2014</a></h4></li>
 						<ul class="resul">
@@ -105,16 +107,22 @@
 					<li>xx</li>
 					<li>xx</li>
 				</ul>
+				-->
 			</div>
 
 			<div class="proximas_competiciones">
 				<strong>Datozen Frogak</strong>
+				<br />
+				<i>Próximamente</i>
+				<br /><br /><br />
+				<!--
 				<ul>
 					<li>xx</li>
 					<li>xx</li>
 					<li>xx</li>
 					<li>xx</li>
 				</ul>
+				-->
 			</div>
 
 			<div class="fb-like-box" data-href="https://www.facebook.com/AtletasArgixao" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true"></div>

@@ -3,7 +3,7 @@ h1 p{ margin: 0;}
         min-height:135px;
         text-align:center; background-color:lightblue;
 		 background-color:red ;
-		 background-image: linear-gradient(to bottom, red 0%, #C34A2C 100%);
+		 background-image: linear-gradient(to bottom, #ff8080 0%, #C34A2C 100%);
 		 background-repeat: repeat-x;
 		position: relative;
         box-shadow: 0 0 2px 2px;}
@@ -53,8 +53,12 @@ a{
     -moz-transition: color 0.4s ease-in-out;
     -o-transition: color 0.4s ease-in-out;
     -ms-transition: color 0.4s ease-in-out;
-    transition: color 0.4s ease-in-out;}
+    transition: color 0.4s ease-in-out;
 }
+
+.jumbotron .date{ font-size: 0.8em; color:black; }
+
+.jumbotron{ background-color: #ff8080; color: white; }
 .author{ color:grey; }
 .date{ color:grey; }
 .comments{ float:right;}
@@ -62,7 +66,7 @@ a{
 .container{ margin-top:40px; }
 
 .proximas_competiciones{ margin-top:20px;}
-.proximas_competiciones strong{ background-color: #79BAEC; color:white; padding:10px;
+.proximas_competiciones strong{ background-color: red; color:white; padding:10px;
 								display:block; text-align: center }
 
 .resul li {font-family:Cousine; font-size:0.8em;}
@@ -83,21 +87,30 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 .navbar{ border-radius:0; box-shadow: 0 1px 5px 0;}
 .navbar .container-fluid{ padding:0; }
 
-.navbar-default{ background-color:#C2DFFF; border:0; }
+.navbar-default{ background-color:orange; border:0; }
 
 .navbar-right{ padding-right: 20px;}
 
 .navbar-default .navbar-nav>.active>a{ background-color: lightblue; color:black; }
 .navbar-default .navbar-nav>li>a { color:darkred; font-family: 'Hammersmith One', sans-serif;}
 
-.navbar-default .navbar-nav>li:hover>a{ color: blue; }
+.navbar-default .navbar-nav>li:hover>a{ color: white; }
 
 .navbar-nav > li > a {padding:10px 15px;
 
-					  transition: padding 1s ease,color 0.8s ease;
-					  -moz-transition: padding 1s ease,color 0.8s ease;
-					  -o-transition: padding 1s ease,color 0.8s ease;
-					  -webkit-transition: padding 1s ease,color 0.8s ease; }
+					  transition: padding 1s ease;
+					  -moz-transition: padding 1s ease;
+					  -o-transition: padding 1s ease;
+					  -webkit-transition: padding 1s ease; }
+
+.navbar-nav > li:hover > a{
+    -moz-transition: none;
+    -webkit-transition: none;
+    -o-transition: color 0 ease-in;
+    transition: none;
+}
+
+
 .navbar {min-height:20px !important}
 
 .btn-pag li>a{ padding:25px 90px; }
