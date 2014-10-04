@@ -66,7 +66,7 @@ a{
 .container{ margin-top:40px; }
 
 .proximas_competiciones{ margin-top:20px;}
-.proximas_competiciones strong{ background-color: red; color:white; padding:10px;
+.proximas_competiciones strong{ background-color: lightblue; color:white; padding:10px;
 								display:block; text-align: center }
 
 .resul li {font-family:Cousine; font-size:0.8em;}
