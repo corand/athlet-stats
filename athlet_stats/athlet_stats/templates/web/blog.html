@@ -161,41 +161,4 @@
 		</div>
 	</div>
 </div>
-<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
-<script>
-var body = $("html, body");
-$(".scroll_top").on('click',function(){
-	body.animate({scrollTop:0}, '1000', 'swing');
-});
-
-$(window).scroll(function(){
-    var $scrollTop = $(window).scrollTop();
-    if($scrollTop > 135){
-        $(".navbar-nav>li>a").css({"padding":"0px 15px"});
-        $(".navbar").css({"box-shadow":"0 5px 10px 0"});
-        $(".navbar").addClass("navbar-fixed-top");
-        $(".scroll_top").css({"opacity":"1"});
-    }else{
-    	$(".navbar-nav>li>a").css({"padding":"10px 15px"});
-        $(".navbar").css({"box-shadow":"0 1px 5px 0"});
-        $(".navbar").removeClass("navbar-fixed-top");
-        $(".scroll_top").css({"opacity":"0"});
-    }
-});
-
-setTimeout(function(){
-	$(".social").css({"margin-left":"0"});
-	$(".share").css({"margin-left":"0"});
-},1000);
-</script>
-
-
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&appId=250198748439697&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 {% endblock %}

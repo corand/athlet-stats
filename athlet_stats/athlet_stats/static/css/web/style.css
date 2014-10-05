@@ -116,6 +116,10 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 
 .navbar-default .navbar-nav>li:hover>a{ color: black; }
 
+.navbar-default .navbar-nav>li:hover{ background-color: white; }
+
+.navbar-default .navbar-nav>li.active{ background-color: white; }
+
 .navbar-nav > li > a {padding:10px 15px;
 
 					  transition: padding 1s ease;

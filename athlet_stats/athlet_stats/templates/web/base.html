@@ -51,14 +51,14 @@
 		    </div>
 		    <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		      		<li><a href="{% url 'blog' %}"><i class="fa fa-home"></i> {% trans "home" %}</a></li>
+		      		<li {% if active == "blog" %} class="active" {% endif %}><a href="{% url 'blog' %}"><i class="fa fa-home"></i> {% trans "home" %}</a></li>
 		      		
 		      		<li class="disabled"><a href="#"><i class="fa fa-calendar"></i> {% trans "calendario" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-trophy"></i> {% trans "resultados" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-university"></i> {% trans "historico" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-users"></i> {% trans "uno a uno" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-suitcase"></i> {% trans "archivo" %}</a></li>
-		            <li><a href="#"><i class="fa fa-question-circle"></i> {% trans "acerca de nosotros" %}</a></li>
+		            <li {% if active == "about" %} class="active" {% endif %}><a href="{% url 'aboutus' %}"><i class="fa fa-question-circle"></i> {% trans "acerca de nosotros" %}</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -68,8 +68,53 @@
 	{% block content %}
 
 	{% endblock %}
-	<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
-    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+
+	<br /><br /><br />
+	<hr>
+	<center><i>2014</i></center>
+
+
+    <script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+	<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+	<script>
+	var body = $("html, body");
+	$(".scroll_top").on('click',function(){
+		body.animate({scrollTop:0}, '1000', 'swing');
+	});
+
+	$(window).scroll(function(){
+	    var $scrollTop = $(window).scrollTop();
+	    if($scrollTop > 135){
+	        $(".navbar-nav>li>a").css({"padding":"0px 15px"});
+	        $(".navbar").css({"box-shadow":"0 5px 10px 0"});
+	        $(".navbar").addClass("navbar-fixed-top");
+	        $(".scroll_top").css({"opacity":"1"});
+	    }else{
+	    	$(".navbar-nav>li>a").css({"padding":"10px 15px"});
+	        $(".navbar").css({"box-shadow":"0 1px 5px 0"});
+	        $(".navbar").removeClass("navbar-fixed-top");
+	        $(".scroll_top").css({"opacity":"0"});
+	    }
+	});
+
+	setTimeout(function(){
+		$(".social").css({"margin-left":"0"});
+		$(".share").css({"margin-left":"0"});
+	},1000);
+	</script>
+
+
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&appId=250198748439697&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
 	</body>
 
 </html> 

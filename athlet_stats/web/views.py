@@ -14,6 +14,19 @@ class PostList(ListView):
     def get_queryset(self):
         return Post.objects.filter(status=2).order_by('-created')
 
+    def get_context_data(self, **kwargs):
+        context = super(PostList, self).get_context_data(**kwargs)
+        context["active"] = "blog"
+        return context
+
+
+class AboutUs(TemplateView):
+    template_name = "web/about_us.html"
+    def get_context_data(self, **kwargs):
+        context = super(AboutUs, self).get_context_data(**kwargs)
+        context["active"] = "about"
+        return context
+
 
 class PostView(DetailView):
     model = Post
