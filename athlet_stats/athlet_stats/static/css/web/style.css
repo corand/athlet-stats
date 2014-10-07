@@ -8,6 +8,17 @@ h1 p{ margin: 0;}
 		position: relative;
         box-shadow: 0 0 2px 2px;}
 
+.footer{ text-align: center; 
+        padding:20px;
+        background-color: lightblue; 
+        color:black; 
+        font-size:0.9em;
+        box-shadow: 6px 15px 18px 13px;
+        margin-top:150px;
+         font-style: italic; }
+
+.footer p{ color:darkred;}
+
 .aloina_eskudua{ position: absolute;
 				top:0;
 				background-position:right;
@@ -85,7 +96,7 @@ ul.result_tit{ padding-left:20px; }
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url('https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash3/t1/1926661_465553073570562_2062830585_n.jpg');
+    background-image: url('/static/img/ekipo.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     opacity:0.1;
