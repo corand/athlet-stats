@@ -122,12 +122,12 @@ img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 
 .navbar-right{ padding-right: 20px;}
 
-.navbar-default .navbar-nav>.active>a{ background-color: lightblue; color:black; }
+.navbar-default .navbar-nav>.active>a{ background-color: white; color:black; }
 .navbar-default .navbar-nav>li>a { color:darkred; font-family: 'Hammersmith One', sans-serif;}
 
 .navbar-default .navbar-nav>li:hover>a{ color: black; }
 
-.navbar-default .navbar-nav>li:hover{ background-color: white; }
+.navbar-default .navbar-nav>li:hover{ background-color: #e7e7e7; }
 
 .navbar-default .navbar-nav>li.active{ background-color: white; }
 
