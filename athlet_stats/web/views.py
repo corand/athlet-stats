@@ -3,7 +3,8 @@ from blog.models import Post
 from django.shortcuts import render_to_response,get_object_or_404
 from django.views.generic import TemplateView,ListView,DetailView
 from bs4 import BeautifulSoup
-
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 
 
@@ -32,6 +33,18 @@ class PostView(DetailView):
     model = Post
     template_name = "web/post.html"
     context_object_name = "post"
+
+    def dispatch(self, request, *args, **kwargs):
+        post = get_object_or_404(Post,pk=self.kwargs['pk'])
+        lang = request.LANGUAGE_CODE
+        if lang == 'es':
+            if post.slug_es != self.kwargs['slug']:
+                return HttpResponseRedirect(reverse('post', kwargs={'pk':post.id,'slug':post.slug_es}))
+        else:
+            if post.slug_eu != self.kwargs['slug']:
+                return HttpResponseRedirect(reverse('post', kwargs={'pk':post.id,'slug':post.slug_eu}))
+
+        return super(PostView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
