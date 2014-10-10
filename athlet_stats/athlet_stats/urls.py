@@ -41,6 +41,7 @@ urlpatterns = patterns('',
     url(r'^rosetta/', include('rosetta.urls')),
 #    (r'^localeurl/', include('localeurl.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes':True}),
 )
 
 urlpatterns += i18n_patterns('',

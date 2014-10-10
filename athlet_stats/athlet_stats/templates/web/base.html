@@ -16,18 +16,13 @@
 		<link rel="stylesheet" href="{{STATIC_URL}}font-awesome/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="{{STATIC_URL}}css/web/style.css" />
 
+		<link rel="shortcut icon" href="{{STATIC_URL}}img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/{{STATIC_URL}}img/favicon.ico" type="image/x-icon">
+
 	</head>
 	<body>
 		<div class="container-fluid header">
-		<form action="{% url 'set_language' %}" method="post">
-			{% csrf_token %}
-			<input name="next" type="hidden" value="{{ redirect_to }}" />
-			<select name="language"  onchange="this.form.submit()" class="idiomas">
-				<option value="es" {% if "es" == LANGUAGE_CODE %} selected="selected"{% endif %}>Español</option>
-				<option value="eu"  {% if "eu" == LANGUAGE_CODE %} selected="selected"{% endif %}>Euskara</option>
-			</select>
-		</form>
-			
+		{% block switchlang %}{% endblock %}
 			<div class="aloina_eskudua hidden-xs"></div>
 			<div class="argixao_eskudua hidden-xs"></div>
 			<div class="row">
@@ -71,7 +66,7 @@
 
 
 	<div class="footer">
-		<p>Aloña Mendi & Atletas de Argixao</p> 
+		<p>Aloña Mendi & Atletas de Argixao</p>
 		<p>2014</p>
 	</div>
 

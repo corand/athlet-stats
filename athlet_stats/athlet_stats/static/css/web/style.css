@@ -1,4 +1,6 @@
 h1 p{ margin: 0;}
+::-moz-selection { color: white;  background: #C34A2C; }
+::selection      { color: white;  background: #C34A2C; } 
 .header{ 
         min-height:135px;
         text-align:center; background-color:lightblue;
@@ -7,6 +9,9 @@ h1 p{ margin: 0;}
 		 background-repeat: repeat-x;
 		position: relative;
         box-shadow: 0 0 2px 2px;}
+
+.langs{ position:absolute; top:0; right:10px; z-index:99;}
+.langs a{ color:white; }
 
 .footer{ text-align: center; 
         padding:20px;
@@ -17,7 +22,11 @@ h1 p{ margin: 0;}
         margin-top:150px;
          font-style: italic; }
 
-.footer p{ color:darkred;}
+.footer p{ color:black;}
+
+.footer p:first-child{ color:darkred; display:inline-block;text-shadow:0 1px 1px rgba(0, 0, 0, 0.5); }
+
+
 
 .aloina_eskudua{ position: absolute;
 				top:0;

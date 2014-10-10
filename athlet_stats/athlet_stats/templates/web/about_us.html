@@ -11,6 +11,17 @@
 		<meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
 {% endblock %}
 
+{% block switchlang %}
+  <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+    <select name="language"  onchange="this.form.submit()" class="idiomas">
+      <option value="es" {% if "es" == LANGUAGE_CODE %} selected="selected"{% endif %}>Español</option>
+      <option value="eu"  {% if "eu" == LANGUAGE_CODE %} selected="selected"{% endif %}>Euskara</option>
+    </select>
+  </form>
+{% endblock %}
+
 {% block content%}
 <div class="container">
 	<div class="row">

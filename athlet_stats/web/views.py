@@ -37,6 +37,7 @@ class PostView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         post = get_object_or_404(Post,pk=self.kwargs['pk'])
         lang = request.LANGUAGE_CODE
+
         if lang == 'es':
             if post.slug_es != self.kwargs['slug']:
                 return HttpResponseRedirect(reverse('post', kwargs={'pk':post.id,'slug':post.slug_es}))
@@ -45,6 +46,13 @@ class PostView(DetailView):
                 return HttpResponseRedirect(reverse('post', kwargs={'pk':post.id,'slug':post.slug_eu}))
 
         return super(PostView, self).dispatch(request, *args, **kwargs)
+
+"""
+    def process_request(self, request):
+        language = translation.get_language_from_request(request)
+        translation.activate(language)
+        request.LANGUAGE_CODE = translation.get_language()
+"""
 
     def get_context_data(self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
