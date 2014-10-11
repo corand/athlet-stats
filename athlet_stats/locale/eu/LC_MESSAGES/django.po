@@ -2,68 +2,90 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-24 18:30+0200\n"
-"PO-Revision-Date: 2014-08-10 21:13+0000\n"
+"POT-Creation-Date: 2014-10-11 12:54+0200\n"
+"PO-Revision-Date: 2014-10-11 12:56-0015\n"
 "Last-Translator: Anonymous User <andoni.correas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: athlet_stats/settings.py:147
+#: athlet_stats/settings.py:149
 msgid "Castellano"
 msgstr ""
 
-#: athlet_stats/settings.py:148
+#: athlet_stats/settings.py:150
 msgid "Euskara"
 msgstr ""
 
-#: athlet_stats/templates/web/base.html:32
-msgid "blog"
+#: athlet_stats/templates/web/base.html:49
+msgid "home"
 msgstr "Bloga"
 
-#: athlet_stats/templates/web/base.html:33
+#: athlet_stats/templates/web/base.html:51
 msgid "calendario"
 msgstr "Egutegia"
 
-#: athlet_stats/templates/web/base.html:34
+#: athlet_stats/templates/web/base.html:52
 msgid "resultados"
 msgstr "Emaitzak"
 
-#: athlet_stats/templates/web/base.html:35
+#: athlet_stats/templates/web/base.html:53
+msgid "historico"
+msgstr "Historikoa"
+
+#: athlet_stats/templates/web/base.html:54
 msgid "uno a uno"
 msgstr "Banan banan"
 
-#: athlet_stats/templates/web/base.html:36
+#: athlet_stats/templates/web/base.html:55
 msgid "archivo"
 msgstr "Artxiboa"
 
-#: athlet_stats/templates/web/base.html:37
+#: athlet_stats/templates/web/base.html:56
 msgid "acerca de nosotros"
-msgstr "Gure inguruan"
+msgstr "Gure Taldea"
 
-#: athlet_stats/templates/web/blog.html:14
+#: athlet_stats/templates/web/blog.html:53
+#: athlet_stats/templates/web/post.html:53
 msgid "comentario"
 msgstr "Iruzkin"
 
-#: athlet_stats/templates/web/blog.html:26
-#: athlet_stats/templates/web/blog.html:30
+#: athlet_stats/templates/web/blog.html:98
+#: athlet_stats/templates/web/blog.html:102
 msgid "anteriores"
 msgstr "Zaharragoak"
 
-#: athlet_stats/templates/web/blog.html:35
-#: athlet_stats/templates/web/blog.html:39
+#: athlet_stats/templates/web/blog.html:107
+#: athlet_stats/templates/web/blog.html:111
 msgid "mas recientes"
 msgstr "Berriagoak"
+
+#: athlet_stats/templates/web/blog.html:121
+#: athlet_stats/templates/web/post.html:102
+msgid "azken emaitzak"
+msgstr "Azken Emaitzak"
+
+#: athlet_stats/templates/web/blog.html:123
+#: athlet_stats/templates/web/blog.html:157
+#: athlet_stats/templates/web/post.html:104
+#: athlet_stats/templates/web/post.html:138
+msgid "proximamente"
+msgstr "Laister"
+
+#: athlet_stats/templates/web/blog.html:155
+#: athlet_stats/templates/web/post.html:136
+msgid "datozen frogak"
+msgstr "Hurrengo Frogak"
 
 #: profiles/models.py:35
 msgid "profile_picture"
@@ -92,6 +114,9 @@ msgstr "Norbere deskribapena euskaraz"
 #: profiles/models.py:42
 msgid "coach_description"
 msgstr "Entrenatzailearen deskribapena"
+
+#~ msgid "blog"
+#~ msgstr "Bloga"
 
 #~ msgid "spanish"
 #~ msgstr "Castellano"

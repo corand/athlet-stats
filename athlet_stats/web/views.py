@@ -5,6 +5,7 @@ from django.views.generic import TemplateView,ListView,DetailView
 from bs4 import BeautifulSoup
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.utils import translation
 
 
 
@@ -37,6 +38,11 @@ class PostView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         post = get_object_or_404(Post,pk=self.kwargs['pk'])
         lang = request.LANGUAGE_CODE
+        user_language = lang
+
+        translation.activate(user_language)
+        request.LANGUAGE_CODE = user_language
+        request.session[translation.LANGUAGE_SESSION_KEY] = user_language
 
         if lang == 'es':
             if post.slug_es != self.kwargs['slug']:
@@ -59,12 +65,4 @@ class PostView(DetailView):
         if img_es:
             context['imagen_es'] = img_es['src']
         return context
-
-    """
-    def process_request(self, request):
-        language = translation.get_language_from_request(request)
-        translation.activate(language)
-        request.LANGUAGE_CODE = translation.get_language()
-    """
-
     
