@@ -27,40 +27,66 @@
 	<div class="row">
 		<div class="col-md-16">
 
-Tenemos dos clubes entrelazados, en la que Atletas de Argixao da cabida al atletismo popular y Aloña Mendi al atletismo federado. En realidad parece solo uno y sigue creciendo, con dos secciones escolares que poco a poco están asegurando la continuidad de los que seguro dejaran algún día. Contamos esta temporada 2014/2015 con 43 fichas federadas, y alrededor de 40 escolares.
+{% if LANGUAGE_CODE == 'es' %}
+En la zona de Oñati y Zumarraga, en la actualidad tenemos dos clubes entrelazados, en la que Atletas de Argixao da cabida al atletismo popular y Aloña Mendi al atletismo federado. En realidad parece solo uno y sigue creciendo, con dos secciones escolares que poco a poco están asegurando la continuidad de los que seguro dejaran algún día. Esta temporada 2014/2015 contamos con 43 fichas federadas, y alrededor de 40 escolares.
 
+{% else %}
+Gaur egun, Oñati eta Zumarraga inguruko korrikalariz osatutako bi talde ditugu. Atletas de Argixaok atletismo herrikoiari eta Aloña Mendik atletismo federatuari ematen dio erantzuna. Talde bakarra dela ematen du, eta urtetik urtera handitzen doa, etorkizunean jarraitasuna emango dioten eskolarteko bi sailekin. 2014/2015 denboraldirako 43 fitxa federatu eta 40 bat eskolarteko ditugu gure artean.
+{% endif %}
 <br />
 <center>
     <img src="{{STATIC_URL}}img/ekipo.jpg" />
-    <p>Septiembre 2013</p>
+    {% if LANGUAGE_CODE == 'es' %}
+    	<p>Septiembre del 2013</p>
+    {% else %}
+    	<p>2013-ko Iraila</p>
+    {% endif %}
 </center>
 
 
-
+{% if LANGUAGE_CODE == 'es' %}
 <h3>Aloña Mendi</h3>
 
-Cerca del año 1986, empieza su andadura la sección de atletismo del Aloña Mendi de la mano de Javi Gomez, con la idea de potenciar un club del que por aquel entonces, estaba a cargo en Legazpi. Se empezó con escolares, y pronto se unieron algunos federados, destacando a Jaime Sanchez(800), Peio Gil (400), Mikel Irizar (vallas) o Ritxar Fernandez (velocidad) entre otros, llegandose a juntar cerca de 40 atletas.
+Cerca del año 1986, empieza su andadura la sección de atletismo del Aloña Mendi de la mano de Javi Gomez, creada con la idea de potenciar el club de atletismo de Legazpia <i>Legazpiko Atletismo Taldea</i>. Se empezó con escolares, y pronto se unieron algunos federados, destacando en esta primera etapa a Jaime Sanchez (800), Peio Gil (400), Mikel Irizar (vallas) entre otros, llegandose a juntar cerca de 40 atletas.
 
 <br /><br />
 
-Sobre el año 1995, la sección de atletismo pasó a estar en manos de los padres de algunos escolares, haciéndose cargo de los entrenamientos Juan Carlos Ugarte. Después de unos tres o cuatro años, sigue habiendo una directiva del club, pero solo para organizar la carrera de Torreauzo, sin ningún atleta.
+Sobre el año 1995, la sección de atletismo cambió de manos, pasando a coger las riendas del club los padres de algunos atletas, haciéndose cargo de los entrenamientos Juan Carlos Ugarte. Esta andadura no duro muchos años (3-4), después de esto se estuvo unos años casi sin atletas, y con una directiva que con toda su buena voluntad intentaba que no se olvidase el atletismo en la zona.
 
 <br /><br />
 
-En el año 2001, mientras Javi Gomez entrenaba a atletas de Zumarraga y Legazpia, empieza también a entrenar a unos pocos atletas de Oñati, entre los que se encuentra Sergio García. Viendo que volvía a bajar a Oñati, Javi vuelve a ponerse a cargo de la sección de atletismo del Aloña Mendi, hasta el día de hoy.
-
-<br /><br />
-
-En la actualidad, la directiva está formada por Juan Carlos Ugarte, Jose Luis García, y el propio Javi Gomez.
+En el año 2001, se vuelve a contactar con Javi Gómez para coger el atletismo de Oñate, siendo los primeros atletas de esta segunda etapa Sergio Garcia, Ainoa Ugarte y Yeray Varela. De esta forma dando contenido al club poco a poco con la ayuda de Juan Carlos Ugarte y Jose Luis Garcia (actuales presidente y tesorero del club).
 
 
 <h3>Atletas de Argixao</h3>
 
-En el año 2003 y viendo que el atletismo popular estaba en auge, y sin ambargo el federado estaba venido a menos en todo Gipuzkoa, se decide fundar un club popular en la zona de Zumarraga. En éste club tendrían cabida los atletas populares, para que de paso también se pudiese reforzar el Aloña Mendi federado.
+En el año 2003 y viendo que el atletismo popular estaba en auge, y sin embargo el federado estaba venido a menos en todo Gipuzkoa, se decide fundar un club popular en la zona de Zumarraga. En éste club tendrían cabida los atletas populares, que en un futuro podrían reforzar la sección federada del Aloña Mendi.
 
 <br /><br />
 
-En septiembre del 2013 se hace la presentación oficial con la directiva formada por Raul Montiel, Mikel Fernandez, Santi Gomez, Tasio Gomez, Juantxo Perez, Txemi Lara y Javi Gomez.
+En septiembre del 2003 se hace la presentación oficial del club, pero es en 2013 cuando el club pasa a llamarse <b>Club Atletas de Argixao</b>, siendo a partir de esta fecha cuando el club toma una seriedad que le asegura su continuidad. El presidente del mismo es Txemi Lara, y directivos Xabi Zumarraga, Carlos Montero, Iñaki Taboada, Miguel Plaza, Txema Rueda, Javi Fragua y Javi Gómez entre otros.
+
+{% else %}
+
+<h3>Aloña Mendi</h3>
+
+1986. urte aldera, Javi Gomezen bitartez Aloña Mendi atletismo sailaren ibilbidea hasten da, garai hartako <i>Legazkpiko Atletismo Taldea</i> sendotzeko helburuarekin. Eskolartekoekin hasi, eta laister federatuak elkartu zitzaien, hala nola, Jaime Sanchez (800), Peio Gil (400), Mikel Irizar (hesiak) besteak beste. Horrela, gutxinaka 40 korrikalari batzeraino.
+
+<br /><br/>
+
+1995. urte aldera, atletismo saila, taldeko korrikalari batzuen gurasoen esku egotera igaro zen, Juan Carlos Ugartek entrenatzaile kargua hartu zuelarik. 3-4 urteren ostean, korrikalari gutxi batzurekin eta inguruko atletismoa alde batera uzterik nahi ez zuen zuzendaritza batzorde batekin gelditu zen taldea.
+
+<br/><br/>
+
+2001. urtean, Javi Gomezekin harremana berreskuratzen da, Oñatiko atletismo taldea bere gain hartzeko. Javiren bigarren ibilbide honetako lehenengo korrikalariak Sergio Garcia, Ainoa Ugarte eta Yeray Varela izan ziren. Modu honetara, Juan Carlos Ugarte eta Jose Luis Garciaren laguntzarekin (egungo taldeko presidente eta diruzaina) taldeari itxura ematen hasi zitzaion.
+
+<br /><br />
+<h3>Atletas de Argixao</h3>
+
+2003. urtean atletismo herrikoia bere onenean zegoela eta gipuzkoako atletismo federatua berriz gutxiagotzen zebilela kontutan hartuta, Zumarraga inguruan talde popular bat sortzea erabakitzen da. Talde hau korrikalari herrikoiez osatuta dago, Aloña Mendiko atletismo federatuari indarra emateko aukera gehiago eskeiniz.
+
+
+{% endif %}
 
 		</div>
 	</div>
