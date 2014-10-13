@@ -82,9 +82,9 @@ a{
 .jumbotron .date{ font-size: 0.8em; color:black; }
 
 .jumbotron{ background-color: #ff8080; color: white; }
-.author{ color:grey; }
+.author{ color:grey; font-weight: bold; }
 .date{ color:grey; }
-.comments{ float:right;}
+.comments{ float:right; font-weight: bold;}
 .comments>a>i{float:left; font-size:2em;}
 .container{ margin-top:40px; }
 
