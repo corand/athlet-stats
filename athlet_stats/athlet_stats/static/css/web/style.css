@@ -1,6 +1,9 @@
 h1 p{ margin: 0;}
 ::-moz-selection { color: white;  background: #C34A2C; }
 ::selection      { color: white;  background: #C34A2C; } 
+
+.about_us{ font-size: 1.3em; }
+
 .header{ 
         min-height:135px;
         text-align:center; background-color:lightblue;
