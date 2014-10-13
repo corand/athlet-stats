@@ -2,11 +2,13 @@
 {% load i18n %}
 {% block opengraph %}
 	{% if LANGUAGE_CODE == 'eu' %}
+		<meta name="description" content="{{ post.body_eu|truncatewords:50 }}" />
 		<meta property="og:title" content="{{post.title_eu}}"/>
 		<meta property="og:url" content="http://www.mysite.com/article/"/>
 		<meta property="og:image" content="{{imagen_eu}}"/>
 		<meta property="og:description" content="{{ post.body_eu|truncatewords:50 }}" />
 	{% else %}
+		<meta name="description" content="{{ post.body_es|truncatewords:50 }}" />
 		<meta property="og:title" content="{{post.title_es}}"/>
 		<meta property="og:url" content="aloinargixao.com{% url 'post' post.id post.slug_es %}"/>
 		<meta property="og:image" content="{{imagen_es}}"/>
