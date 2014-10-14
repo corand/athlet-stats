@@ -2,13 +2,13 @@
 {% load i18n %}
 {% block opengraph %}
 	{% if LANGUAGE_CODE == 'eu' %}
-		<meta name="description" content="{{ post.body_eu|truncatewords:50|safe }}" />
+		<meta name="description" content="{{ post.body_eu|truncatewords:50|striptags }}" />
 		<meta property="og:title" content="{{post.title_eu}}"/>
 		<meta property="og:url" content="http://www.mysite.com/article/"/>
 		<meta property="og:image" content="{{imagen_eu}}"/>
 		<meta property="og:description" content="{{ post.body_eu|truncatewords:50 }}" />
 	{% else %}
-		<meta name="description" content="{{ post.body_es|truncatewords:50|safe }}" />
+		<meta name="description" content="{{ post.body_es|truncatewords:50|striptags }}" />
 		<meta property="og:title" content="{{post.title_es}}"/>
 		<meta property="og:url" content="aloinargixao.com{% url 'post' post.id post.slug_es %}"/>
 		<meta property="og:image" content="{{imagen_es}}"/>
@@ -54,7 +54,7 @@
 			{% endif %}	  	
 		  </h1>
 		  <p>{{post.author.get_short_name}} <span class="date">{{post.created|date:"D d M Y" }}</span></p>
-		  <p><a class="btn btn-danger btn-lg" role="button"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></p>
+		  <p><a class="btn btn-danger btn-lg" role="button"><i class="fa fa-comments-o"></i> {% trans "comentarios" %}</a></p>
 	  </div>
 	</div>
 
