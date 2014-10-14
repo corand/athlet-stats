@@ -104,9 +104,15 @@
 				        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 				        var disqus_shortname = 'aloinargixao';
 				        var disqus_identifier = '{{post.id}}';
-				        var disqus_config = function () { 
-						  this.language = "{{LANGUAGE_CODE}}";
-						};
+				        {% if LANGUAGE_CODE == 'es' %}
+				        	var disqus_config = function () { 
+							  this.language = "es-es";
+							};
+						{% else %}
+					        var disqus_config = function () { 
+							  this.language = "{{LANGUAGE_CODE}}";
+							};
+						{% endif %}
 
 				        /* * * DON'T EDIT BELOW THIS LINE * * */
 				        (function() {
