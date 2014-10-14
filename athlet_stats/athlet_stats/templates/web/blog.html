@@ -39,24 +39,24 @@
 							<h2><a href="{% url 'post' post.id post.slug_es %}">{{post.title_es}}</a></h2>
 							<span class="author"><a href="#">{{post.author.get_short_name}}</a></span>
 							<span class="date">{{post.created |date:"D d M Y" }}</span>
-							<span class="comments"><a href="{% url 'post' post.id post.slug_es %}#disqus_thread"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></span>
+							<span class="comments"><a href="{% url 'post' post.id post.slug_es %}#disqus_thread"><i class="fa fa-comments-o"></i> {% trans "comentarios" %}</a></span>
 						{% else %}
 							<h2><a href="{% url 'post' post.id post.slug_eu %}">{{post.title_eu}}</a></h2>
 							<span class="author"><a href="#">{{post.author.get_short_name}}</a></span>
 							<span class="date">{{post.created |date:"D d M Y" }}</span>
-							<span class="comments"><a href="{% url 'post' post.id post.slug_eu %}#disqus_thread"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></span>
+							<span class="comments"><a href="{% url 'post' post.id post.slug_eu %}#disqus_thread"><i class="fa fa-comments-o"></i> {% trans "comentarios" %}</a></span>
 						{% endif %}
 					{% else %}
 						{% if post.title_eu != '' %}
 							<h2><a href="{% url 'post' post.id post.slug_eu %}">{{post.title_eu}}</a></h2>
 							<span class="author"><a href="#">{{post.author.get_short_name}}</a></span>
 							<span class="date">{{post.created |date:"D d M Y" }}</span>
-							<span class="comments"><a href="{% url 'post' post.id post.slug_eu %}#disqus_thread"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></span>
+							<span class="comments"><a href="{% url 'post' post.id post.slug_eu %}#disqus_thread"><i class="fa fa-comments-o"></i> {% trans "comentarios" %}</a></span>
 						{% else %}
 							<h2><a href="{% url 'post' post.id post.slug_es %}">{{post.title_es}}</a></h2>
 							<span class="author"><a href="#">{{post.author.get_short_name}}</a></span>
 							<span class="date">{{post.created |date:"D d M Y" }}</span>
-							<span class="comments"><a href="{% url 'post' post.id post.slug_es %}#disqus_thread"><i class="fa fa-comments-o"></i> 1 {% trans "comentario" %}</a></span>
+							<span class="comments"><a href="{% url 'post' post.id post.slug_es %}#disqus_thread"><i class="fa fa-comments-o"></i> {% trans "comentarios" %}</a></span>
 						{% endif %}
 					{% endif %}
 					<!-- END   POST  IZENBURUA -->
