@@ -84,8 +84,9 @@ a{
 .jumbotron{ background-color: #ff8080; color: white; }
 .author{ color:grey; font-weight: bold; }
 .date{ color:grey; }
-.comments{ float:right; font-weight: bold;}
+.comments{ float:right; font-weight: bold; font-size:1.2em;}
 .comments>a>i{float:left; font-size:2em;}
+.comments i{ font-size:2em; }
 .container{ margin-top:40px; }
 
 .proximas_competiciones{ margin-top:20px;}
