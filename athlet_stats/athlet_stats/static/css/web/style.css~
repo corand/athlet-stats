@@ -118,7 +118,7 @@ ul.result_tit{ padding-left:20px; }
 
 .jum_content{  opacity: 1; }
 
-img{ max-width: 100%; height:auto; margin-top:10px; margin-bottom:10px; }
+img{ max-width: 100%;margin-top:10px; margin-bottom:10px; }
 
 .contenido{ font-size: 1.3em; margin-top: 25px; line-height: 32px; }
 .post{ margin-bottom:100px;}
