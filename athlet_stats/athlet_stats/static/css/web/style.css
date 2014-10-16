@@ -4,6 +4,8 @@ h1 p{ margin: 0;}
 
 .about_us{ font-size: 1.3em; }
 
+.code{ background-color:transparent; }
+
 .header{ 
         min-height:135px;
         text-align:center; background-color:lightblue;
