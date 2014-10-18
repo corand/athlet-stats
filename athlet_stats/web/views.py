@@ -22,6 +22,16 @@ class PostList(ListView):
         return context
 
 
+
+class Calendar(TemplateView):
+    template_name = "web/calendar.html"
+    def get_context_data(self, **kwargs):
+        context = super(Calendar, self).get_context_data(**kwargs)
+        context["active"] = "calendar"
+        return context
+
+
+
 class Archive(ListView):
     template_name = "web/archive.html"
     paginate_by = 100

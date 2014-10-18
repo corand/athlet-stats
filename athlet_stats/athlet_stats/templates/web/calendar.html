@@ -1,0 +1,148 @@
+	{% extends 'web/base.html' %}
+{% load i18n %}
+{% block opengraph %}
+  <link rel="stylesheet" href="{{STATIC_URL}}css/web/fullcalendar.min.css" />
+	{% if LANGUAGE_CODE == 'eu' %}
+		<meta property="og:title" content="Aloña Mendi Atletismo taldea eta Atletas de argixao"/>
+	{% else %}
+		<meta property="og:title" content="Aloña Mendi Atletismo y Atletas de argixao"/>
+	{% endif %}
+		<meta property="og:url" content="aloinargixao.com"/>
+		<meta property="og:image" content="{{STATIC_URL}}img/eskudo_aloina.png"/>
+		<meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
+{% endblock %}
+
+{% block switchlang %}
+  <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+    <select name="language"  onchange="this.form.submit()" class="idiomas">
+      <option value="es" {% if "es" == LANGUAGE_CODE %} selected="selected"{% endif %}>Español</option>
+      <option value="eu"  {% if "eu" == LANGUAGE_CODE %} selected="selected"{% endif %}>Euskara</option>
+    </select>
+  </form>
+{% endblock %}
+
+{% block content%}
+<div class="container">
+	<div class="row">
+		<div class="col-md-11 about_us">
+    
+      <div id="calendar"></div>
+
+
+		</div>
+
+    
+    <div class="col-md-4 col-md-offset-1 hidden-xs">
+
+      <div class="proximas_competiciones">
+        <strong>{% trans "azken emaitzak" %}</strong>
+        <br />
+        <i>{% trans "proximamente" %}</i>
+        <br /><br /><br />
+        <!--
+        <ul class="result_tit">
+          <li><h4><a href="#">Behobia Donostia 2014</a></h4></li>
+            <ul class="resul">
+              <li>523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+              <li>523º<b><a href="#">Xabier</a></b> 1h 20min 30seg</li>
+              <li>523º<b><a href="#">Javi</a></b> 1h 20min 30seg</li>
+              <li>1523º<b><a href="#">Vicente</a></b> 1h 20min 30seg</li>
+              <li>2523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+              <li>4523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+              <li>5523º<b><a href="#">Vicente</a></b> 1h 20min 30seg</li>
+              <li>6523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+              <li>7523º<b><a href="#">Txema</a></b> 1h 20min 30seg</li>
+            </ul>
+          <li><h4><a href="#">Lasarte Oria Bai 2014</a></h4></li>
+            <ul class="resul">
+              <li><b>Txema</b> 40min 30seg</li>
+              <li><b>Xabier</b> 50min 30seg</li>
+              <li><b>Javi</b> 40min 30seg</li>
+              <li><b>Vicente</b> 40min 30seg</li>
+              <li><b>Txema</b> 40min 30seg</li>
+              <li><b>Txema</b> 40min 30seg</li>
+            </ul>
+          <li>xx</li>
+          <li>xx</li>
+        </ul>
+        -->
+      </div>
+
+      <div class="proximas_competiciones">
+        <strong>{% trans "datozen frogak" %}</strong>
+        <br />
+        <i>{% trans "proximamente" %}</i>
+        <br /><br /><br />
+        <!--
+        <ul>
+          <li>xx</li>
+          <li>xx</li>
+          <li>xx</li>
+          <li>xx</li>
+        </ul>
+        -->
+      </div>
+
+      <div class="fb-like-box" data-href="https://www.facebook.com/AtletasArgixao" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true"></div>
+
+    </div>
+
+
+
+
+
+
+
+
+	</div>
+</div>
+<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+<script src="{{STATIC_URL}}js/moment.min.js"></script>
+<script src="{{STATIC_URL}}js/fullcalendar/es.js"></script>
+<script src="{{STATIC_URL}}js/fullcalendar.min.js"></script>
+<script>
+var body = $("html, body");
+$(".scroll_top").on('click',function(){
+	body.animate({scrollTop:0}, '1000', 'swing');
+});
+
+$(window).scroll(function(){
+    var $scrollTop = $(window).scrollTop();
+    if($scrollTop > 135){
+        $(".navbar-nav>li>a").css({"padding":"0px 15px"});
+        $(".navbar").css({"box-shadow":"0 5px 10px 0"});
+        $(".navbar").addClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"1"});
+    }else{
+    	$(".navbar-nav>li>a").css({"padding":"10px 15px"});
+        $(".navbar").css({"box-shadow":"0 1px 5px 0"});
+        $(".navbar").removeClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"0"});
+    }
+});
+
+setTimeout(function(){
+	$(".social").css({"margin-left":"0"});
+	$(".share").css({"margin-left":"0"});
+},1000);
+
+$('#calendar').fullCalendar({
+  lang: 'es',
+  events: '/lasterketak'
+});
+
+
+</script>
+
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&appId=250198748439697&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endblock %}

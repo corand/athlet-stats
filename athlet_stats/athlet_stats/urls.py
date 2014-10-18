@@ -35,8 +35,9 @@ urlpatterns = patterns('',
     url(r'^editar/post/(?P<pk>\w+)/$', blog_views.UpdatePost.as_view(),name="updateblogpost"),
     url(r'^eliminar/post/(?P<pk>\w+)/$', blog_views.DeletePost.as_view(),name="deleteblogpost"),
     url(r'^private/blog/$', blog_views.Blog.as_view(),name="adminblog"),
-    url(r'^archive/$', web_views.Archive.as_view(),name="archive"),
-    url(r'^about/$', web_views.AboutUs.as_view(),name="aboutus"),
+    url(r'^egutegia/$', web_views.Calendar.as_view(),name="calendar"),
+    url(r'^artxiboa/$', web_views.Archive.as_view(),name="archive"),
+    url(r'^taldea/$', web_views.AboutUs.as_view(),name="aboutus"),
     url(r'^$', web_views.PostList.as_view(),name="blog"),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^rosetta/', include('rosetta.urls')),
@@ -48,3 +49,5 @@ urlpatterns = patterns('',
 urlpatterns += i18n_patterns('',
         url(r'^post/(?P<pk>\w+)/(?P<slug>[-\w]+)$', web_views.PostView.as_view(),name="post"),
     )
+
+handler404 = 'athlet_stats.views.handler404'
