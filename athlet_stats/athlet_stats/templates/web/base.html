@@ -51,7 +51,7 @@
 		      		<li class="disabled"><a href="#"><i class="fa fa-trophy"></i> {% trans "resultados" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-university"></i> {% trans "historico" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-users"></i> {% trans "uno a uno" %}</a></li>
-		      		<li class="disabled"><a href="#"><i class="fa fa-suitcase"></i> {% trans "archivo" %}</a></li>
+		      		<li  {% if active == "archive" %} class="active" {% endif %}><a href="{% url 'archive' %}"><i class="fa fa-suitcase"></i> {% trans "archivo" %}</a></li>
 		            <li {% if active == "about" %} class="active" {% endif %}><a href="{% url 'aboutus' %}"><i class="fa fa-question-circle"></i> {% trans "acerca de nosotros" %}</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->

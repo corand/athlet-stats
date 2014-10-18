@@ -22,6 +22,20 @@ class PostList(ListView):
         return context
 
 
+class Archive(ListView):
+    template_name = "web/archive.html"
+    paginate_by = 100
+    context_object_name = 'posts'
+    def get_queryset(self):
+        return Post.objects.filter(status=2).order_by('-created')
+
+    def get_context_data(self, **kwargs):
+        context = super(Archive, self).get_context_data(**kwargs)
+        context["active"] = "archive"
+        return context
+
+
+
 class AboutUs(TemplateView):
     template_name = "web/about_us.html"
     def get_context_data(self, **kwargs):
