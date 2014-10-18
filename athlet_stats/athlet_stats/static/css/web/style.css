@@ -6,6 +6,8 @@ h1 p{ margin: 0;}
 
 code{ background-color:transparent; }
 
+.archive h3{ display:inline-block; padding:10px; border-top:1px solid lightgrey; border-bottom: 1px solid lightgrey; }
+
 .header{ 
         min-height:135px;
         text-align:center; background-color:lightblue;

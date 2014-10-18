@@ -31,31 +31,28 @@
 
 
         {% regroup posts by created|date:"Y" as year_list %}
-          <ul>
+          <ul class="archive">
           {% for year in year_list %}
             <h3>{{ year.grouper }}</h3>
             {% regroup year.list by created|date:"F" as month_list %}
             <ul>
-
-            {% for month in month_list %}  
-              
+            {% for month in month_list %}
               <h4>{{ month.grouper }}</h4>
               <ul>
               {% for item in month.list %}
-                <li>{{item.created|date:"d"}} - <a href="#">{{ item.title_es }}</a> ({{item.author.get_short_name}})</li>
+                <li>{{item.created|date:"d"}} - 
+                  {% if LANGUAGE_CODE == 'es' %}
+                    <a href="{% url 'post' item.id item.slug_es %}">{{ item.title_es }}</a>
+                    {% else %}
+                    <a href="{% url 'post' item.id item.slug_eu %}">{{ item.title_eu }}</a>
+                    {% endif %}
+                  <span class="date">{{item.author.get_short_name}}</span></li>
               {% endfor %}
-              </ul>
-              
+              </ul>  
             {% endfor %}
             </ul>
           {% endfor %}
           </ul>
-
-
-
-
-
-
 
 		</div>
 	</div>
