@@ -126,6 +126,11 @@ img{ max-width: 100%; height:auto!important; margin-top:10px; margin-bottom:10px
 
 .contenido{ font-size: 1.3em; margin-top: 25px; line-height: 32px; }
 .post{ margin-bottom:100px;}
+.post h2{
+    -ms-word-break: break-all; 
+  word-break: break-all; 
+  word-break: break-word;
+}
 
 .hizkuntzak{ margin-top:5px; background-color:#505050; color: #79BAEC;}
 
