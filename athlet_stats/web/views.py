@@ -4,9 +4,16 @@ from django.shortcuts import render_to_response,get_object_or_404
 from django.views.generic import TemplateView,ListView,DetailView
 from bs4 import BeautifulSoup
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.utils import translation
-
+from races.models import Edition
+from datetime import datetime,timedelta
+import pytz
+from pytz import timezone
+from django.utils.timezone import utc
+import json
+import dateutil.parser
+from django.conf import settings
 
 
 class PostList(ListView):
@@ -90,3 +97,30 @@ class PostView(DetailView):
             context['imagen_es'] = img_es['src']
         return context
     
+
+def eventsFeed(request):
+    json_list = []
+    if request.is_ajax():
+        print 'Its ajax from fullCalendar()'
+        #print request.GET.get('start','False')
+
+        start = dateutil.parser.parse(request.GET.get('start'))
+        end = dateutil.parser.parse(request.GET.get('end'))
+        print start
+        print end
+
+        races = Edition.objects.filter(date__gte=start).filter(date__lte=end)
+
+        for race in races:
+            id = race.id
+            title = race.name
+            settingstime_zone = timezone(settings.TIME_ZONE)
+            start = race.date.astimezone(settingstime_zone)
+            #start = race.date.strftime("%Y-%m-%dT%H:%M:%S")
+            print start
+            allDay = False
+
+            json_entry = {'id':id, 'start':str(start), 'allDay':allDay, 'title': title}
+            json_list.append(json_entry)
+
+    return HttpResponse(json.dumps(json_list), content_type='application/json')
