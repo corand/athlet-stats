@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.utils import translation
-from races.models import Edition
+from races.models import Edition,Result
 from datetime import datetime,timedelta
 import pytz
 from pytz import timezone
@@ -26,6 +26,9 @@ class PostList(ListView):
     def get_context_data(self, **kwargs):
         context = super(PostList, self).get_context_data(**kwargs)
         context["active"] = "blog"
+        startdate = datetime.now().date()
+        enddate = startdate - timedelta(days=30)
+        context['results'] = Result.objects.filter(edition__date__range=[enddate,startdate]).order_by('-edition__date','edition__name','user__gender','position','timemark')
         return context
 
 

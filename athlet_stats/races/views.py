@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Race,Edition,Result,Modality,SubRace,RaceType,Objective
+from profiles.models import UserProfile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth import login as authForm
@@ -213,9 +214,11 @@ def NewResult(request,id_edition):
             position = form.cleaned_data['puesto']
             comment = form.cleaned_data['comentarios']
             pos_cat = form.cleaned_data['puesto_cat']
-            new_resultado = Result(user=request.user,edition=edition,timemark=timemark,distancemark=distancemark,position=position,position_cat=pos_cat,comment=comment)
+            usuario = get_object_or_404(UserProfile,pk=form.cleaned_data['usuario'])
+            new_resultado = Result(user=usuario,edition=edition,timemark=timemark,distancemark=distancemark,position=position,position_cat=pos_cat,comment=comment)
             new_resultado.save()
-            return HttpResponseRedirect(reverse("racelist"))
+            url = reverse('editiondetail', kwargs={'pk': edition.id})
+            return HttpResponseRedirect(url)
     else:
         form = ResultForm()
 

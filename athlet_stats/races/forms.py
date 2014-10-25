@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from profiles.models import UserProfile
 from .models import Race,Edition,RaceType,Modality,SubRace,Result
 
 
@@ -35,6 +36,7 @@ class ObjectiveForm(forms.Form):
 
 
 class ResultForm(forms.Form):
+    usuario = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control'}),choices=[(u.id, u.get_full_name()) for u in UserProfile.objects.all()])
     horas = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'HH'}),required=False)
     minutos = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'MM'}),required=False)
     segundos = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration','placeholder': 'SS'}),required=False)
@@ -43,6 +45,11 @@ class ResultForm(forms.Form):
     puesto = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration'}),required=False)
     puesto_cat = forms.IntegerField(widget=forms.TextInput(attrs={'class':'form-control duration'}),required=False)
     comentarios = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','placeholder': 'Cuentanos un poco tu prueba'}),required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(ResultForm, self).__init__(*args, **kwargs)
+        user_choices = [(u.id, u.get_full_name()) for u in UserProfile.objects.all()]
+        self.fields['usuario'].choices = user_choices
 
 
 class EditionForm(forms.Form):

@@ -28,6 +28,7 @@
                   	<p>Puesto: {{form.puesto}}<span class="ayuda"> Por ejemplo: <i>95</i></span> </p>
                 	<p>Puesto Categoría: {{form.puesto_cat}} <span class="ayuda">Cadetes,Veteranos... etc. (Sólo rellenar si las distintas categorías han corrido la misma carrera)</span>
                 	<p>Comentarios: </p> {{form.comentarios}}</p>
+                    <p>{{form.usuario}}</p>
                 	<a href="{% url 'editiondetail' edition.id %}" class="btn btn-default">Cancelar</a>
                 	<button class="btn btn-success" type="submit">Guardar</button>
                 </form>

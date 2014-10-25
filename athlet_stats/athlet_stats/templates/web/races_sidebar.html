@@ -1,0 +1,33 @@
+{% load i18n %}
+<div class="proximas_competiciones">
+	<strong>{% trans "azken emaitzak" %}</strong>
+	<br />
+	
+	<ul class="result_tit">
+	{% regroup results by edition as edition_list %}
+	{% for edition in edition_list %}
+		<li><h4><a href="#">{{ edition.grouper }}</a></h4></li>
+		<ul class="resul">
+			{% for result in edition.list %}
+				<li>{{result.position}}º<b><a href="#">{{result.user.get_short_name}}</a></b> {{result.timemark}}</li>
+			{% endfor %}
+		</ul>
+	{% endfor %}
+	</ul>
+	<br /><br /><br />
+</div>
+
+<div class="proximas_competiciones">
+	<strong>{% trans "datozen frogak" %}</strong>
+	<br />
+	<i>{% trans "proximamente" %}</i>
+	<br /><br /><br />
+	<!--
+	<ul>
+		<li>xx</li>
+		<li>xx</li>
+		<li>xx</li>
+		<li>xx</li>
+	</ul>
+	-->
+</div>
