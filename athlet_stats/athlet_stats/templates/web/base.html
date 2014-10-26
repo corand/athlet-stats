@@ -48,7 +48,7 @@
 		      		<li {% if active == "blog" %} class="active" {% endif %}><a href="{% url 'blog' %}"><i class="fa fa-home"></i> {% trans "home" %}</a></li>
 		      		
 		      		<li {% if active == "calendar" %} class="active" {% endif %}><a href="{% url 'calendar' %}"><i class="fa fa-calendar"></i> {% trans "calendario" %}</a></li>
-		      		<li class="disabled"><a href="#"><i class="fa fa-trophy"></i> {% trans "resultados" %}</a></li>
+		      		<li {% if active == "results" %} class="active" {% endif %}><a href="{% url 'webresults' %}"><i class="fa fa-trophy"></i> {% trans "resultados" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-university"></i> {% trans "historico" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-users"></i> {% trans "uno a uno" %}</a></li>
 		      		<li  {% if active == "archive" %} class="active" {% endif %}><a href="{% url 'archive' %}"><i class="fa fa-suitcase"></i> {% trans "archivo" %}</a></li>

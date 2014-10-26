@@ -44,6 +44,16 @@ class Calendar(TemplateView):
         return context
 
 
+class Results(TemplateView):
+    template_name = "web/results.html"
+    def get_context_data(self,**kwargs):
+        context = super(Results, self).get_context_data(**kwargs)
+        context["active"] = "results"
+        enddate = datetime.now().date() + timedelta(days=1)
+        startdate = datetime(2014,9,1)
+        context["results"] = Result.objects.filter(edition__date__range=[startdate,enddate]).order_by('-edition__date','edition__name','user__gender','position','timemark')
+        return context
+
 
 class Archive(ListView):
     template_name = "web/archive.html"

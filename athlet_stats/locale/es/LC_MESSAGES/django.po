@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-14 17:29+0200\n"
-"PO-Revision-Date: 2014-10-15 09:25-0015\n"
+"POT-Creation-Date: 2014-10-26 20:34+0100\n"
+"PO-Revision-Date: 2014-10-26 20:35-0015\n"
 "Last-Translator: Anonymous User <andoni.correas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,107 +19,109 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: athlet_stats/settings.py:149
+#: athlet_stats/athlet_stats/settings.py:149
 msgid "Castellano"
 msgstr ""
 
-#: athlet_stats/settings.py:150
+#: athlet_stats/athlet_stats/settings.py:150
 msgid "Euskara"
 msgstr ""
 
-#: athlet_stats/templates/web/base.html:48
-msgid "home"
-msgstr "Blog"
+#: athlet_stats/athlet_stats/templates/404.html:30
+msgid "page_not_found"
+msgstr "404 No se encuentra la página"
 
-#: athlet_stats/templates/web/base.html:50
-msgid "calendario"
-msgstr "Calendario"
-
-#: athlet_stats/templates/web/base.html:51
-msgid "resultados"
-msgstr "Resultados"
-
-#: athlet_stats/templates/web/base.html:52
-msgid "historico"
-msgstr "Histórico"
-
-#: athlet_stats/templates/web/base.html:53
-msgid "uno a uno"
-msgstr "Uno a uno"
-
-#: athlet_stats/templates/web/base.html:54
+#: athlet_stats/athlet_stats/templates/web/archive.html:30
+#: athlet_stats/athlet_stats/templates/web/base.html:54
 msgid "archivo"
 msgstr "Archivo"
 
-#: athlet_stats/templates/web/base.html:55
+#: athlet_stats/athlet_stats/templates/web/base.html:48
+msgid "home"
+msgstr "Blog"
+
+#: athlet_stats/athlet_stats/templates/web/base.html:50
+msgid "calendario"
+msgstr "Calendario"
+
+#: athlet_stats/athlet_stats/templates/web/base.html:51
+msgid "resultados"
+msgstr "Resultados"
+
+#: athlet_stats/athlet_stats/templates/web/base.html:52
+msgid "historico"
+msgstr "Histórico"
+
+#: athlet_stats/athlet_stats/templates/web/base.html:53
+msgid "uno a uno"
+msgstr "Uno a uno"
+
+#: athlet_stats/athlet_stats/templates/web/base.html:55
 msgid "acerca de nosotros"
 msgstr "Acerca de nosotros"
 
-#: athlet_stats/templates/web/blog.html:42
-#: athlet_stats/templates/web/blog.html:47
-#: athlet_stats/templates/web/blog.html:54
-#: athlet_stats/templates/web/blog.html:59
+#: athlet_stats/athlet_stats/templates/web/blog.html:42
+#: athlet_stats/athlet_stats/templates/web/blog.html:47
+#: athlet_stats/athlet_stats/templates/web/blog.html:54
+#: athlet_stats/athlet_stats/templates/web/blog.html:59
+#: athlet_stats/athlet_stats/templates/web/post.html:57
 msgid "comentarios"
 msgstr "Comentarios"
 
-#: athlet_stats/templates/web/blog.html:107
-#: athlet_stats/templates/web/blog.html:111
+#: athlet_stats/athlet_stats/templates/web/blog.html:107
+#: athlet_stats/athlet_stats/templates/web/blog.html:111
 msgid "anteriores"
 msgstr "Anteriores"
 
-#: athlet_stats/templates/web/blog.html:116
-#: athlet_stats/templates/web/blog.html:120
+#: athlet_stats/athlet_stats/templates/web/blog.html:116
+#: athlet_stats/athlet_stats/templates/web/blog.html:120
 msgid "mas recientes"
 msgstr "Más recientes"
 
-#: athlet_stats/templates/web/blog.html:130
-#: athlet_stats/templates/web/post.html:134
+#: athlet_stats/athlet_stats/templates/web/races_sidebar.html:3
 msgid "azken emaitzak"
 msgstr "Últimos Resultados"
 
-#: athlet_stats/templates/web/blog.html:132
-#: athlet_stats/templates/web/blog.html:166
-#: athlet_stats/templates/web/post.html:136
-#: athlet_stats/templates/web/post.html:170
-msgid "proximamente"
-msgstr "Próximamente"
+#: athlet_stats/athlet_stats/templates/web/results.html:30
+msgid "temporada 2014/2015"
+msgstr "Temporada 2014/2015"
 
-#: athlet_stats/templates/web/blog.html:164
-#: athlet_stats/templates/web/post.html:168
-msgid "datozen frogak"
-msgstr "Próximas Competiciones"
-
-#: athlet_stats/templates/web/post.html:57
-msgid "comentario"
-msgstr "Comentario"
-
-#: profiles/models.py:35
+#: athlet_stats/profiles/models.py:35
 msgid "profile_picture"
 msgstr "Foto de perfil"
 
-#: profiles/models.py:36
+#: athlet_stats/profiles/models.py:36
 msgid "name"
 msgstr "Nombre"
 
-#: profiles/models.py:37
+#: athlet_stats/profiles/models.py:37
 msgid "first_surname"
 msgstr "Segundo apellido"
 
-#: profiles/models.py:38
+#: athlet_stats/profiles/models.py:38
 msgid "second_surname"
 msgstr "Segundo apellido"
 
-#: profiles/models.py:40
+#: athlet_stats/profiles/models.py:40
 msgid "self_description_es"
 msgstr "Descripción propia castellano"
 
-#: profiles/models.py:41
+#: athlet_stats/profiles/models.py:41
 msgid "self_description_eu"
 msgstr "Descripción propia euskera"
 
-#: profiles/models.py:42
+#: athlet_stats/profiles/models.py:42
 msgid "coach_description"
 msgstr "Descripción del entrenador"
+
+#~ msgid "proximamente"
+#~ msgstr "Próximamente"
+
+#~ msgid "datozen frogak"
+#~ msgstr "Próximas Competiciones"
+
+#~ msgid "comentario"
+#~ msgstr "Comentario"
 
 #~ msgid "blog"
 #~ msgstr "Blog"
