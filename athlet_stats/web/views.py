@@ -26,9 +26,9 @@ class PostList(ListView):
     def get_context_data(self, **kwargs):
         context = super(PostList, self).get_context_data(**kwargs)
         context["active"] = "blog"
-        startdate = datetime.now().date()
-        enddate = startdate - timedelta(days=30)
-        context['results'] = Result.objects.filter(edition__date__range=[enddate,startdate]).order_by('-edition__date','edition__name','user__gender','position','timemark')
+        enddate = datetime.now().date() + timedelta(days=1)
+        startdate = enddate - timedelta(days=30)
+        context['results'] = Result.objects.filter(edition__date__range=[startdate,enddate]).order_by('-edition__date','edition__name','user__gender','position','timemark')
         return context
 
 
@@ -38,6 +38,9 @@ class Calendar(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Calendar, self).get_context_data(**kwargs)
         context["active"] = "calendar"
+        enddate = datetime.now().date() + timedelta(days=1)
+        startdate = enddate - timedelta(days=30)
+        context['results'] = Result.objects.filter(edition__date__range=[startdate,enddate]).order_by('-edition__date','edition__name','user__gender','position','timemark')
         return context
 
 

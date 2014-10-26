@@ -1,8 +1,6 @@
 {% load i18n %}
 <div class="proximas_competiciones">
 	<strong>{% trans "azken emaitzak" %}</strong>
-	<br />
-	
 	<ul class="result_tit">
 	{% regroup results by edition as edition_list %}
 	{% for edition in edition_list %}
@@ -15,19 +13,4 @@
 	{% endfor %}
 	</ul>
 	<br /><br /><br />
-</div>
-
-<div class="proximas_competiciones">
-	<strong>{% trans "datozen frogak" %}</strong>
-	<br />
-	<i>{% trans "proximamente" %}</i>
-	<br /><br /><br />
-	<!--
-	<ul>
-		<li>xx</li>
-		<li>xx</li>
-		<li>xx</li>
-		<li>xx</li>
-	</ul>
-	-->
 </div>
