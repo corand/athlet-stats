@@ -32,7 +32,7 @@
 				<ul class="result_tit">
 				{% regroup results by edition as edition_list %}
 				{% for edition in edition_list %}
-					<li><h4><a href="#">{{ edition.grouper }}</a></h4></li>
+					<li><h4><a href="#">{{ edition.grouper }}</a> <span class="date">{{edition.grouper.date}}</span></h4></li>
 					<ul class="resul">
 						{% for result in edition.list %}
 							<li>{{result.position}}º<b><a href="#">{{result.user.get_full_name}}</a></b> {{result.timemark}}</li>
