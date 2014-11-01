@@ -35,7 +35,11 @@
 					<li><h4><a href="#">{{ edition.grouper }}</a> <span class="date">{{edition.grouper.date}}</span></h4></li>
 					<ul class="resul">
 						{% for result in edition.list %}
-							<li>{{result.position}}º<b><a href="#">{{result.user.get_full_name}}</a></b> {{result.timemark}}</li>
+							<li>{{result.position}}º<b><a href="#">{{result.user.get_full_name}}</a>
+							{% if result.position_cat %}
+								(cat {{result.position_cat}}º)
+							{% endif %}
+							</b> {{result.timemark}}</li>
 						{% endfor %}
 					</ul>
 				{% endfor %}
