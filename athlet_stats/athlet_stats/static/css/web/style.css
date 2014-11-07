@@ -104,6 +104,10 @@ a{
 
 ul.resul{ padding-left:5px; }
 
+.results h2{ font-size:30px;}
+
+.results .resul{ margin-bottom:30px;}
+
 ul.result_tit{ padding-left:0px; }
 .result_tit h4{ margin-bottom:10px; border-bottom:1px solid black; background-color: aquamarine; padding:10px; }
 

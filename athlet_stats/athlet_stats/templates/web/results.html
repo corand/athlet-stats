@@ -27,25 +27,44 @@
 	<div class="row">
 		<div class="col-md-16">
 
-		<h3>{% trans "temporada 2014/2015" %}</h3>
-			<div class="proximas_competiciones">
-				<ul class="result_tit">
-				{% regroup results by edition as edition_list %}
-				{% for edition in edition_list %}
-					<li><h4><a href="#">{{ edition.grouper }}</a> <span class="date">{{edition.grouper.date}}</span></h4></li>
-					<ul class="resul">
-						{% for result in edition.list %}
-							<li>{{result.position}}º<b><a href="#">{{result.user.get_full_name}}</a>
-							{% if result.position_cat %}
-								(cat {{result.position_cat}}º)
-							{% endif %}
-							</b> {{result.timemark}}</li>
-						{% endfor %}
-					</ul>
-				{% endfor %}
-				</ul>
-			</div>
+		<h2>{% trans "temporada 2014/2015" %}</h2>
 
+		<br>
+		<ul class="results">
+			{% regroup results by edition.race as race_list %}
+			{% for race in race_list %}
+				<li><h2>{{ race.grouper }}</h4></li>
+				{% regroup race.list by edition.subRace as subrace_list %}
+				{% for subrace in subrace_list %}
+				<ul>
+					{% if subrace.grouper != None %}
+						<li><h3>{{subrace.grouper.name}}</h5></li>
+					{% endif %}
+					{% regroup subrace.list by user.gender as gender_list %}
+					{% for gen in gender_list %}
+						{% if gender_list|length > 1 %}
+							{% if gen.grouper == 1 %} <!-- masc -->
+								<li><h4>{% trans "masculino" %}</h4></li>
+							{% else %}
+								<li><h4>{% trans "femenino" %}</h4></li>
+							{% endif %}
+						{% endif %}
+						<ul class="resul">
+							{% for g in gen.list%}
+								<li>{{g.position}}º<b><a href="#">{{g.user.get_full_name}}</a>
+							{% if g.position_cat %}
+								(cat {{g.position_cat}}º)
+							{% endif %}
+							</b> {{g.timemark}}</li>
+							{% endfor %}
+						</ul>
+					{% endfor %}
+				</ul>
+				{% endfor %}
+			{% endfor %}
+			
+			
+		</ul>
 		</div>
 	</div>
 </div>
