@@ -1,1 +1,3 @@
 athlet_stats/athlet_stats/carga
+athlet_stats/athlet_stats/settings.py
+athlet_stats/athlet_stats/wsgi.py
