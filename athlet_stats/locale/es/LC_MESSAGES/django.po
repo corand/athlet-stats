@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-07 16:37+0100\n"
-"PO-Revision-Date: 2014-11-07 16:38-0015\n"
+"POT-Creation-Date: 2014-11-15 16:31+0100\n"
+"PO-Revision-Date: 2014-11-15 16:40-0015\n"
 "Last-Translator: Anonymous User <andoni.correas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: athlet_stats/settings.py:149
+#: athlet_stats/settings.py:162
 msgid "Castellano"
 msgstr ""
 
-#: athlet_stats/settings.py:150
+#: athlet_stats/settings.py:163
 msgid "Euskara"
 msgstr ""
 
@@ -31,32 +31,40 @@ msgstr ""
 msgid "page_not_found"
 msgstr "404 No se encuentra la página"
 
+#: athlet_stats/templates/web/album.html:49
+msgid "bilduma guztiak"
+msgstr "Todos los albumes"
+
+#: athlet_stats/templates/web/albums.html:30
+msgid "album de fotos"
+msgstr "Album de fotos"
+
 #: athlet_stats/templates/web/archive.html:30
-#: athlet_stats/templates/web/base.html:54
+#: athlet_stats/templates/web/base.html:55
 msgid "archivo"
 msgstr "Archivo"
 
-#: athlet_stats/templates/web/base.html:48
+#: athlet_stats/templates/web/base.html:49
 msgid "home"
 msgstr "Blog"
 
-#: athlet_stats/templates/web/base.html:50
+#: athlet_stats/templates/web/base.html:51
 msgid "calendario"
 msgstr "Calendario"
 
-#: athlet_stats/templates/web/base.html:51
+#: athlet_stats/templates/web/base.html:52
 msgid "resultados"
 msgstr "Resultados"
 
-#: athlet_stats/templates/web/base.html:52
-msgid "historico"
-msgstr "Histórico"
-
 #: athlet_stats/templates/web/base.html:53
+msgid "fotos"
+msgstr "Fotos"
+
+#: athlet_stats/templates/web/base.html:54
 msgid "uno a uno"
 msgstr "Uno a uno"
 
-#: athlet_stats/templates/web/base.html:55
+#: athlet_stats/templates/web/base.html:56
 msgid "acerca de nosotros"
 msgstr "Acerca de nosotros"
 
@@ -121,6 +129,9 @@ msgstr "Descripción propia euskera"
 #: profiles/models.py:42
 msgid "coach_description"
 msgstr "Descripción del entrenador"
+
+#~ msgid "historico"
+#~ msgstr "Histórico"
 
 #~ msgid "proximamente"
 #~ msgstr "Próximamente"

@@ -11,6 +11,7 @@
 		<link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Cousine:400,700' rel='stylesheet' type='text/css'>
+		{% block styles %}{% endblock %}
 		<link rel="stylesheet" href="{{STATIC_URL}}css/web/bootstrap.min.css" />
 		<link rel="stylesheet" href="{{STATIC_URL}}font-awesome/css/font-awesome.min.css" />
 		<link rel="stylesheet" href="{{STATIC_URL}}css/web/style.css" />
@@ -49,7 +50,7 @@
 		      		
 		      		<li {% if active == "calendar" %} class="active" {% endif %}><a href="{% url 'calendar' %}"><i class="fa fa-calendar"></i> {% trans "calendario" %}</a></li>
 		      		<li {% if active == "results" %} class="active" {% endif %}><a href="{% url 'webresults' %}"><i class="fa fa-trophy"></i> {% trans "resultados" %}</a></li>
-		      		<li class="disabled"><a href="#"><i class="fa fa-university"></i> {% trans "historico" %}</a></li>
+		      		<li {% if active == "album" %} class="active" {% endif %}><a href="{% url 'albums' %}"><i class="fa fa-camera"></i> {% trans "fotos" %}</a></li>
 		      		<li class="disabled"><a href="#"><i class="fa fa-users"></i> {% trans "uno a uno" %}</a></li>
 		      		<li  {% if active == "archive" %} class="active" {% endif %}><a href="{% url 'archive' %}"><i class="fa fa-suitcase"></i> {% trans "archivo" %}</a></li>
 		            <li {% if active == "about" %} class="active" {% endif %}><a href="{% url 'aboutus' %}"><i class="fa fa-question-circle"></i> {% trans "acerca de nosotros" %}</a></li>
@@ -72,6 +73,7 @@
 
     <script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
 	<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+	{% block javascript %}{% endblock %}
 	<script>
 	var body = $("html, body");
 	$(".scroll_top").on('click',function(){
@@ -99,6 +101,8 @@
 	},1000);
 	</script>
 
+	{% block custom_javascript%}{% endblock %}
+
 
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -118,7 +122,5 @@
   ga('send', 'pageview');
 	</script>
 
-
 	</body>
-
 </html> 

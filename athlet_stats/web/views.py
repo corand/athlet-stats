@@ -14,6 +14,9 @@ from django.utils.timezone import utc
 import json
 import dateutil.parser
 from django.conf import settings
+from django.core.cache import cache
+from django.conf import settings
+import flickr_api
 
 
 class PostList(ListView):
@@ -53,6 +56,54 @@ class Results(TemplateView):
         startdate = datetime(2014,9,1)
         context["results"] = Result.objects.filter(edition__date__range=[startdate,enddate]).order_by('-edition__date', 'edition__race','edition__name','user__gender','position','timemark')
         return context
+
+class Albums(TemplateView):
+    template_name = "web/albums.html"
+    def get_context_data(self,**kwargs):
+        context = super(Albums, self).get_context_data(**kwargs)
+        flickr_api.enable_cache(cache)
+        flickr_api.set_keys(api_key=settings.FLICKR_API,api_secret=settings.FLICKR_SECRET)
+        user = flickr_api.Person.findByUserName('aloinargixao')
+        photosets = user.getPhotosets()
+
+        albums = []
+        for photoset in photosets:
+            pic = photoset.getPhotos()[:1]
+            thumb_source = pic[0].getSizes()['Small']['source']
+            dict = {'id':photoset.id,'title':photoset.title,'pic':thumb_source}
+            albums.append(dict)
+
+        context['albums'] = albums
+        context["active"] = "album"
+        return context
+
+class Album(TemplateView):
+    template_name = "web/album.html"
+    def get_context_data(self,**kwargs):
+        context = super(Album, self).get_context_data(**kwargs)
+        flickr_api.enable_cache(cache)
+        
+        flickr_api.set_keys(api_key=settings.FLICKR_API,api_secret=settings.FLICKR_SECRET)
+        user = flickr_api.Person.findByUserName('aloinargixao')
+        photosets = user.getPhotosets()
+
+        for photoset in photosets:
+            if photoset.id == self.kwargs['pk']:
+                my_photoset = photoset
+                my_title = photoset.title
+
+        pictures = my_photoset.getPhotos()
+        picture_list = []
+        for picture in pictures:
+            dict = {'medium':picture.getSizes()['Medium']['source'],'large':picture.getSizes()['Large']['source']}
+            picture_list.append(dict)
+
+        context['picture_list'] = picture_list
+        context['title'] = my_title
+        context['id'] = self.kwargs['pk']
+        context["active"] = "album"
+        return context
+
 
 
 class Archive(ListView):

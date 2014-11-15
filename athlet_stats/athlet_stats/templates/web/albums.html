@@ -1,0 +1,54 @@
+	{% extends 'web/base.html' %}
+{% load i18n %}
+{% block opengraph %}
+	{% if LANGUAGE_CODE == 'eu' %}
+		<meta property="og:title" content="Aloña Mendi eta Atletas de Argixao taldeen Argazki Bildumak"/>
+	{% else %}
+		<meta property="og:title" content="Albumes fotograficos de Aloña Mendi Atletismo y Atletas de Argixao"/>
+	{% endif %}
+		<meta property="og:url" content="aloinargixao.com{% url 'albums' %}"/>
+		<meta property="og:image" content="{{albums.0.pic}}"/>
+		<meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
+{% endblock %}
+
+{% block switchlang %}
+  <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+    <select name="language"  onchange="this.form.submit()" class="idiomas">
+      <option value="es" {% if "es" == LANGUAGE_CODE %} selected="selected"{% endif %}>Español</option>
+      <option value="eu"  {% if "eu" == LANGUAGE_CODE %} selected="selected"{% endif %}>Euskara</option>
+    </select>
+  </form>
+{% endblock %}
+
+{% block content%}
+<div class="container">
+	<div class="row">
+		<div class="col-md-16 about_us">
+			
+			<h2>{% trans "album de fotos" %}</h2>
+			<br />
+			<div class="row">
+				{% for album in albums %}
+					<div class="col-xs-16 col-md-4">
+						<div class="thumbnail">
+					      <img src="{{album.pic}}">
+					      <div class="caption">
+					        <h3><a href="{% url 'album' album.id %}">{{album.title}}</a></h3>
+					        <!--<p>...</p>
+					        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+					      	-->
+					      </div>
+					    </div>
+					</div>
+
+				{% endfor %}
+			</div>
+    		
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

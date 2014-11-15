@@ -24,6 +24,9 @@ SITE_ID = 1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+FLICKR_API = '6233a84918e0015a63d6681bba1a5ea5'
+FLICKR_SECRET = '943e2c514dfd6d12'
+
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -139,6 +142,16 @@ DATABASES = {
         'PORT': '', # Set to empty string for default.
     }
 }
+
+# CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
