@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.utils import translation
-from races.models import Edition,Result
+from races.models import Edition,Result,Race
 from datetime import datetime,timedelta
 import pytz
 from pytz import timezone
@@ -176,15 +176,15 @@ def eventsFeed(request):
         print start
         print end
 
-        races = Edition.objects.filter(date__gte=start).filter(date__lte=end)
+        # Race.objects.filter(edition__name__contains='a')
+        races = Race.objects.filter(edition__date__gte=start).filter(edition__date__lte=end)
 
         for race in races:
             id = race.id
             title = race.name
             settingstime_zone = timezone(settings.TIME_ZONE)
-            start = race.date.astimezone(settingstime_zone)
+            start = race.edition_set.select_related()[0].date.astimezone(settingstime_zone)
             #start = race.date.strftime("%Y-%m-%dT%H:%M:%S")
-            print start
             allDay = False
 
             json_entry = {'id':id, 'start':str(start), 'allDay':allDay, 'title': title}
