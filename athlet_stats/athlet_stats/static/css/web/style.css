@@ -104,7 +104,7 @@ a{
 
 ul.resul{ padding-left:5px; }
 
-.results h2{ font-size:30px;}
+.results h2{ font-size:40px; text-decoration:underline; color: darkred;}
 
 .results .resul{ margin-bottom:30px;}
 
@@ -138,6 +138,10 @@ img{ max-width: 100%; height:auto!important; margin-top:10px; margin-bottom:10px
   word-break: break-all; 
   word-break: break-word;
 }
+
+.nav-pills>li.active>a{ background-color: darkred;}
+.nav-pills>li.active>a:hover{background-color:#C34A2C;}
+
 
 .hizkuntzak{ margin-top:5px; background-color:#505050; color: #79BAEC;}
 
