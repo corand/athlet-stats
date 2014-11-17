@@ -177,7 +177,7 @@ def eventsFeed(request):
         print end
 
         # Race.objects.filter(edition__name__contains='a')
-        races = Race.objects.filter(edition__date__gte=start).filter(edition__date__lte=end)
+        races = Race.objects.filter(edition__date__gte=start).filter(edition__date__lte=end).distinct('id')
 
         for race in races:
             id = race.id
