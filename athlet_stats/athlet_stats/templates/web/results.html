@@ -35,40 +35,48 @@
 
 		<br>
 		<ul class="results">
+
 			{% regroup results by edition.date|date:"F" as month_list %}
 			{% for month in month_list %}
 				<li><h2>{{ month.grouper }}</h4></li>
-				{% regroup month.list by edition.race as race_list %}
-				<ul>
-				{% for race in race_list %}
-					<li><h3>{{ race.grouper }}</h3></li>
-					{% regroup race.list by edition.subRace as subrace_list %}
-					{% for subrace in subrace_list %}
+
+				{% regroup month.list by edition.date|date:"j" as day_list %}
+				<ul class="result_day">
+				{% for day in day_list %}
+					<li>{{ day.grouper }}</li>
+					{% regroup day.list by edition.race as race_list %}
 					<ul>
-						{% if subrace.grouper != None %}
-							<li><h3>{{subrace.grouper.name}}</h5></li>
-						{% endif %}
-						{% regroup subrace.list by user.gender as gender_list %}
-						{% for gen in gender_list %}
-							{% if gender_list|length > 1 %}
-								{% if gen.grouper == 1 %} <!-- masc -->
-									<li><h4>{% trans "masculino" %}</h4></li>
-								{% else %}
-									<li><h4>{% trans "femenino" %}</h4></li>
-								{% endif %}
+					{% for race in race_list %}
+						<li><h3>{{ race.grouper | upper }}</h3></li>
+						{% regroup race.list by edition.subRace as subrace_list %}
+						{% for subrace in subrace_list %}
+						<ul>
+							{% if subrace.grouper != None %}
+								<li><h3>{{subrace.grouper.name}}</h5></li>
 							{% endif %}
-							<ul class="resul">
-								{% for g in gen.list%}
-									<li>{{g.position}}º<b><a href="#">{{g.user.get_full_name}}</a>
-								{% if g.position_cat %}
-									(cat {{g.position_cat}}º)
+							{% regroup subrace.list by user.gender as gender_list %}
+							{% for gen in gender_list %}
+								{% if gender_list|length > 1 %}
+									{% if gen.grouper == 1 %} <!-- masc -->
+										<li><h4>{% trans "masculino" %}</h4></li>
+									{% else %}
+										<li><h4>{% trans "femenino" %}</h4></li>
+									{% endif %}
 								{% endif %}
-								</b> {{g.timemark}}</li>
-								{% endfor %}
-							</ul>
+								<ul class="resul">
+									{% for g in gen.list%}
+										<li>{{g.position}}º<b><a href="#">{{g.user.get_full_name}}</a>
+									{% if g.position_cat %}
+										(cat {{g.position_cat}}º)
+									{% endif %}
+									</b> {{g.timemark}}</li>
+									{% endfor %}
+								</ul>
+							{% endfor %}
+						</ul>
 						{% endfor %}
-					</ul>
 					{% endfor %}
+					</ul>
 				{% endfor %}
 				</ul>
 			{% endfor %}

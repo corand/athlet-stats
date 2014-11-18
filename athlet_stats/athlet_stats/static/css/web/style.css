@@ -8,9 +8,20 @@ h1 p{ margin: 0;}
     white-space: normal;
 }
 
+.result_day>li{
+	display:inline-block;
+	font-size:30px;
+	border:2px solid darkred;
+	padding:5px 15px;
+	margin-top:10px;
+	box-shadow: 2px 2px 4px 1px;
+}
+
 code{ background-color:transparent; }
 
 .archive h3{ display:inline-block; padding:10px; border-top:1px solid lightgrey; border-bottom: 1px solid lightgrey; }
+
+.fancybox img{ box-shadow: 4px 4px 5px 1px; }
 
 .header{ 
         min-height:135px;
