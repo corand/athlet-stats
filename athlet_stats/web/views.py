@@ -81,6 +81,7 @@ class Album(TemplateView):
     template_name = "web/album.html"
     def get_context_data(self,**kwargs):
         context = super(Album, self).get_context_data(**kwargs)
+        """
         flickr_api.enable_cache(cache)
         
         flickr_api.set_keys(api_key=settings.FLICKR_API,api_secret=settings.FLICKR_SECRET)
@@ -97,8 +98,9 @@ class Album(TemplateView):
         for picture in pictures:
             dict = {'medium':picture.getSizes()['Medium']['source'],'large':picture.getSizes()['Large']['source']}
             picture_list.append(dict)
+        """
 
-        context['picture_list'] = picture_list
+        #context['picture_list'] = picture_list
         context['title'] = my_title
         context['id'] = self.kwargs['pk']
         context["active"] = "album"
