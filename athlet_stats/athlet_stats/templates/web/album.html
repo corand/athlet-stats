@@ -31,17 +31,10 @@
 	<div class="row">
 		<div class="col-md-16 about_us">
 			
-			<h2>{{title}}</h2>
+			<h2 id="title"></h2>
 			<br />
-			<div class="row" id="album-content">
-				{% for picture in picture_list %}
-					<div class="col-xs-16 col-md-8">
-						<a class="fancybox" rel="gallery1" href="{{picture.large}}" >
-	<img src="{{picture.medium}}" alt="" />
-						</a>
-					</div>
-
-				{% endfor %}
+			<div class="row" id="album_content">
+				
 			</div>
 
 			<a class="btn btn-default" href="{% url 'albums' %}"><i class="fa fa-th-list"></i> {% trans 'bilduma guztiak' %}</a> <br />
@@ -62,27 +55,28 @@
 				closeEffect	: 'elastic'
 			});
 		});
-		/*
+		
 		$("#album-content").html("Loading...");
 
-		
-		$.get('https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=4e5be99a0b166f3043a547ed6468c88c&photoset_id={{id}}}&format=json&nojsoncallback=1',function(data){
+		var html_res = ""		
+		$.get('https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photoset_id={{id}}}&format=json&nojsoncallback=1',function(data){
 			var pic_num = data.photoset.photo.length;
  			for(i=0;i<pic_num;i++){
-    			$.get('https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=4e5be99a0b166f3043a547ed6468c88c&photo_id='+data.photoset.photo[i].id+'&format=json&nojsoncallback=1',function(dd){
-    				pic_num - i
-    				100 - x
-
-    				5 - 120
-    				x - 100
-
+    			$.get('https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photo_id='+data.photoset.photo[i].id+'&format=json&nojsoncallback=1',function(dd){
     				var perc = parseInt((i*100)/pic_num);
-    				$("#album-content").html("Loading.. "+perc+" %");
-    				console.log(dd.sizes.size[8].source);
+    				$("#album_content").html("Loading.. "+perc+" %");
+    				html_res = html_res + "<div class='col-xs-16 col-md-8'>
+						<a class='fancybox' rel='gallery1' href='"+ dd.sizes.size[5].source +"' >
+	<img src='"+dd.sizes.size[8].source+"' alt='' />
+						</a>
+					</div>";
+					if(i == (pic_num-1)){
+						$("#album_content").html(html_res);
+					}
     			});
  			}
 		});
-		*/
+		
 
 		
 

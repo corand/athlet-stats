@@ -101,7 +101,7 @@ class Album(TemplateView):
         """
 
         #context['picture_list'] = picture_list
-        context['title'] = my_title
+        #context['title'] = my_title
         context['id'] = self.kwargs['pk']
         context["active"] = "album"
         return context
