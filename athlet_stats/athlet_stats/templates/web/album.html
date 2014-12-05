@@ -68,15 +68,13 @@
 	    				$("#album_content").html("Loading.. "+perc+" %");
 	    				
 	    				html_res = html_res + "<div class='col-xs-16 col-md-8'><a class='fancybox' rel='gallery1' href='"+ dd.sizes.size[5].source +"' ><img src='"+dd.sizes.size[8].source+"' alt='' /></a></div>";
-						if(i == (pic_num-1)){
-							$("#album_content").html(html_res);
-							$(".fancybox").fancybox({
-								openEffect	: 'elastic',
-								closeEffect	: 'elastic'
-							});
-						});
 	    			});
 	 			}
+	 			$("#album_content").html(html_res);
+				$(".fancybox").fancybox({
+					openEffect	: 'elastic',
+					closeEffect	: 'elastic'
+				});
 			});
 		});
 	</script>
