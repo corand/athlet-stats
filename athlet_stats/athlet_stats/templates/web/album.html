@@ -60,8 +60,9 @@
 				var pic_num = data.photoset.photo.length;
 	 			for(i=0;i<pic_num;i++){
 	    			$.ajax({
-	    				url: "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photo_id='+data.photoset.photo[i].id+'&format=json&nojsoncallback=1",
+	    				url: 'https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photo_id='+data.photoset.photo[i].id+'&format=json&nojsoncallback=1',
 	    				async:false,
+	    				type:'GET',
 
 	    			}).done(function(dd){
 	    				console.log(dd);
