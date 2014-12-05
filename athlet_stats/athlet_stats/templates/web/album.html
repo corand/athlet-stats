@@ -53,7 +53,7 @@
 	<script>
 		$(document).ready(function() {
 
-			$("#album-content").html("Loading...");
+			$("#album_content").html("Loading...");
 
 			var html_res = "";
 			$.get('https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photoset_id={{id}}}&format=json&nojsoncallback=1',function(data){
@@ -65,7 +65,6 @@
 	    				type:'GET',
 
 	    			}).done(function(dd){
-	    				console.log(dd);
 	    				var perc = parseInt((i*100)/pic_num);
 	    				$("#album_content").html("Loading.. "+perc+" %");
 	    				
