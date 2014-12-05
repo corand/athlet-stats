@@ -59,26 +59,25 @@
 			$.get('https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photoset_id={{id}}}&format=json&nojsoncallback=1',function(data){
 				var pic_num = data.photoset.photo.length;
 	 			for(i=0;i<pic_num;i++){
-	    			$.get('https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photo_id='+data.photoset.photo[i].id+'&format=json&nojsoncallback=1',function(dd){
+	    			$.ajax({
+	    				url: "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=ce45e14d4b326d3d8d810dbb07a8bef6&photo_id='+data.photoset.photo[i].id+'&format=json&nojsoncallback=1",
+	    				async:false,
+
+	    			}).done(function(dd){
 	    				var perc = parseInt((i*100)/pic_num);
 	    				$("#album_content").html("Loading.. "+perc+" %");
 	    				
 	    				html_res = html_res + "<div class='col-xs-16 col-md-8'><a class='fancybox' rel='gallery1' href='"+ dd.sizes.size[5].source +"' ><img src='"+dd.sizes.size[8].source+"' alt='' /></a></div>";
-	    				console.log(i);
-	    				console.log(html_res);
 						if(i == (pic_num-1)){
 							$("#album_content").html(html_res);
 							$(".fancybox").fancybox({
 								openEffect	: 'elastic',
 								closeEffect	: 'elastic'
 							});
-						}
+						});
 	    			});
 	 			}
 			});
-
-
-			
 		});
 	</script>
 	
