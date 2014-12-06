@@ -105,7 +105,7 @@ class Album(TemplateView):
                 picture_list.append(dict)
 
             #cache.set(album_id,picture_list,0)
-            with open("/opt/django_cache/json/"+album_id+".json", "w") as out:
+            with open("/opt/django_cache/json/"+album_id+".json", "w+") as out:
                 data = json.dumps(picture_list)
                 out.write(data)
 
