@@ -31,10 +31,17 @@
 	<div class="row">
 		<div class="col-md-16 about_us">
 			
-			<h2 id="title"></h2>
+			<h2 id="title">{{title}}</h2>
 			<br />
 			<div class="row" id="album_content">
-				
+				{% for picture in picture_list %}
+					<div class="col-xs-16 col-md-8">
+						<a class="fancybox" rel="gallery1" href="{{picture.large}}" >
+							<img src="{{picture.medium}}" alt="" />
+						</a>
+					</div>
+
+				{% endfor %}
 			</div>
 
 			<a class="btn btn-default" href="{% url 'albums' %}"><i class="fa fa-th-list"></i> {% trans 'bilduma guztiak' %}</a> <br />
@@ -53,6 +60,11 @@
 	<script>
 		$(document).ready(function() {
 
+			$(".fancybox").fancybox({
+				openEffect	: 'elastic',
+				closeEffect	: 'elastic'
+			});
+/*
 			$("#album_content").html("Loading...");
 
 			var html_res = "";
@@ -77,6 +89,7 @@
 					closeEffect	: 'elastic'
 				});
 			});
+	*/
 		});
 	</script>
 	

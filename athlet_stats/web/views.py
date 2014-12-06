@@ -81,28 +81,37 @@ class Album(TemplateView):
     template_name = "web/album.html"
     def get_context_data(self,**kwargs):
         context = super(Album, self).get_context_data(**kwargs)
-        """
-        flickr_api.enable_cache(cache)
+        album_id = self.kwargs['pk']
+        my_title = "xx"
         
-        flickr_api.set_keys(api_key=settings.FLICKR_API,api_secret=settings.FLICKR_SECRET)
-        user = flickr_api.Person.findByUserName('aloinargixao')
-        photosets = user.getPhotosets()
+        
+        try:
+            json_data = open("/opt/django_cache/json/"+album_id+".json")
+            picture_list = json.load(json_data)
+        except IOError: 
+            flickr_api.set_keys(api_key=settings.FLICKR_API,api_secret=settings.FLICKR_SECRET)
+            user = flickr_api.Person.findByUserName('aloinargixao')
+            photosets = user.getPhotosets()
 
-        for photoset in photosets:
-            if photoset.id == self.kwargs['pk']:
-                my_photoset = photoset
-                my_title = photoset.title
+            for photoset in photosets:
+                if photoset.id == album_id:
+                    my_photoset = photoset
+                    my_title = photoset.title
 
-        pictures = my_photoset.getPhotos()
-        picture_list = []
-        for picture in pictures:
-            dict = {'medium':picture.getSizes()['Medium']['source'],'large':picture.getSizes()['Large']['source']}
-            picture_list.append(dict)
-        """
+            pictures = my_photoset.getPhotos()
+            picture_list = []
+            for picture in pictures:
+                dict = {'medium':picture.getSizes()['Medium']['source'],'large':picture.getSizes()['Large']['source']}
+                picture_list.append(dict)
 
-        #context['picture_list'] = picture_list
-        #context['title'] = my_title
-        context['id'] = self.kwargs['pk']
+            #cache.set(album_id,picture_list,0)
+            with open("/opt/django_cache/json/"+album_id+".json", "w") as out:
+                data = json.dumps(picture_list)
+                out.write(data)
+
+        context['picture_list'] = picture_list
+        context['title'] = my_title
+        context['id'] = album_id
         context["active"] = "album"
         return context
 
