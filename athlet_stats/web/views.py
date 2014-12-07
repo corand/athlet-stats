@@ -87,7 +87,9 @@ class Album(TemplateView):
         
         try:
             json_data = open("/opt/django_cache/json/"+album_id+".json")
-            picture_list = json.load(json_data)
+            result = json.load(json_data)
+            picture_list = result['photoset']
+            my_title= result['title']
         except IOError: 
             flickr_api.set_keys(api_key=settings.FLICKR_API,api_secret=settings.FLICKR_SECRET)
             user = flickr_api.Person.findByUserName('aloinargixao')
@@ -104,9 +106,11 @@ class Album(TemplateView):
                 dict = {'medium':picture.getSizes()['Medium']['source'],'large':picture.getSizes()['Large']['source']}
                 picture_list.append(dict)
 
+            result = {'title':my_title,'photoset':picture_list}
+
             #cache.set(album_id,picture_list,0)
             with open("/opt/django_cache/json/"+album_id+".json", "w+") as out:
-                data = json.dumps(picture_list)
+                data = json.dumps(result)
                 out.write(data)
 
         context['picture_list'] = picture_list
