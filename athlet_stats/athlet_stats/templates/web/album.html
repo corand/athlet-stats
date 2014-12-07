@@ -29,7 +29,7 @@
 {% block content%}
 <div class="container">
 	<div class="row">
-		<div class="col-md-16 about_us">
+		<div class="col-md-12 about_us">
 			
 			<h2 id="title">{{title}}</h2>
 			<br />
@@ -48,6 +48,20 @@
     		
 
 		</div>
+
+		<div class="col-md-3 col-md-offset-1 hidden-xs">
+
+			<h3>{% trans "compartir album"|title %}</h3>
+			
+			<a class="btn btn-default social-sh gp" href="https://plus.google.com/share?url=aloinargixao.com{% url 'album' id %}"><i class="fa fa-google-plus"></i></a>
+
+			<a class="btn btn-default social-sh fb" href="http://www.facebook.com/sharer/sharer.php?u=aloinargixao.com{% url 'album' id %}"><i class="fa fa-facebook"></i></a>
+
+			<a class="btn btn-default social-sh twt" href="https://twitter.com/home?status=aloinargixao.com{% url 'album' id %}"><i class="fa fa-twitter"></i></a>
+
+			<a class="btn btn-default social-sh ln" href="https://www.linkedin.com/shareArticle?mini=true&url=aloinargixao.com{% url 'album' id %}"><i class="fa fa-linkedin"></i></a>
+		</div>
+
 	</div>
 </div>
 {% endblock %}

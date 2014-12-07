@@ -88,7 +88,7 @@ a{ color:darkred;}
 li{list-style:none;}
 .header h1{ color:white;font-family: 'EB Garamond', serif; font-size:32px; margin:0; }
 .header h1 img{ width:60px; }
-h2{ margin:0; font-size:55px;}
+h2{ margin:0; font-size:35px;}
 h2 a{ color:black; }
 a{
     -webkit-transition: color 0.4s ease-in-out;
