@@ -8,7 +8,7 @@
 		<ul class="resul">
 			{% for result in edition.list %}
 				<li>
-				{% if result.position %}{{result.position}}º{% endif %}<b><a href="#">{{result.user.get_short_name}}</a></b>{% if result.position_cat and result.position_cat < 4 %}(cat{{result.position_cat}}º){% endif %} {% if result.distancemark %}{{  result.distancemark }}{% endif %}{% if result.timemark %}{{result.timemark}}{% endif %}</li>
+				{% if result.position %}{{result.position}}º{% endif %}<b><a href="#">{{result.user.get_short_name}}</a></b>{% if result.position_cat and result.position_cat < 4 %}(cat{{result.position_cat}}º){% endif %} {% if result.distancemark %}{{  result.distancemark }}m{% endif %}{% if result.timemark %}{{result.timemark}}{% endif %}</li>
 			{% endfor %}
 		</ul>
 	{% endfor %}

@@ -65,11 +65,13 @@
 								{% endif %}
 								<ul class="resul">
 									{% for g in gen.list%}
-										<li>{{g.position}}º<b><a href="#">{{g.user.get_full_name}}</a>
+										<li>{% if g.position %}{{g.position}}º{% endif %}<b><a href="#">{{g.user.get_full_name}}</a>
 									{% if g.position_cat %}
 										(cat {{g.position_cat}}º)
 									{% endif %}
-									</b> {{g.timemark}}</li>
+									</b> {% if g.timemark %}{{g.timemark}}{% endif %}
+										 {% if g.distancemark %}{{g.distancemark}}{% endif %}
+									</li>
 									{% endfor %}
 								</ul>
 							{% endfor %}
