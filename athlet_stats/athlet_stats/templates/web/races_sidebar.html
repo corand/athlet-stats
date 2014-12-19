@@ -7,7 +7,8 @@
 		<li><h4><a href="#">{{ edition.grouper }}</a></h4></li>
 		<ul class="resul">
 			{% for result in edition.list %}
-				<li>{{result.position}}º<b><a href="#">{{result.user.get_short_name}}</a></b>{% if result.position_cat and result.position_cat < 4 %}(cat{{result.position_cat}}º){% endif %} {{result.timemark}}</li>
+				<li>
+				{% if result.position %}{{result.position}}º{% endif %}<b><a href="#">{{result.user.get_short_name}}</a></b>{% if result.position_cat and result.position_cat < 4 %}(cat{{result.position_cat}}º){% endif %} {{result.timemark}}</li>
 			{% endfor %}
 		</ul>
 	{% endfor %}
