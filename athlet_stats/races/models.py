@@ -114,7 +114,7 @@ class Result(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     edition = models.ForeignKey(Edition)
     timemark = DurationField(blank=True,null=True)
-    distancemark = models.PositiveIntegerField(blank=True,null=True)
+    distancemark = models.FloatField(blank=True,null=True)
     position = models.PositiveIntegerField(blank=True,null=True)
     position_cat = models.PositiveIntegerField(blank=True,null=True)
     comment = models.TextField(blank=True,null=True)
