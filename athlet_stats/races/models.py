@@ -119,5 +119,8 @@ class Result(models.Model):
     position_cat = models.PositiveIntegerField(blank=True,null=True)
     comment = models.TextField(blank=True,null=True)
 
+    class Meta:
+        managed = True
+
     def __unicode__(self):
         return self.edition.name + " - " + self.user.name
