@@ -2,6 +2,8 @@ h1 p{ margin: 0;}
 ::-moz-selection { color: white;  background: #C34A2C; }
 ::selection      { color: white;  background: #C34A2C; } 
 
+table{ font-size:0.8em;}
+
 .about_us{ font-size: 1.3em; }
 
 .fc-day-grid-event>.fc-content {

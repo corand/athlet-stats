@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.utils import translation
-from races.models import Edition,Result,Race
+from races.models import Edition,Result,Race,Season
 from datetime import datetime,timedelta
 import pytz
 from pytz import timezone
@@ -17,6 +17,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.conf import settings
 import flickr_api
+from django.db import connection
 
 
 class PostList(ListView):
@@ -177,6 +178,46 @@ class PostView(DetailView):
             context['imagen_eu'] = img_eu['src']
         if img_es:
             context['imagen_es'] = img_es['src']
+        return context
+
+def dictfetchall(cursor): 
+    "Returns all rows from a cursor as a dict" 
+    desc = cursor.description 
+    return [
+            dict(zip([col[0] for col in desc], row)) 
+            for row in cursor.fetchall() 
+    ]
+
+class SeasonRanking(TemplateView):
+    template_name = "web/season_ranking.html"
+    def get_context_data(self, **kwargs):
+        context = super(SeasonRanking, self).get_context_data(**kwargs)
+        season = get_object_or_404(Season,name=self.kwargs['slug'])
+        cursor = connection.cursor()
+
+        # pista cubierta masculino
+        cursor.execute("Select distinct modality, rm.distance,timemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 3 AND pu.gender = 1 AND re.date > '"+ str(season.start_date) +"' AND re.date < '"+ str(season.end_date) +"' AND rrt.name = 'duration' AND rr.timemark = ( Select min(rr2.timemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND re2.date > '"+ str(season.start_date) +"' AND re2.date < '"+ str(season.end_date) +"' AND pu2.gender=pu.gender) order by rm.distance");
+        context["cubierta_masculino"] = dictfetchall(cursor)
+        # lanzamientos
+        cursor.execute("Select distinct modality, rm.distance,distancemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 3 AND pu.gender = 1 AND re.date > '"+ str(season.start_date) +"' AND re.date < '"+ str(season.end_date) +"' AND rrt.name = 'distance' AND rr.distancemark = ( Select min(rr2.distancemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND re2.date > '"+ str(season.start_date) +"' AND re2.date < '"+ str(season.end_date) +"'  AND pu2.gender=pu.gender) order by rm.distance")
+        context["cubierta_lanzamientos_masculino"] = dictfetchall(cursor)
+
+        # pista cubierta femenino
+        cursor.execute("Select distinct modality, rm.distance,timemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 3 AND re.date > '"+ str(season.start_date) +"' AND re.date < '"+ str(season.end_date) +"'  AND pu.gender = 2 AND rrt.name = 'duration' AND rr.timemark = ( Select min(rr2.timemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND re2.date > '"+ str(season.start_date) +"' AND re2.date < '"+ str(season.end_date) +"'  AND pu2.gender=pu.gender) order by rm.distance");
+        context["cubierta_femenino"] = dictfetchall(cursor)
+        # lanzamientos
+        cursor.execute("Select distinct modality, rm.distance,distancemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 3 AND pu.gender = 2 AND re.date > '"+ str(season.start_date) +"' AND re.date < '"+ str(season.end_date) +"' AND rrt.name = 'distance' AND rr.distancemark = ( Select min(rr2.distancemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND re2.date > '"+ str(season.start_date) +"' AND re2.date < '"+ str(season.end_date) +"'  AND pu2.gender=pu.gender) order by rm.distance")
+        context["cubierta_lanzamientos_femenino"] = dictfetchall(cursor)
+
+        # asfalto
+        cursor.execute("Select distinct modality, rm.distance,timemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 1 AND pu.gender = 1 AND re.date > '"+ str(season.start_date) +"' AND re.date < '"+ str(season.end_date) +"'  AND modality != 'Otro' AND rrt.name = 'duration' AND rr.timemark = ( Select min(rr2.timemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND re2.date > '"+ str(season.start_date) +"' AND re2.date < '"+ str(season.end_date) +"' AND pu2.gender=pu.gender) order by rm.distance")
+        context["asfalto_masculino"] = dictfetchall(cursor)
+
+        cursor.execute("Select distinct modality, rm.distance,timemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 1 AND pu.gender =2 AND re.date > '"+ str(season.start_date) +"' AND re.date < '"+ str(season.end_date) +"'  AND modality != 'Otro' AND rrt.name = 'duration' AND rr.timemark = ( Select min(rr2.timemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND re2.date > '"+ str(season.start_date) +"' AND re2.date < '"+ str(season.end_date) +"' AND pu2.gender=pu.gender) order by rm.distance")
+        context["asfalto_femenino"] = dictfetchall(cursor)
+
+        context["season"] = season
+
         return context
     
 

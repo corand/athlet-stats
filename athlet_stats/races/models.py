@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from durationfield.db.models.fields.duration import DurationField
 from django.contrib.auth import get_user_model as user_model
 from datetime import date
+from snippets.slughifi import slughifi
 from django.conf import settings
 #User = user_model()
 
@@ -31,6 +32,17 @@ WEEK_CHOICES = (
     (3,'Tres'),
     (4,'Cuatro'),
 )
+
+class Season(models.Model):
+    name = models.SlugField(max_length=100)
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
+    def save(self,*args,**kwargs):
+        self.name = slughifi(self.name)
+        super(Season, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return str(self.id) + self.name
 
 
 class Race(models.Model):
