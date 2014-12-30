@@ -3,9 +3,9 @@
 {% load i18n %}
 {% block opengraph %}
 	{% if LANGUAGE_CODE == 'eu' %}
-		<meta property="og:title" content="Taldeko denboraldiko marken rankinga"/>
+		<meta property="og:title" content="Taldeko {{season.name}} denboraldiko marken rankinga"/>
 	{% else %}
-		<meta property="og:title" content="Rangking de marcas del club"/>
+		<meta property="og:title" content="Rangking de marcas del club de la temporada {{season.name}}"/>
 	{% endif %}
 		<meta property="og:url" content="aloinargixao.com"/>
 		<meta property="og:image" content="{{STATIC_URL}}img/eskudo_aloina.png"/>
