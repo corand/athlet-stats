@@ -45,7 +45,7 @@
         </Tr>
         {% for cm in cubierta_masculino %}
         <Tr>
-          <Td><a href="#">{{cm.modality}}</a></Td>
+          <Td><a href="{% url 'modalityseasonranking' season.id cm.modality_id 'time' 'masc' %}">{{cm.modality}}</a></Td>
           <Td>{{cm.timemark|totime}}</Td>
           <Td><a href="#">{{cm.izena}} {{cm.first_surname}}</a></Td>
           <Td>{{cm.name}}</Td>
@@ -65,7 +65,7 @@
         </Tr>
         {% for clm in cubierta_lanzamientos_masculino %}
         <Tr>
-          <Td><a href="#">{{clm.modality}}</a></Td>
+          <Td><a href="{% url 'modalityseasonranking' season.id clm.modality_id 'dist' 'masc' %}">{{clm.modality}}</a></Td>
           <Td>{{clm.distancemark}}m</Td>
           <Td><a href="#">{{clm.izena}} {{clm.first_surname}}</a></Td>
           <Td>{{clm.name}}</Td>
@@ -87,7 +87,7 @@
         </Tr>
         {% for cf in cubierta_femenino %}
         <Tr>
-          <Td><a href="#">{{cf.modality}}</a></Td>
+          <Td><a href="{% url 'modalityseasonranking' season.id cf.modality_id 'time' 'fem' %}">{{cf.modality}}</a></Td>
           <Td>{{cf.timemark|totime}}</Td>
           <Td><a href="#">{{cf.izena}} {{cf.first_surname}}</a></Td>
           <Td>{{cf.name}}</Td>
@@ -106,7 +106,7 @@
         </Tr>
         {% for clf in cubierta_lanzamientos_femenino %}
         <Tr>
-          <Td><a href="#">{{clf.modality}}</a></Td>
+          <Td><a href="{% url 'modalityseasonranking' season.id clf.modality_id 'dist' 'fem' %}">{{clf.modality}}</a></Td>
           <Td>{{clf.distancemark}}m</Td>
           <Td><a href="#">{{clf.izena}} {{clf.first_surname}}</a></Td>
           <Td>{{clf.name}}</Td>
@@ -133,7 +133,7 @@
           </Tr>
           {% for am in asfalto_masculino %}
           <Tr>
-            <Td><a href="#">{{am.modality}}</a></Td>
+            <Td><a href="{% url 'modalityseasonranking' season.id am.modality_id 'time' 'masc' %}">{{am.modality}}</a></Td>
             <Td>{{am.timemark|totime}}</Td>
             <Td><a href="#">{{am.izena}} {{am.first_surname}}</a></Td>
             <Td>{{am.name}}</Td>
@@ -154,7 +154,7 @@
           </Tr>
           {% for af in asfalto_femenino %}
           <Tr>
-            <Td><a href="#">{{af.modality}}</a></Td>
+            <Td><a href="{% url 'modalityseasonranking' season.id af.modality_id 'time' 'fem' %}">{{af.modality}}</a></Td>
             <Td>{{af.timemark|totime}}</Td>
             <Td><a href="#">{{af.izena}} {{af.first_surname}}</a></Td>
             <Td>{{af.name}}</Td>

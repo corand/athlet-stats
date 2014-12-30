@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-30 13:50+0100\n"
-"PO-Revision-Date: 2014-12-08 00:36-0015\n"
+"POT-Creation-Date: 2014-12-30 16:35+0100\n"
+"PO-Revision-Date: 2014-12-30 16:14-0015\n"
 "Last-Translator: Anonymous User <andoni.correas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: athlet_stats/settings.py:162
+#: athlet_stats/settings.py:155
 msgid "Castellano"
 msgstr ""
 
-#: athlet_stats/settings.py:163
+#: athlet_stats/settings.py:156
 msgid "Euskara"
 msgstr ""
 
@@ -65,8 +65,10 @@ msgid "fotos"
 msgstr "Argazkiak"
 
 #: athlet_stats/templates/web/base.html:54
-msgid "uno a uno"
-msgstr "Banan banan"
+#: athlet_stats/templates/web/modality_season_ranking.html:30
+#: athlet_stats/templates/web/season_ranking.html:30
+msgid "Ranking Temporada"
+msgstr "Denboraldiko Rankinga"
 
 #: athlet_stats/templates/web/base.html:56
 msgid "acerca de nosotros"
@@ -90,6 +92,68 @@ msgstr "Zaharragoak"
 msgid "mas recientes"
 msgstr "Berriagoak"
 
+#: athlet_stats/templates/web/modality_season_ranking.html:34
+msgid "todas las pruebas"
+msgstr "Froga Guztiak"
+
+#: athlet_stats/templates/web/modality_season_ranking.html:38
+#: athlet_stats/templates/web/season_ranking.html:40
+#: athlet_stats/templates/web/season_ranking.html:60
+#: athlet_stats/templates/web/season_ranking.html:82
+#: athlet_stats/templates/web/season_ranking.html:101
+#: athlet_stats/templates/web/season_ranking.html:128
+#: athlet_stats/templates/web/season_ranking.html:149
+msgid "Prueba"
+msgstr "Froga"
+
+#: athlet_stats/templates/web/modality_season_ranking.html:41
+#: athlet_stats/templates/web/season_ranking.html:37
+#: athlet_stats/templates/web/season_ranking.html:125
+#, fuzzy
+#| msgid "masculino"
+msgid "Masculino"
+msgstr "Gizonezkoak"
+
+#: athlet_stats/templates/web/modality_season_ranking.html:44
+#: athlet_stats/templates/web/season_ranking.html:41
+#: athlet_stats/templates/web/season_ranking.html:61
+#: athlet_stats/templates/web/season_ranking.html:83
+#: athlet_stats/templates/web/season_ranking.html:102
+#: athlet_stats/templates/web/season_ranking.html:129
+#: athlet_stats/templates/web/season_ranking.html:150
+msgid "Marca"
+msgstr "Marka"
+
+#: athlet_stats/templates/web/modality_season_ranking.html:45
+#: athlet_stats/templates/web/season_ranking.html:42
+#: athlet_stats/templates/web/season_ranking.html:62
+#: athlet_stats/templates/web/season_ranking.html:84
+#: athlet_stats/templates/web/season_ranking.html:103
+#: athlet_stats/templates/web/season_ranking.html:130
+#: athlet_stats/templates/web/season_ranking.html:151
+msgid "Nombre"
+msgstr "Izena"
+
+#: athlet_stats/templates/web/modality_season_ranking.html:46
+#: athlet_stats/templates/web/season_ranking.html:43
+#: athlet_stats/templates/web/season_ranking.html:63
+#: athlet_stats/templates/web/season_ranking.html:85
+#: athlet_stats/templates/web/season_ranking.html:104
+#: athlet_stats/templates/web/season_ranking.html:131
+#: athlet_stats/templates/web/season_ranking.html:152
+msgid "Lugar"
+msgstr "Lekua"
+
+#: athlet_stats/templates/web/modality_season_ranking.html:47
+#: athlet_stats/templates/web/season_ranking.html:44
+#: athlet_stats/templates/web/season_ranking.html:64
+#: athlet_stats/templates/web/season_ranking.html:86
+#: athlet_stats/templates/web/season_ranking.html:105
+#: athlet_stats/templates/web/season_ranking.html:132
+#: athlet_stats/templates/web/season_ranking.html:153
+msgid "Fecha"
+msgstr "Data"
+
 #: athlet_stats/templates/web/races_sidebar.html:3
 msgid "azken emaitzak"
 msgstr "Azken Emaitzak"
@@ -103,74 +167,18 @@ msgstr "Gizonezkoak"
 msgid "femenino"
 msgstr "Emakumeak"
 
-#: athlet_stats/templates/web/season_ranking.html:30
-msgid "Ranking Temporada"
-msgstr ""
-
 #: athlet_stats/templates/web/season_ranking.html:34
 msgid "Pista Cubierta"
-msgstr ""
-
-#: athlet_stats/templates/web/season_ranking.html:37
-#: athlet_stats/templates/web/season_ranking.html:125
-#, fuzzy
-#| msgid "masculino"
-msgid "Masculino"
-msgstr "Gizonezkoak"
-
-#: athlet_stats/templates/web/season_ranking.html:40
-#: athlet_stats/templates/web/season_ranking.html:60
-#: athlet_stats/templates/web/season_ranking.html:82
-#: athlet_stats/templates/web/season_ranking.html:101
-#: athlet_stats/templates/web/season_ranking.html:128
-#: athlet_stats/templates/web/season_ranking.html:149
-msgid "Prueba"
-msgstr ""
-
-#: athlet_stats/templates/web/season_ranking.html:41
-#: athlet_stats/templates/web/season_ranking.html:61
-#: athlet_stats/templates/web/season_ranking.html:83
-#: athlet_stats/templates/web/season_ranking.html:102
-#: athlet_stats/templates/web/season_ranking.html:129
-#: athlet_stats/templates/web/season_ranking.html:150
-msgid "Marca"
-msgstr ""
-
-#: athlet_stats/templates/web/season_ranking.html:42
-#: athlet_stats/templates/web/season_ranking.html:62
-#: athlet_stats/templates/web/season_ranking.html:84
-#: athlet_stats/templates/web/season_ranking.html:103
-#: athlet_stats/templates/web/season_ranking.html:130
-#: athlet_stats/templates/web/season_ranking.html:151
-msgid "Nombre"
-msgstr ""
-
-#: athlet_stats/templates/web/season_ranking.html:43
-#: athlet_stats/templates/web/season_ranking.html:63
-#: athlet_stats/templates/web/season_ranking.html:85
-#: athlet_stats/templates/web/season_ranking.html:104
-#: athlet_stats/templates/web/season_ranking.html:131
-#: athlet_stats/templates/web/season_ranking.html:152
-msgid "Lugar"
-msgstr ""
-
-#: athlet_stats/templates/web/season_ranking.html:44
-#: athlet_stats/templates/web/season_ranking.html:64
-#: athlet_stats/templates/web/season_ranking.html:86
-#: athlet_stats/templates/web/season_ranking.html:105
-#: athlet_stats/templates/web/season_ranking.html:132
-#: athlet_stats/templates/web/season_ranking.html:153
-msgid "Fecha"
-msgstr ""
+msgstr "Pista Estalia"
 
 #: athlet_stats/templates/web/season_ranking.html:57
 #: athlet_stats/templates/web/season_ranking.html:98
 msgid "Saltos y Lanzamientos"
-msgstr ""
+msgstr "Jaurtiketa eta Jauziak"
 
 #: athlet_stats/templates/web/season_ranking.html:123
 msgid "Asfalto"
-msgstr ""
+msgstr "Asfaltoa"
 
 #: athlet_stats/templates/web/season_ranking.html:146
 #, fuzzy
@@ -205,6 +213,9 @@ msgstr "Norbere deskribapena euskaraz"
 #: profiles/models.py:42
 msgid "coach_description"
 msgstr "Entrenatzailearen deskribapena"
+
+#~ msgid "uno a uno"
+#~ msgstr "Banan banan"
 
 #~ msgid "temporada 2014/2015"
 #~ msgstr "2014/2015 Denboraldia"

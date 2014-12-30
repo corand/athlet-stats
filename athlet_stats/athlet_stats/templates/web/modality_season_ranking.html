@@ -1,0 +1,109 @@
+{% extends 'web/base.html' %}
+{% load web_extras %}
+{% load i18n %}
+{% block opengraph %}
+  {% if LANGUAGE_CODE == 'eu' %}
+    <meta property="og:title" content="Taldeko denboraldiko marken rankinga"/>
+  {% else %}
+    <meta property="og:title" content="Rangking de marcas del club"/>
+  {% endif %}
+    <meta property="og:url" content="aloinargixao.com"/>
+    <meta property="og:image" content="{{STATIC_URL}}img/eskudo_aloina.png"/>
+    <meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
+{% endblock %}
+
+{% block switchlang %}
+  <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+    <select name="language"  onchange="this.form.submit()" class="idiomas">
+      <option value="es" {% if "es" == LANGUAGE_CODE %} selected="selected"{% endif %}>Español</option>
+      <option value="eu"  {% if "eu" == LANGUAGE_CODE %} selected="selected"{% endif %}>Euskara</option>
+    </select>
+  </form>
+{% endblock %}
+
+{% block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-16 about_us">
+      <h1>{% trans "Ranking Temporada" %} {{season.name}}</h1>
+      
+      <hr />
+
+      <a class="btn btn-default" href="{% url "seasonranking" season.name %}">{% trans "todas las pruebas" %}</a>
+
+      <hr />
+
+      <h2>{% trans "Prueba" %}: {{modality.race_type|title}} {{modality.modality}}</h2>
+    </div>
+    <div class="col-md-16">
+      <h3>{% trans "Masculino" %}</h3>
+      <Table class="table table-striped">
+        <Tr>
+          <Th>{% trans "Marca" %}</Th>
+          <Th>{% trans "Nombre" %}</Th>
+          <Th>{% trans  "Lugar" %}</Th>
+          <Th>{% trans "Fecha" %}</Th>
+        </Tr>
+        {% for cm in ranking %}
+        <Tr>
+          <Td>
+            {% if modality.result_type.name == "distance" %}
+              {{cm.distancemark}}m
+            {% else %}
+              {{cm.timemark|totime}}
+            {% endif %}
+          </Td>
+          <Td><a href="#">{{cm.izena}} {{cm.first_surname}} {{cm.second_surname}}</a></Td>
+          <Td>{{cm.name}}</Td>
+          <Td>{{cm.date}}</Td>
+        </Tr>
+        {% endfor %}
+      </Table>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+<script>
+var body = $("html, body");
+$(".scroll_top").on('click',function(){
+  body.animate({scrollTop:0}, '1000', 'swing');
+});
+
+$(window).scroll(function(){
+    var $scrollTop = $(window).scrollTop();
+    if($scrollTop > 135){
+        $(".navbar-nav>li>a").css({"padding":"0px 15px"});
+        $(".navbar").css({"box-shadow":"0 5px 10px 0"});
+        $(".navbar").addClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"1"});
+    }else{
+      $(".navbar-nav>li>a").css({"padding":"10px 15px"});
+        $(".navbar").css({"box-shadow":"0 1px 5px 0"});
+        $(".navbar").removeClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"0"});
+    }
+});
+
+setTimeout(function(){
+  $(".social").css({"margin-left":"0"});
+  $(".share").css({"margin-left":"0"});
+},1000);
+</script>
+
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&appId=250198748439697&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endblock %}

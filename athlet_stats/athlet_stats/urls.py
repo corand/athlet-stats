@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     url(r'^taldea/$', web_views.AboutUs.as_view(),name="aboutus"),
     url(r'^emaitzak/$', web_views.Results.as_view(),name="webresults"),
     url(r'^ranking/temp/(?P<slug>[-\w]+)$', web_views.SeasonRanking.as_view(),name="seasonranking"),
-
+    url(r'^(?P<season_id>\w+)/mod/(?P<mod_id>\w+)/(?P<dist_time>[-\w]+)/(?P<gender>[-\w]+)$', web_views.ModalitySeasonRanking.as_view(),name="modalityseasonranking"),
     url(r'^lasterketak/$', web_views.eventsFeed,name="lasterketak"),
     url(r'^$', web_views.PostList.as_view(),name="blog"),
     url(r'^ckeditor/', include('ckeditor.urls')),

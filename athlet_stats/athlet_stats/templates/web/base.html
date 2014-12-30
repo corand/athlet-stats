@@ -51,7 +51,7 @@
 		      		<li {% if active == "calendar" %} class="active" {% endif %}><a href="{% url 'calendar' %}"><i class="fa fa-calendar"></i> {% trans "calendario" %}</a></li>
 		      		<li {% if active == "results" %} class="active" {% endif %}><a href="{% url 'webresults' %}"><i class="fa fa-trophy"></i> {% trans "resultados" %}</a></li>
 		      		<li {% if active == "album" %} class="active" {% endif %}><a href="{% url 'albums' %}"><i class="fa fa-camera"></i> {% trans "fotos" %}</a></li>
-		      		<li class="disabled"><a href="#"><i class="fa fa-users"></i> {% trans "uno a uno" %}</a></li>
+		      		<li  {% if active == "ranking" %} class="active" {% endif %}><a href="{% url "seasonranking" "2014-2015" %}"><i class="fa fa-flag-checkered"></i> {% trans "Ranking Temporada" %}</a></li>
 		      		<li  {% if active == "archive" %} class="active" {% endif %}><a href="{% url 'archive' %}"><i class="fa fa-suitcase"></i> {% trans "archivo" %}</a></li>
 		            <li {% if active == "about" %} class="active" {% endif %}><a href="{% url 'aboutus' %}"><i class="fa fa-question-circle"></i> {% trans "acerca de nosotros" %}</a></li>
 		      </ul>
