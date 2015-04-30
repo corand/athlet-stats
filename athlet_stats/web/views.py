@@ -176,8 +176,18 @@ class PostView(DetailView):
         img_es = soup_es.find('img')
         if img_eu:
             context['imagen_eu'] = img_eu['src']
+        else:
+            if img_es:
+                context['imagen_eu'] = img_es['src']
         if img_es:
             context['imagen_es'] = img_es['src']
+        else:
+            if img_eu:
+                context['imagen_es'] = img_eu['src']
+
+        enddate = datetime.now().date() + timedelta(days=1)
+        startdate = enddate - timedelta(days=15)
+        context['results'] = Result.objects.filter(edition__date__range=[startdate,enddate]).order_by('-edition__date','edition__name','user__gender','position','timemark')
         return context
 
 def dictfetchall(cursor): 
