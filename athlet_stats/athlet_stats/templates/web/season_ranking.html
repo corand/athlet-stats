@@ -31,6 +31,94 @@
       
       <hr />
 
+      <h2>{% trans "Aire Libre" %}</h2>
+
+    </div>
+    <div class="col-md-7">
+      <h3>{% trans "Masculino" %}</h3>
+      <Table class="table table-striped">
+        <Tr>
+          <Th>{% trans "Prueba" %}</Th>
+          <Th>{% trans "Marca" %}</Th>
+          <Th>{% trans "Nombre" %}</Th>
+          <Th>{% trans  "Lugar" %}</Th>
+          <Th>{% trans "Fecha" %}</Th>
+        </Tr>
+        {% for alm in aire_libre_masculino %}
+        <Tr>
+          <Td><a href="{% url 'modalityseasonranking' season.id alm.modality_id 'time' 'masc' %}">{{alm.modality}}</a></Td>
+          <Td>{{alm.timemark|totime}}</Td>
+          <Td><a href="#">{{alm.izena}} {{alm.first_surname}}</a></Td>
+          <Td>{{alm.name}}</Td>
+          <Td>{{alm.date}}</Td>
+        </Tr>
+        {% endfor %}
+      </Table>
+
+      <h3>{% trans "Saltos y Lanzamientos" %}</h3>
+      <Table class="table table-striped">
+        <Tr>
+          <Th>{% trans "Prueba" %}</Th>
+          <Th>{% trans "Marca" %}</Th>
+          <Th>{% trans "Nombre" %}</Th>
+          <Th>{% trans  "Lugar" %}</Th>
+          <Th>{% trans "Fecha" %}</Th>
+        </Tr>
+        {% for allm in aire_libre_lanzamientos_masculino %}
+        <Tr>
+          <Td><a href="{% url 'modalityseasonranking' season.id allm.modality_id 'dist' 'masc' %}">{{allm.modality}}</a></Td>
+          <Td>{{allm.distancemark}}m</Td>
+          <Td><a href="#">{{allm.izena}} {{allm.first_surname}}</a></Td>
+          <Td>{{allm.name}}</Td>
+          <Td>{{allm.date}}</Td>
+        </Tr>
+        {% endfor %}
+      </Table>
+    </div>
+
+    <div class="col-md-7 col-md-offset-1">
+      <h3>{% trans "femenino" %}</h3>
+      <Table class="table table-striped">
+        <Tr>
+          <Th>{% trans "Prueba" %}</Th>
+          <Th>{% trans "Marca" %}</Th>
+          <Th>{% trans "Nombre" %}</Th>
+          <Th>{% trans  "Lugar" %}</Th>
+          <Th>{% trans "Fecha" %}</Th>
+        </Tr>
+        {% for alf in aire_libre_femenino %}
+        <Tr>
+          <Td><a href="{% url 'modalityseasonranking' season.id alf.modality_id 'time' 'fem' %}">{{alf.modality}}</a></Td>
+          <Td>{{alf.timemark|totime}}</Td>
+          <Td><a href="#">{{alf.izena}} {{alf.first_surname}}</a></Td>
+          <Td>{{alf.name}}</Td>
+          <Td>{{alf.date}}</Td>
+        </Tr>
+        {% endfor %}
+      </Table>
+      <h3>{% trans "Saltos y Lanzamientos" %}</h3>
+      <Table class="table table-striped">
+        <Tr>
+          <Th>{% trans "Prueba" %}</Th>
+          <Th>{% trans "Marca" %}</Th>
+          <Th>{% trans "Nombre" %}</Th>
+          <Th>{% trans  "Lugar" %}</Th>
+          <Th>{% trans "Fecha" %}</Th>
+        </Tr>
+        {% for allf in aire_libre_lanzamientos_femenino %}
+        <Tr>
+          <Td><a href="{% url 'modalityseasonranking' season.id allf.modality_id 'dist' 'fem' %}">{{allf.modality}}</a></Td>
+          <Td>{{allf.distancemark}}m</Td>
+          <Td><a href="#">{{allf.izena}} {{allf.first_surname}}</a></Td>
+          <Td>{{allf.name}}</Td>
+          <Td>{{allf.date}}</Td>
+        </Tr>
+        {% endfor %}
+      </Table>
+    </div>
+
+
+    <div class="col-md-16 about_us">
       <h2>{% trans "Pista Cubierta" %}</h2>
 		</div>
     <div class="col-md-7">
