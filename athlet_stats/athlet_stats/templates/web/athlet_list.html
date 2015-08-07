@@ -7,7 +7,7 @@
 		<meta property="og:title" content="Atletas de Aloña Mendi Atletismo y Atletas de argixao"/>
 	{% endif %}
 		<meta property="og:url" content="aloinargixao.com"/>
-		<meta property="og:image" content="{{STATIC_URL}}img/eskudo_aloina.png"/>
+		<meta property="og:image" content="{{STATIC_URL}}img/profilepic.png"/>
 		<meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
 {% endblock %}
 
@@ -31,7 +31,7 @@
         {% for athlet in athlets %}
             <li>
               {% if athlet.profile_picture %}
-                <img src="{{STATIC_URL}}{{athlet.profile_picture}}" />
+                <img src="{{MEDIA_URL}}{{athlet.profile_picture}}" />
               {% else %}
                   <img src="{{STATIC_URL}}img/profilepic.png" />
               {% endif %}
