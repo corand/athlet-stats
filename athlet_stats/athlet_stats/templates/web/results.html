@@ -38,7 +38,7 @@
 
 			{% regroup results by edition.date|date:"F" as month_list %}
 			{% for month in month_list %}
-				<li><h2>{{ month.grouper }}</h4></li>
+				<li><h2>{{ month.grouper }}</h2></li>
 
 				{% regroup month.list by edition.date|date:"j" as day_list %}
 				<ul class="result_day">

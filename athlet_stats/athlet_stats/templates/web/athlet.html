@@ -1,0 +1,240 @@
+	{% extends 'web/base.html' %}
+{% load i18n %}
+{% load web_extras %}
+{% block opengraph %}
+	{% if LANGUAGE_CODE == 'eu' %}
+		<meta property="og:title" content="Aloña Mendi Atletismo eta Atletas de Argixao taldeako korrikalariak"/>
+	{% else %}
+		<meta property="og:title" content="Atletas de Aloña Mendi Atletismo y Atletas de argixao"/>
+	{% endif %}
+		<meta property="og:url" content="aloinargixao.com"/>
+		<meta property="og:image" content="{{STATIC_URL}}img/eskudo_aloina.png"/>
+		<meta property="og:site_name" content="Aloña Mendi Atletismo & Atletas de Argixao"/>
+{% endblock %}
+
+{% block switchlang %}
+  <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />
+    <select name="language"  onchange="this.form.submit()" class="idiomas">
+      <option value="es" {% if "es" == LANGUAGE_CODE %} selected="selected"{% endif %}>Español</option>
+      <option value="eu"  {% if "eu" == LANGUAGE_CODE %} selected="selected"{% endif %}>Euskara</option>
+    </select>
+  </form>
+{% endblock %}
+
+{% block content%}
+<div class="container">
+	<div class="row">
+	  <div class="col-md-4">
+	    <div class="thumbnail">
+	    {% if athlet.profile_picture %}
+	    	<img src="{{STATIC_URL}}{{athlet.profile_picture}}">
+	    {% else %}
+	      	<img src="{{STATIC_URL}}img/profilepic.png">
+	    {% endif %}
+	      <div class="caption">
+	        <h3>{{athlet.name}} {{athlet.first_surname}} {{athlet.second_surname}} <br /></h3>
+	        {% if age %}
+	        	<p>{{age}} años<p>
+	        {% endif %}
+	        {% if athlet.twitter %}
+	        	<a class="btn btn-default" href="{{athlet.twitter}}" target="_blank"><i class="fa fa-twitter"></i></a>
+	        {% endif %}
+	      </div>
+	    </div>
+	  </div>
+
+	  <div class="col-md-12">
+	  		<h3>{% trans "mejores marcas" %}</h3>
+	  		<div class="well well-sm"><i>{% trans "En pruebas realizadas a partir de Septiembre del 2014" %}</div>
+	  		<h4>{% trans "pista aire libre" %}</h4>
+	  		{% if aire_libre|length > 0 or lanzamientos_aire_libre|length > 0 %}
+	  			{% if aire_libre|length > 0 %}
+			  		<table class="table">
+			  			<tr>
+							<Th>{% trans "Prueba" %}</Th>
+							<Th>{% trans "Marca" %}</Th>
+							<Th>{% trans  "Lugar" %}</Th>
+							<Th>{% trans "Fecha" %}</Th>
+			  			</tr>
+				  		{% for al in aire_libre %}
+					        <Tr>
+					          <Td>{{al.modality}}</Td>
+					          <Td>{{al.timemark|totime}}</Td>
+					          <Td>{{al.name}}</Td>
+					          <Td>{{al.date}}</Td>
+					        </Tr>
+			        	{% endfor %}
+		   			 </table>
+		   		{% endif %}
+
+		   		{% if lanzamientos_aire_libre|length > 0 %}
+		   			 <table class="table">
+			  			<tr>
+							<Th>{% trans "Prueba" %}</Th>
+							<Th>{% trans "Marca" %}</Th>
+							<Th>{% trans  "Lugar" %}</Th>
+							<Th>{% trans "Fecha" %}</Th>
+			  			</tr>
+				  		{% for lal in lanzamientos_aire_libre %}
+					        <Tr>
+								<Td>{{lal.modality}}</Td>
+								<Td>{{lal.distancemark}}m</Td>
+								<Td>{{lal.name}}</Td>
+								<Td>{{lal.date}}</Td>
+					        </Tr>
+			        	{% endfor %}
+		   			 </table>
+		   		{% endif %}
+
+	   		{% else %}
+	   			<i>{% trans "sin resultados al aire libre" %}</i>
+	   		{% endif %}
+    		<h4>{% trans "Pista cubierta" %}</h4>
+
+    		{% if cubierta|length > 0 or lanzamientos_cubierta|length > 0 %}
+	  			{% if cubierta|length > 0 %}
+			  		<table class="table">
+			  			<tr>
+							<Th>{% trans "Prueba" %}</Th>
+							<Th>{% trans "Marca" %}</Th>
+							<Th>{% trans  "Lugar" %}</Th>
+							<Th>{% trans "Fecha" %}</Th>
+			  			</tr>
+				  		{% for cu in cubierta %}
+					        <Tr>
+					          <Td>{{cu.modality}}</Td>
+					          <Td>{{cu.timemark|totime}}</Td>
+					          <Td>{{cu.name}}</Td>
+					          <Td>{{cu.date}}</Td>
+					        </Tr>
+			        	{% endfor %}
+		   			 </table>
+		   		{% endif %}
+
+		   		{% if lanzamientos_cubierta|length > 0 %}
+		   			 <table class="table">
+			  			<tr>
+							<Th>{% trans "Prueba" %}</Th>
+							<Th>{% trans "Marca" %}</Th>
+							<Th>{% trans  "Lugar" %}</Th>
+							<Th>{% trans "Fecha" %}</Th>
+			  			</tr>
+				  		{% for lc in lanzamientos_cubierta %}
+					        <Tr>
+								<Td>{{lc.modality}}</Td>
+								<Td>{{lc.distancemark}}m</Td>
+								<Td>{{lc.name}}</Td>
+								<Td>{{lc.date}}</Td>
+					        </Tr>
+			        	{% endfor %}
+		   			 </table>
+		   		{% endif %}
+
+	   		{% else %}
+	   			<i>{% trans "Sin resultados en pista cubierta" %}</i>
+	   		{% endif %}
+
+
+    		<h4>{% trans "asfalto" %}</h4>
+
+    		{% if asfalto|length > 0 %}
+		  		<table class="table">
+		  			<tr>
+						<Th>{% trans "Prueba" %}</Th>
+						<Th>{% trans "Marca" %}</Th>
+						<Th>{% trans  "Lugar" %}</Th>
+						<Th>{% trans "Fecha" %}</Th>
+		  			</tr>
+			  		{% for as in asfalto %}
+				        <Tr>
+				          <Td>{{as.modality}}</Td>
+				          <Td>{{as.timemark|totime}}</Td>
+				          <Td>{{as.name}}</Td>
+				          <Td>{{as.date}}</Td>
+				        </Tr>
+		        	{% endfor %}
+	   			 </table>
+	   		{% else %}
+	   			<i>{% trans "Sin resultados en distancias oficiales de asfalto" %}</i>
+	   		{% endif %}
+
+	  </div>
+</div>
+
+<div class="row">
+
+	<h3>{% trans "Todas las competiciones" %}</h3>
+	{% if todos|length > 0 %}
+		{% regroup todos by date|date:"Y" as year_list %}
+
+			{% for year in year_list %}
+				<table class="table">
+	  			<tr>
+					<Th>{% trans "Puesto" %}</Th>
+					<Th>{% trans "Lugar" %}</Th>
+					<Th>{% trans  "Marca" %}</Th>
+					<Th>{% trans "Fecha" %}</Th>
+	  			</tr>
+				<h4>{{ year.grouper }}</h4>
+				{% for race in year.list %}
+					<Tr>
+			          <Td>{% if race.position %}{{race.position}}º{% endif %}</Td>
+			          <Td>{{race.name}}</Td>
+			          {% if race.timemark %}
+			          	<Td>{{race.timemark|totime}}</Td>
+			          {% else %}
+			          	<Td>{{race.distancemark}}m</Td>
+			          {% endif %}
+			          <Td>{{race.date}}</Td>
+			        </Tr>
+				{% endfor %}
+				</table>
+			{% endfor %}
+	{% else %}
+		<i>{{athlet.name}} {% trans "no ha competido todavia, o lo ha hecho a escondidas" %}</i>
+	{% endif %}
+
+</div>
+
+
+</div>
+<script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+<script>
+var body = $("html, body");
+$(".scroll_top").on('click',function(){
+	body.animate({scrollTop:0}, '1000', 'swing');
+});
+
+$(window).scroll(function(){
+    var $scrollTop = $(window).scrollTop();
+    if($scrollTop > 135){
+        $(".navbar-nav>li>a").css({"padding":"0px 15px"});
+        $(".navbar").css({"box-shadow":"0 5px 10px 0"});
+        $(".navbar").addClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"1"});
+    }else{
+    	$(".navbar-nav>li>a").css({"padding":"10px 15px"});
+        $(".navbar").css({"box-shadow":"0 1px 5px 0"});
+        $(".navbar").removeClass("navbar-fixed-top");
+        $(".scroll_top").css({"opacity":"0"});
+    }
+});
+
+setTimeout(function(){
+	$(".social").css({"margin-left":"0"});
+	$(".share").css({"margin-left":"0"});
+},1000);
+</script>
+
+
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&appId=250198748439697&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endblock %}

@@ -12,7 +12,7 @@ class UserProfileCreationForm(forms.ModelForm):
 
 	class Meta:
 		model = UserProfile
-		fields = ("email","profile_picture","name","first_surname","second_surname","gender","self_description_es","self_description_eu","coach_description")
+		fields = ("email","profile_picture","date_of_birth","name","first_surname","second_surname","gender","self_description_es","self_description_eu","coach_description","slug","twitter")
 
 	def clean_password2(self):
 		password1 = self.cleaned_data.get("password1")
@@ -36,6 +36,7 @@ class UserProfileChangeForm(forms.ModelForm):
                     "using <a href=\"password/\">this form</a>."))
 	class Meta:
 		model = UserProfile
+		fields = ("password",)
 
 	def clean_password(self):
 		return self.initial['password']
@@ -46,7 +47,7 @@ class UserProfileAdmin(UserAdmin):
 	add_form = UserProfileCreationForm
 	form = UserProfileChangeForm
 
-	list_display = ("email","is_staff","profile_picture","name","first_surname","second_surname","gender","self_description_es","self_description_eu","coach_description")
+	list_display = ("email","is_staff","profile_picture","date_of_birth","name","first_surname","second_surname","gender","self_description_es","self_description_eu","coach_description","slug","twitter")
 	list_filter = ("is_staff","is_superuser","is_active","groups")
 	search_fields = ("email","name","first_surname")
 	ordering = ("email",)
@@ -54,7 +55,7 @@ class UserProfileAdmin(UserAdmin):
 	fieldsets = (
 			(None, {"fields": ("email","password")}),
 			("Personal info", {"fields":
-										("name","first_surname","second_surname","profile_picture","gender","self_description_es","self_description_eu","coach_description")}),
+										("name","first_surname","second_surname","profile_picture","date_of_birth","gender","self_description_es","self_description_eu","coach_description","slug","twitter")}),
 			("Permissions", {"fields": ("is_active", "is_staff","is_superuser","groups","user_permissions")}),
 			("Important dates", {"fields":("last_login",)}),
 		)

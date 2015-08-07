@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-30 16:35+0100\n"
+"POT-Creation-Date: 2015-08-06 16:54+0200\n"
 "PO-Revision-Date: 2014-12-30 16:13-0015\n"
 "Last-Translator: Anonymous User <andoni.correas@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.7.4\n"
 
-#: athlet_stats/settings.py:155
+#: athlet_stats/settings.py:162
 msgid "Castellano"
 msgstr ""
 
-#: athlet_stats/settings.py:156
+#: athlet_stats/settings.py:163
 msgid "Euskara"
 msgstr ""
 
@@ -48,6 +48,133 @@ msgstr "Album de fotos"
 msgid "archivo"
 msgstr "Archivo"
 
+#: athlet_stats/templates/web/athlet.html:47
+msgid "mejores marcas"
+msgstr "Mejores marcas"
+
+#: athlet_stats/templates/web/athlet.html:48
+msgid "En pruebas realizadas a partir de Septiembre del 2014"
+msgstr "En pruebas realizadas a partir de Septiembre del 2014"
+
+#: athlet_stats/templates/web/athlet.html:49
+msgid "pista aire libre"
+msgstr "Pista aire libre"
+
+#: athlet_stats/templates/web/athlet.html:54
+#: athlet_stats/templates/web/athlet.html:73
+#: athlet_stats/templates/web/athlet.html:98
+#: athlet_stats/templates/web/athlet.html:117
+#: athlet_stats/templates/web/athlet.html:143
+#: athlet_stats/templates/web/modality_season_ranking.html:38
+#: athlet_stats/templates/web/season_ranking.html:41
+#: athlet_stats/templates/web/season_ranking.html:61
+#: athlet_stats/templates/web/season_ranking.html:83
+#: athlet_stats/templates/web/season_ranking.html:102
+#: athlet_stats/templates/web/season_ranking.html:128
+#: athlet_stats/templates/web/season_ranking.html:148
+#: athlet_stats/templates/web/season_ranking.html:170
+#: athlet_stats/templates/web/season_ranking.html:189
+#: athlet_stats/templates/web/season_ranking.html:216
+#: athlet_stats/templates/web/season_ranking.html:237
+msgid "Prueba"
+msgstr "Prueba"
+
+#: athlet_stats/templates/web/athlet.html:55
+#: athlet_stats/templates/web/athlet.html:74
+#: athlet_stats/templates/web/athlet.html:99
+#: athlet_stats/templates/web/athlet.html:118
+#: athlet_stats/templates/web/athlet.html:144
+#: athlet_stats/templates/web/athlet.html:175
+#: athlet_stats/templates/web/modality_season_ranking.html:44
+#: athlet_stats/templates/web/season_ranking.html:42
+#: athlet_stats/templates/web/season_ranking.html:62
+#: athlet_stats/templates/web/season_ranking.html:84
+#: athlet_stats/templates/web/season_ranking.html:103
+#: athlet_stats/templates/web/season_ranking.html:129
+#: athlet_stats/templates/web/season_ranking.html:149
+#: athlet_stats/templates/web/season_ranking.html:171
+#: athlet_stats/templates/web/season_ranking.html:190
+#: athlet_stats/templates/web/season_ranking.html:217
+#: athlet_stats/templates/web/season_ranking.html:238
+msgid "Marca"
+msgstr "Marca"
+
+#: athlet_stats/templates/web/athlet.html:56
+#: athlet_stats/templates/web/athlet.html:75
+#: athlet_stats/templates/web/athlet.html:100
+#: athlet_stats/templates/web/athlet.html:119
+#: athlet_stats/templates/web/athlet.html:145
+#: athlet_stats/templates/web/athlet.html:174
+#: athlet_stats/templates/web/modality_season_ranking.html:46
+#: athlet_stats/templates/web/season_ranking.html:44
+#: athlet_stats/templates/web/season_ranking.html:64
+#: athlet_stats/templates/web/season_ranking.html:86
+#: athlet_stats/templates/web/season_ranking.html:105
+#: athlet_stats/templates/web/season_ranking.html:131
+#: athlet_stats/templates/web/season_ranking.html:151
+#: athlet_stats/templates/web/season_ranking.html:173
+#: athlet_stats/templates/web/season_ranking.html:192
+#: athlet_stats/templates/web/season_ranking.html:219
+#: athlet_stats/templates/web/season_ranking.html:240
+msgid "Lugar"
+msgstr "Lugar"
+
+#: athlet_stats/templates/web/athlet.html:57
+#: athlet_stats/templates/web/athlet.html:76
+#: athlet_stats/templates/web/athlet.html:101
+#: athlet_stats/templates/web/athlet.html:120
+#: athlet_stats/templates/web/athlet.html:146
+#: athlet_stats/templates/web/athlet.html:176
+#: athlet_stats/templates/web/modality_season_ranking.html:47
+#: athlet_stats/templates/web/season_ranking.html:45
+#: athlet_stats/templates/web/season_ranking.html:65
+#: athlet_stats/templates/web/season_ranking.html:87
+#: athlet_stats/templates/web/season_ranking.html:106
+#: athlet_stats/templates/web/season_ranking.html:132
+#: athlet_stats/templates/web/season_ranking.html:152
+#: athlet_stats/templates/web/season_ranking.html:174
+#: athlet_stats/templates/web/season_ranking.html:193
+#: athlet_stats/templates/web/season_ranking.html:220
+#: athlet_stats/templates/web/season_ranking.html:241
+msgid "Fecha"
+msgstr "Fecha"
+
+#: athlet_stats/templates/web/athlet.html:90
+msgid "sin resultados al aire libre"
+msgstr ""
+
+#: athlet_stats/templates/web/athlet.html:92
+#, fuzzy
+#| msgid "Pista Cubierta"
+msgid "Pista cubierta"
+msgstr "Pista Cubierta"
+
+#: athlet_stats/templates/web/athlet.html:134
+msgid "Sin resultados en pista cubierta"
+msgstr "Sin resultados en pista cubierta"
+
+#: athlet_stats/templates/web/athlet.html:138
+msgid "asfalto"
+msgstr "Asfalto"
+
+#: athlet_stats/templates/web/athlet.html:158
+msgid "Sin resultados en distancias oficiales de asfalto"
+msgstr "Sin resultados en distancias oficiales de asfalto"
+
+#: athlet_stats/templates/web/athlet.html:166
+#, fuzzy
+#| msgid "todas las pruebas"
+msgid "Todas las competiciones"
+msgstr "Todas Las Pruebas"
+
+#: athlet_stats/templates/web/athlet.html:173
+msgid "Puesto"
+msgstr "Puesto"
+
+#: athlet_stats/templates/web/athlet.html:190
+msgid "no ha competido todavia, o lo ha hecho a escondidas"
+msgstr "No ha competido todavia, o lo ha hecho a escondidas"
+
 #: athlet_stats/templates/web/base.html:49
 msgid "home"
 msgstr "Blog"
@@ -57,8 +184,8 @@ msgid "calendario"
 msgstr "Calendario"
 
 #: athlet_stats/templates/web/base.html:52
-msgid "resultados"
-msgstr "Resultados"
+msgid "miembros"
+msgstr "Miembros"
 
 #: athlet_stats/templates/web/base.html:53
 msgid "fotos"
@@ -74,21 +201,21 @@ msgstr "Ranking Temporada"
 msgid "acerca de nosotros"
 msgstr "Acerca de nosotros"
 
-#: athlet_stats/templates/web/blog.html:42
-#: athlet_stats/templates/web/blog.html:47
-#: athlet_stats/templates/web/blog.html:54
-#: athlet_stats/templates/web/blog.html:59
+#: athlet_stats/templates/web/blog.html:39
+#: athlet_stats/templates/web/blog.html:44
+#: athlet_stats/templates/web/blog.html:51
+#: athlet_stats/templates/web/blog.html:56
 #: athlet_stats/templates/web/post.html:57
 msgid "comentarios"
 msgstr "Comentarios"
 
-#: athlet_stats/templates/web/blog.html:107
-#: athlet_stats/templates/web/blog.html:111
+#: athlet_stats/templates/web/blog.html:104
+#: athlet_stats/templates/web/blog.html:108
 msgid "anteriores"
 msgstr "Anteriores"
 
-#: athlet_stats/templates/web/blog.html:116
-#: athlet_stats/templates/web/blog.html:120
+#: athlet_stats/templates/web/blog.html:113
+#: athlet_stats/templates/web/blog.html:117
 msgid "mas recientes"
 msgstr "Más recientes"
 
@@ -96,63 +223,28 @@ msgstr "Más recientes"
 msgid "todas las pruebas"
 msgstr "Todas Las Pruebas"
 
-#: athlet_stats/templates/web/modality_season_ranking.html:38
-#: athlet_stats/templates/web/season_ranking.html:40
-#: athlet_stats/templates/web/season_ranking.html:60
-#: athlet_stats/templates/web/season_ranking.html:82
-#: athlet_stats/templates/web/season_ranking.html:101
-#: athlet_stats/templates/web/season_ranking.html:128
-#: athlet_stats/templates/web/season_ranking.html:149
-msgid "Prueba"
-msgstr "Prueba"
-
 #: athlet_stats/templates/web/modality_season_ranking.html:41
-#: athlet_stats/templates/web/season_ranking.html:37
+#: athlet_stats/templates/web/season_ranking.html:38
 #: athlet_stats/templates/web/season_ranking.html:125
+#: athlet_stats/templates/web/season_ranking.html:213
 #, fuzzy
 #| msgid "masculino"
 msgid "Masculino"
 msgstr "Masculino"
 
-#: athlet_stats/templates/web/modality_season_ranking.html:44
-#: athlet_stats/templates/web/season_ranking.html:41
-#: athlet_stats/templates/web/season_ranking.html:61
-#: athlet_stats/templates/web/season_ranking.html:83
-#: athlet_stats/templates/web/season_ranking.html:102
-#: athlet_stats/templates/web/season_ranking.html:129
-#: athlet_stats/templates/web/season_ranking.html:150
-msgid "Marca"
-msgstr "Marca"
-
 #: athlet_stats/templates/web/modality_season_ranking.html:45
-#: athlet_stats/templates/web/season_ranking.html:42
-#: athlet_stats/templates/web/season_ranking.html:62
-#: athlet_stats/templates/web/season_ranking.html:84
-#: athlet_stats/templates/web/season_ranking.html:103
-#: athlet_stats/templates/web/season_ranking.html:130
-#: athlet_stats/templates/web/season_ranking.html:151
-msgid "Nombre"
-msgstr "Nombre"
-
-#: athlet_stats/templates/web/modality_season_ranking.html:46
 #: athlet_stats/templates/web/season_ranking.html:43
 #: athlet_stats/templates/web/season_ranking.html:63
 #: athlet_stats/templates/web/season_ranking.html:85
 #: athlet_stats/templates/web/season_ranking.html:104
-#: athlet_stats/templates/web/season_ranking.html:131
-#: athlet_stats/templates/web/season_ranking.html:152
-msgid "Lugar"
-msgstr "Lugar"
-
-#: athlet_stats/templates/web/modality_season_ranking.html:47
-#: athlet_stats/templates/web/season_ranking.html:44
-#: athlet_stats/templates/web/season_ranking.html:64
-#: athlet_stats/templates/web/season_ranking.html:86
-#: athlet_stats/templates/web/season_ranking.html:105
-#: athlet_stats/templates/web/season_ranking.html:132
-#: athlet_stats/templates/web/season_ranking.html:153
-msgid "Fecha"
-msgstr "Fecha"
+#: athlet_stats/templates/web/season_ranking.html:130
+#: athlet_stats/templates/web/season_ranking.html:150
+#: athlet_stats/templates/web/season_ranking.html:172
+#: athlet_stats/templates/web/season_ranking.html:191
+#: athlet_stats/templates/web/season_ranking.html:218
+#: athlet_stats/templates/web/season_ranking.html:239
+msgid "Nombre"
+msgstr "Nombre"
 
 #: athlet_stats/templates/web/races_sidebar.html:3
 msgid "azken emaitzak"
@@ -163,24 +255,31 @@ msgid "masculino"
 msgstr "Masculino"
 
 #: athlet_stats/templates/web/results.html:63
-#: athlet_stats/templates/web/season_ranking.html:79
+#: athlet_stats/templates/web/season_ranking.html:80
+#: athlet_stats/templates/web/season_ranking.html:167
 msgid "femenino"
 msgstr "Femenino"
 
 #: athlet_stats/templates/web/season_ranking.html:34
-msgid "Pista Cubierta"
-msgstr "Pista Cubierta"
+msgid "Aire Libre"
+msgstr "Aire Libre"
 
-#: athlet_stats/templates/web/season_ranking.html:57
-#: athlet_stats/templates/web/season_ranking.html:98
+#: athlet_stats/templates/web/season_ranking.html:58
+#: athlet_stats/templates/web/season_ranking.html:99
+#: athlet_stats/templates/web/season_ranking.html:145
+#: athlet_stats/templates/web/season_ranking.html:186
 msgid "Saltos y Lanzamientos"
 msgstr "Saltos y Lanzamientos"
 
-#: athlet_stats/templates/web/season_ranking.html:123
+#: athlet_stats/templates/web/season_ranking.html:122
+msgid "Pista Cubierta"
+msgstr "Pista Cubierta"
+
+#: athlet_stats/templates/web/season_ranking.html:211
 msgid "Asfalto"
 msgstr "Asfalto"
 
-#: athlet_stats/templates/web/season_ranking.html:146
+#: athlet_stats/templates/web/season_ranking.html:234
 #, fuzzy
 #| msgid "femenino"
 msgid "Femenino"
@@ -213,6 +312,9 @@ msgstr "Descripción propia euskera"
 #: profiles/models.py:42
 msgid "coach_description"
 msgstr "Descripción del entrenador"
+
+#~ msgid "resultados"
+#~ msgstr "Resultados"
 
 #~ msgid "uno a uno"
 #~ msgstr "Uno a uno"

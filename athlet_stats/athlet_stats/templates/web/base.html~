@@ -1,0 +1,127 @@
+{% load i18n %}
+{% get_available_languages as LANGUAGES %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aloña Mendi - Atletas de Argixao</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta author="Andoni Correas Illarramendi" />
+		{% block opengraph %}{% endblock %}
+		<link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Hammersmith+One' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Cousine:400,700' rel='stylesheet' type='text/css'>
+		{% block styles %}{% endblock %}
+		<link rel="stylesheet" href="{{STATIC_URL}}css/web/bootstrap.min.css" />
+		<link rel="stylesheet" href="{{STATIC_URL}}font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="{{STATIC_URL}}css/web/style.css" />
+
+		<link rel="shortcut icon" href="{{STATIC_URL}}img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/{{STATIC_URL}}img/favicon.ico" type="image/x-icon">
+
+	</head>
+	<body>
+		<div class="container-fluid header">
+		{% block switchlang %}{% endblock %}
+			<div class="aloina_eskudua hidden-xs"></div>
+			<div class="argixao_eskudua hidden-xs"></div>
+			<div class="row">
+				<div class="col-xs-16">
+					<h1>
+						<p><img src="{{STATIC_URL}}img/eskudo_aloina.png" /><b>Aloña Mendi Atletismo</b></p>
+						<p><b>Atletas de Argixao</b><img src="{{STATIC_URL}}img/logo_atletas.png"></p>
+					</h1>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		    </div>
+		    <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		      		<li {% if active == "blog" %} class="active" {% endif %}><a href="{% url 'blog' %}"><i class="fa fa-home"></i> {% trans "home" %}</a></li>
+		      		
+		      		<li {% if active == "calendar" %} class="active" {% endif %}><a href="{% url 'calendar' %}"><i class="fa fa-calendar"></i> {% trans "calendario" %}</a></li>
+		      		<li {% if active == "results" %} class="active" {% endif %}><a href="{% url 'webresults' %}"><i class="fa fa-trophy"></i> {% trans "resultados" %}</a></li>
+		      		<li {% if active == "album" %} class="active" {% endif %}><a href="{% url 'albums' %}"><i class="fa fa-camera"></i> {% trans "fotos" %}</a></li>
+		      		<li  {% if active == "ranking" %} class="active" {% endif %}><a href="{% url "seasonranking" "2014-2015" %}"><i class="fa fa-flag-checkered"></i> {% trans "Ranking Temporada" %}</a></li>
+		      		<li  {% if active == "archive" %} class="active" {% endif %}><a href="{% url 'archive' %}"><i class="fa fa-suitcase"></i> {% trans "archivo" %}</a></li>
+		            <li {% if active == "about" %} class="active" {% endif %}><a href="{% url 'aboutus' %}"><i class="fa fa-question-circle"></i> {% trans "acerca de nosotros" %}</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		{% get_current_language as LANGUAGE_CODE %}
+
+	{% block content %}
+
+	{% endblock %}
+
+
+	<div class="footer">
+		<p>Aloña Mendi & Atletas de Argixao</p>
+		<p>2014</p>
+	</div>
+
+
+    <script src="{{STATIC_URL}}js/jquery-1.10.2.js"></script>
+	<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+	{% block javascript %}{% endblock %}
+	<script>
+	var body = $("html, body");
+	$(".scroll_top").on('click',function(){
+		body.animate({scrollTop:0}, '1000', 'swing');
+	});
+
+	$(window).scroll(function(){
+	    var $scrollTop = $(window).scrollTop();
+	    if($scrollTop > 135){
+	        $(".navbar-nav>li>a").css({"padding":"0px 15px"});
+	        $(".navbar").css({"box-shadow":"0 5px 10px 0"});
+	        $(".navbar").addClass("navbar-fixed-top");
+	        $(".scroll_top").css({"opacity":"1"});
+	    }else{
+	    	$(".navbar-nav>li>a").css({"padding":"10px 15px"});
+	        $(".navbar").css({"box-shadow":"0 1px 5px 0"});
+	        $(".navbar").removeClass("navbar-fixed-top");
+	        $(".scroll_top").css({"opacity":"0"});
+	    }
+	});
+
+	setTimeout(function(){
+		$(".social").css({"margin-left":"0"});
+		$(".share").css({"margin-left":"0"});
+	},1000);
+	</script>
+
+	{% block custom_javascript%}{% endblock %}
+
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&version=v2.3&appId=250198748439697";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55679849-1', 'auto');
+  ga('send', 'pageview');
+	</script>
+
+	</body>
+</html> 

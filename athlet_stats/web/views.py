@@ -7,7 +7,8 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.utils import translation
 from races.models import Edition,Result,Race,Season,Modality
-from datetime import datetime,timedelta
+from profiles.models import UserProfile
+from datetime import date,datetime,timedelta
 import pytz
 from pytz import timezone
 from django.utils.timezone import utc
@@ -57,6 +58,58 @@ class Results(TemplateView):
         startdate = datetime(2014,9,1)
         context["results"] = Result.objects.filter(edition__date__range=[startdate,enddate]).order_by('-edition__date', 'edition__race','edition__name','user__gender','position','timemark')
         return context
+
+class AthletList(TemplateView):
+    template_name = "web/athlet_list.html"
+    def get_context_data(self,**kwargs):
+        context = super(AthletList, self).get_context_data(**kwargs)
+        context["athlets"] = UserProfile.objects.exclude(slug__isnull=True).exclude(slug__exact='').order_by('first_surname')
+        context["active"] = "members"
+        return context
+
+class AthletView(DetailView):
+    model = UserProfile
+    template_name = "web/athlet.html"
+    context_object_name = "athlet"
+    slug_field = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super(AthletView, self).get_context_data(**kwargs)
+        athlet = get_object_or_404(UserProfile,slug=self.kwargs['slug'])
+        if athlet.date_of_birth:
+            context['age'] = calculate_age(athlet.date_of_birth)
+        else:
+            context['age'] = ''
+
+        cursor = connection.cursor()
+         #pista aire libre
+        cursor.execute("Select distinct rm.id AS modality_id,modality, rm.distance,timemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 4 AND pu.id = "+ str(athlet.id) +" AND rrt.name = 'duration' AND rr.timemark = ( Select min(rr2.timemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id AND pu2.id=pu.id) order by rm.distance");
+        context["aire_libre"] = dictfetchall(cursor)
+
+        #lanzamientos aire libre
+        cursor.execute("Select distinct rm.id AS modality_id,modality, rm.distance,distancemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 4 AND pu.id = "+ str(athlet.id) +" AND rrt.name = 'distance' AND rr.distancemark = ( Select max(rr2.distancemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND pu2.id=pu.id) order by rm.distance")
+        context["lanzamientos_aire_libre"] = dictfetchall(cursor)
+
+        #pista cubierta
+        cursor.execute("Select distinct rm.id AS modality_id,modality, rm.distance,timemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 3 AND pu.id = "+ str(athlet.id) +" AND rrt.name = 'duration' AND rr.timemark = ( Select min(rr2.timemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND pu2.id=pu.id) order by rm.distance");
+        context["cubierta"] = dictfetchall(cursor)
+
+        #lanzamientos pista cubierta
+        cursor.execute("Select distinct rm.id AS modality_id,modality, rm.distance,distancemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 3 AND pu.id = "+ str(athlet.id) +" AND rrt.name = 'distance' AND rr.distancemark = ( Select max(rr2.distancemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND pu2.id=pu.id) order by rm.distance")
+        context["lanzamientos_cubierta"] = dictfetchall(cursor)
+
+        #asfalto
+        cursor.execute("Select distinct rm.id AS modality_id,modality, rm.distance,timemark, pu.name AS izena, pu.first_surname,re.name,re.date From races_result as rr Inner Join races_edition as re on rr.edition_id = re.id Inner Join races_modality as rm on re.type_id = rm.id Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_resulttype as rrt on rm.result_type_id = rrt.id Where rm.race_type_id = 1 AND pu.id = "+ str(athlet.id) +" AND modality != 'Otro' AND rrt.name = 'duration' AND rr.timemark = ( Select min(rr2.timemark) From races_result as rr2 Inner Join races_edition as re2 on rr2.edition_id = re2.id Inner Join races_modality as rm2 on re2.type_id = rm.id Inner Join profiles_userprofile as pu2 on rr2.user_id = pu2.id Where rm2.id=rm.id AND pu2.id=pu.id) order by rm.distance")
+        context["asfalto"] = dictfetchall(cursor)
+
+        #todos los resultados
+        cursor.execute("Select rr.position, re.name, rr.timemark, rr.distancemark, re.date From races_result as rr Inner Join profiles_userprofile as pu on rr.user_id = pu.id Inner Join races_edition as re on rr.edition_id = re.id Where pu.id = "+ str(athlet.id) +" order by re.date desc")
+        context["todos"] = dictfetchall(cursor)
+
+
+        context["active"] = "members"
+        return context
+
 
 class Albums(TemplateView):
     template_name = "web/albums.html"
@@ -274,6 +327,11 @@ class ModalitySeasonRanking(TemplateView):
         context["active"] = "ranking"
 
         return context
+
+
+def calculate_age(born):
+    today = date.today()
+    return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
     
 
 def eventsFeed(request):

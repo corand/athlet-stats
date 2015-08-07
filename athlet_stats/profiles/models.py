@@ -40,6 +40,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     self_description_es = models.TextField(_("self_description_es"),blank=True,null=True)
     self_description_eu = models.TextField(_("self_description_eu"),blank=True,null=True)
     coach_description = models.TextField(_("coach_description"),blank=True,null=True)
+    date_of_birth = models.DateField(blank=True,null=True)
     slug = models.SlugField(blank=True,null=True)
     twitter = models.URLField(blank=True,null=True)
     

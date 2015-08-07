@@ -10,6 +10,17 @@ table{ font-size:0.8em;}
     white-space: normal;
 }
 
+ul.korrikalariak li{
+    float: left;
+    margin-left: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+ul.korrikalariak li img{
+    max-width: 200px;
+}
+
 .result_day>li{
 	display:inline-block;
 	font-size:30px;
@@ -198,10 +209,11 @@ img{ max-width: 100%; height:auto!important; margin-top:10px; margin-bottom:10px
 .btn-pag li a:focus,.btn-pag li a:hover{ background-color: #C34A2C; color:white; }
 
 .social{ position: fixed;
-        width:45px;
-        margin-left: -50px;
+        width:200px;
+        background-image: url('http://herrikoia.aloinargixao.com/img/imagen_portada.jpg');
+        margin-left: -200px;
         padding:5px 10px;
-        font-size:2em;
+        font-size:16px;
         text-align: center;
         top: 240px;
         color:black;
@@ -213,10 +225,16 @@ img{ max-width: 100%; height:auto!important; margin-top:10px; margin-bottom:10px
         -ms-transition: width 0.2s ease-in-out,margin 0.6s ease-in-out;
         transition: width 0.2s ease-in-out,margin 0.6s ease-in-out;
         z-index:99;}
-.social:hover{ cursor: pointer; text-decoration: none; width:60px; color:darkred;}
+.social:hover{ cursor: pointer; text-decoration: none; width:250px; }
 
-.share{ position:fixed; top:340px; color:black; left:0px; margin-left:-50px;
-        width:20px;
+.share:hover{ width:250px; }
+
+.share{ position:fixed; top:340px; color:black; left:0px; margin-left:-200px;
+        width:200px;
+        height:100px;
+        font-size: 19px;
+        padding-top: 30px;
+        color:black;
         text-align:center;
         box-shadow: 0 0 3px 0.8px;
         -webkit-transition: margin 0.6s ease-in-out;
