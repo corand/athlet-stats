@@ -6,7 +6,7 @@
 		<meta property="og:title" content="{{athlet.name}} {{athlet.first_surname}} {{athlet.second_surname}} atletaren perfila"/>
 	{% else %}
 		{% if athlet.profile_picture %}
-	    	<img src="{{MEDIA_URL}}{{athlet.profile_picture}}">
+	    	<meta property="og:image" content="{{MEDIA_URL}}{{athlet.profile_picture}}"/>
 	    {% else %}
 	      	<meta property="og:image" content="{{STATIC_URL}}img/profilepic.png"/>
 	    {% endif %}
