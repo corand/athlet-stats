@@ -337,22 +337,19 @@ def calculate_age(born):
 def eventsFeed(request):
     json_list = []
     if request.is_ajax():
-        print 'Its ajax from fullCalendar()'
-        #print request.GET.get('start','False')
-
+        
         start = dateutil.parser.parse(request.GET.get('start'))
         end = dateutil.parser.parse(request.GET.get('end'))
-        print start
-        print end
 
         # Race.objects.filter(edition__name__contains='a')
         races = Race.objects.filter(edition__date__gte=start).filter(edition__date__lte=end).distinct('id')
 
         for race in races:
+            len = race.edition_set.select_related().count()
             id = race.id
             title = race.name
             settingstime_zone = timezone(settings.TIME_ZONE)
-            start = race.edition_set.select_related()[0].date.astimezone(settingstime_zone)
+            start = race.edition_set.select_related()[len-1].date.astimezone(settingstime_zone)
             #start = race.date.strftime("%Y-%m-%dT%H:%M:%S")
             allDay = False
 
