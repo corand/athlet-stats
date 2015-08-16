@@ -340,26 +340,31 @@ def eventsFeed(request):
         
         start = dateutil.parser.parse(request.GET.get('start'))
         end = dateutil.parser.parse(request.GET.get('end'))
+        settingstime_zone = timezone(settings.TIME_ZONE)
 
         # Race.objects.filter(edition__name__contains='a')
         races = Race.objects.filter(edition__date__gte=start).filter(edition__date__lte=end).distinct('id')
+        print races
 
         start = pytz.utc.localize(start)
         end = pytz.utc.localize(end)
         for race in races:
             id = race.id
             title = race.name
-            settingstime_zone = timezone(settings.TIME_ZONE)
 
+            inside = False
             for edition in race.edition_set.select_related():
                 edition_time = edition.date.astimezone(settingstime_zone)
                 if (edition_time > start) and (edition_time < end):
-                    start = edition_time
+                    start_time = edition_time
+                    inside = True
 
             #start = race.date.strftime("%Y-%m-%dT%H:%M:%S")
-            allDay = False
+            if not inside:
+                start_time = 0
 
-            json_entry = {'id':id, 'start':str(start), 'allDay':allDay, 'title': title}
+            json_entry = {'id':id, 'start':str(start_time), 'allDay':False, 'title': title}
+           
             json_list.append(json_entry)
 
     return HttpResponse(json.dumps(json_list), content_type='application/json')
