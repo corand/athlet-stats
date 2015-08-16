@@ -344,12 +344,18 @@ def eventsFeed(request):
         # Race.objects.filter(edition__name__contains='a')
         races = Race.objects.filter(edition__date__gte=start).filter(edition__date__lte=end).distinct('id')
 
+        start = pytz.utc.localize(start)
+        end = pytz.utc.localize(end)
         for race in races:
-            len = race.edition_set.select_related().count()
             id = race.id
             title = race.name
             settingstime_zone = timezone(settings.TIME_ZONE)
-            start = race.edition_set.select_related()[len-1].date.astimezone(settingstime_zone)
+
+            for edition in race.edition_set.select_related():
+                edition_time = edition.date.astimezone(settingstime_zone)
+                if (edition_time > start) and (edition_time < end):
+                    start = edition_time
+
             #start = race.date.strftime("%Y-%m-%dT%H:%M:%S")
             allDay = False
 
